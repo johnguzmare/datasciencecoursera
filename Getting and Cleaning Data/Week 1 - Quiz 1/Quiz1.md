@@ -155,4 +155,4 @@ You have to run every statement at least twice to get the lowest output time
 > system.time(tapply(DT$pwgtp15,DT$SEX,mean))
 > system.time(rowMeans(DT)[DT$SEX==1])+system.time(rowMeans(DT)[DT$SEX==2])
 
-```r
+```
