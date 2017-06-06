@@ -1,7 +1,7 @@
 Reading from MySQL
 =========================
 
-###Install MySQL on mac
+### Install MySQL on mac
 
 download mysql pkg
 root@localhost: xxxx
