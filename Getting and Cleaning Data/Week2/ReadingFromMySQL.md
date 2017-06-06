@@ -133,6 +133,6 @@ There were 16 warnings (use warnings() to see them)
    1    1    2    3    3 
 ```
 
-### Aditional resources
+### Additional resources
 
 http://www.r-bloggers.com/mysql-and-r/
