@@ -72,11 +72,11 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx
 
 Read rows 18-23 and columns 7-15 into R and assign the result to a variable called:
 
-dat
+`dat`
 
 What is the value of:
 
-sum(dat$Zip*dat$Ext,na.rm=T)
+`sum(dat$Zip*dat$Ext,na.rm=T)`
 (original data source: http://catalog.data.gov/dataset/natural-gas-acquisition-program)
 
 Answer
@@ -126,13 +126,13 @@ Download the 2006 microdata survey about housing for the state of Idaho using do
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv
 
-using the fread() command load the data into an R object
+using the `fread()` command load the data into an R object
 
-DT
+`DT`
 Which of the following is the fastest way to calculate the average value of the variable
 
-pwgtp15
-broken down by sex using the data.table package?
+`pwgtp15`
+broken down by sex using the `data.table` package?
 
 Answer
 
