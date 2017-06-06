@@ -9,7 +9,7 @@ download mysql pkg
 ```r
 cd /usr/local/mysql/bin/
 ./mysql -u root -p
-SET PASSWORD FOR 'root'@'localhost' = PASSWORD('aQ9819000.');
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('.');
 ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;
 ```
 Install pre-requisite for R connector
