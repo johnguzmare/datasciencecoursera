@@ -3,12 +3,20 @@ Reading from MySQL
 
 ### Install MySQL on mac
 
+
 download mysql pkg
-root@localhost: xxxx
+
+```r
 cd /usr/local/mysql/bin/
+./mysql -u root -p
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('aQ9819000.');
 ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;
+```
+Install pre-requisite for R connector
+
+```r
 brew install mariadb-connector-c
+```
 
 ### Install and load on R Studio
 
