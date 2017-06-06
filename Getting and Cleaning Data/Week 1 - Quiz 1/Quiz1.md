@@ -149,10 +149,19 @@ You have to run every statement at least twice to get the lowest output time
 > DT <- fread("hdata.csv")
 > file.info("hdata.csv")$size
 > system.time(DT[,mean(pwgtp15),by=SEX])
+   user  system elapsed 
+  0.001   0.000   0.001 
 > system.time(mean(DT[DT$SEX==1,]$pwgtp15))+system.time(mean(DT[DT$SEX==2,]$pwgtp15))
 > system.time(sapply(split(DT$pwgtp15,DT$SEX),mean))
+   user  system elapsed 
+  0.001   0.000   0.001 
 > system.time(mean(DT$pwgtp15,by=DT$SEX))
+   user  system elapsed 
+  0.001   0.000   0.001 
 > system.time(tapply(DT$pwgtp15,DT$SEX,mean))
+   user  system elapsed 
+  0.001   0.000   0.002 
 > system.time(rowMeans(DT)[DT$SEX==1])+system.time(rowMeans(DT)[DT$SEX==2])
-
+   user  system elapsed 
+  0.038   0.000   0.039 
 ```
