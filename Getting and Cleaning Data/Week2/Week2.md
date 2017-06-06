@@ -1,5 +1,5 @@
-##Reading from MySQL
-------------------------
+Reading from MySQL
+=========================
 
 ###Install MySQL on mac
 
@@ -12,16 +12,18 @@ brew install mariadb-connector-c
 
 ###Install and load on R Studio
 
+```r
 > install.packages("RMySQL")
 > library("RMySQL")
 Loading required package: DBI
-
+```
 
 ###Connect to sample database
-
+```r
 > ucsc <- dbConnect(MySQL(),user="genome",host="genome-mysql.cse.ucsc.edu")
 > result <- dbGetQuery(ucsc,"show databases;");
-
+```
+```r
 > head(result)
             Database
 1 information_schema
@@ -30,10 +32,11 @@ Loading required package: DBI
 4            anoCar1
 5            anoCar2
 6            anoGam1
-
+```
+```r
 > dbDisconnect(ucsc)
 [1] TRUE
-
+```
 
 ###Connect to specific database
 
