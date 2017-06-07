@@ -85,7 +85,17 @@ repeat {
 }
 ```
 
+### next return 
+```r
 
+for (i,1:100) {
+   if (1 <=20) {
+     ## Skip
+     next
+   }
+   ## Do something here
+}
+```
 
 
 
