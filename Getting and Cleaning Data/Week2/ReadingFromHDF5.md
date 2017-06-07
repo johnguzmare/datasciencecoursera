@@ -31,11 +31,11 @@ To install this package, start R and enter:
 ```
 ### Write to groups
 ```r
-`Matrix`
+#### Matrix
 > A = matrix(1:10,nr=5,nc=2)
 > h5write(A,"example.h5","foo/A")
 
-`Multidimesional Array`
+#### Multidimesional Array
 > B <- array(seq(0.1,2.0,by=0.1),dim=c(5,2,2))
 > attr(B,"scale") <- "liter"
 > h5write(B,"example.h5","foo/foobaa/B")
