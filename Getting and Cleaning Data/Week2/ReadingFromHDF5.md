@@ -8,6 +8,6 @@ This R/Bioconductor package provides an interface between HDF5 and R. HDF5's mai
 To install this package, start R and enter:
 
 ```r
-source("https://bioconductor.org/biocLite.R")
-biocLite("rhdf5")
+> source("https://bioconductor.org/biocLite.R")
+> biocLite("rhdf5")
 ```
