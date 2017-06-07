@@ -105,3 +105,20 @@ To install this package, start R and enter:
 4      4                      0.75                                a
 5      5                      1.00                                s
 ```
+
+### Writing and reading chunks 
+
+Write on `foo/A` group the values `c(12,13,14)` at `index=list(1:3,1)`
+
+```r
+> h5write(c(12,13,14),"example.h5","foo/A",index=list(1:3,1))
+> h5read("example.h5","foo/A")
+     [,1] [,2]
+[1,]   12    6
+[2,]   13    7
+[3,]   14    8
+[4,]    4    9
+[5,]    5   10
+
+```
+
