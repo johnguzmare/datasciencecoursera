@@ -18,6 +18,7 @@ above <- function(x,n=10) {
   use <- x > n
   x [use]
 }
+```
 ```r
 columnmean <- function(y, removeNA = TRUE){
   nc <- ncol(y)
