@@ -57,3 +57,11 @@ g1 <- function(x) {
    x + a + y 
 }
 ```
+Exploring a Function Closure
+---------------------
+```r
+> ls(environment(cube))
+[1] "n" "pow"
+> get("n", environment(cube))
+[1] 3
+```
