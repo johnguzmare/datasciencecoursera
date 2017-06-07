@@ -63,4 +63,45 @@ To install this package, start R and enter:
 4        /foo foobaa   H5I_GROUP                   
 5 /foo/foobaa      B H5I_DATASET    FLOAT 5 x 2 x 2
 ```
->
+### Reading data 
+```r
+> readA = h5read("example.h5","foo/A")
+> readA
+     [,1] [,2]
+[1,]    1    6
+[2,]    2    7
+[3,]    3    8
+[4,]    4    9
+[5,]    5   10
+```
+```r
+> readB = h5read("example.h5","foo/foobaa/B")
+> readB
+, , 1
+
+     [,1] [,2]
+[1,]  0.1  0.6
+[2,]  0.2  0.7
+[3,]  0.3  0.8
+[4,]  0.4  0.9
+[5,]  0.5  1.0
+
+, , 2
+
+     [,1] [,2]
+[1,]  1.1  1.6
+[2,]  1.2  1.7
+[3,]  1.3  1.8
+[4,]  1.4  1.9
+[5,]  1.5  2.0
+```
+```r
+> readdf = h5read("example.h5","df")
+> readdf
+  X1L.5L seq.0..1..length.out...5. c..ab....cde....fghi....a....s..
+1      1                      0.00                               ab
+2      2                      0.25                              cde
+3      3                      0.50                             fghi
+4      4                      0.75                                a
+5      5                      1.00                                s
+```
