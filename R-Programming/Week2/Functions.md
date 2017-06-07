@@ -42,7 +42,7 @@ make.power <- function(n){
 }
 ```
 ```r
-y <- 10
+y <- 10 ## free variable
 f <- function(x) {
   y <- 2
   y^2 + g(x)
