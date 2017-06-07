@@ -129,11 +129,12 @@ nLL <- make.NegLogLik(normals, c(1, FALSE))
 x <- seq(1.7, 1.9, len = 100)
 y <- sapply(x, nLL)
 plot(x, exp(-(y - min(y))), type = "l")
-
-
+```
+![rplot](https://user-images.githubusercontent.com/5162499/26906133-d2b0afc4-4bb0-11e7-9c58-aa5d82f5dbe6.png)
+```r
 nLL <- make.NegLogLik(normals, c(FALSE, 2))
 x <- seq(0.5, 1.5, len = 100)
 y <- sapply(x, nLL)
 plot(x, exp(-(y - min(y))), type = "l")
 ```
-
+![rplot2](https://user-images.githubusercontent.com/5162499/26906141-df183110-4bb0-11e7-96f9-11e42d4c59b9.png)
