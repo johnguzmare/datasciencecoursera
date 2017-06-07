@@ -30,3 +30,30 @@ columnmean <- function(y, removeNA = TRUE){
   means
 }
 ```
+Lexical Scoping
+---------------------
+```r
+
+make.power <- function(n){
+  pow <- function(x) {
+     x+n
+  }
+  pow
+}
+```
+```r
+y <- 10
+f <- function(x) {
+  y <- 2
+  y^2 + g(x)
+}
+g <- function(x) {
+  x * y
+}
+```
+```r
+g1 <- function(x) {
+   a <- 3
+   x + a + y 
+}
+```
