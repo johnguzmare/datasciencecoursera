@@ -113,7 +113,8 @@ h <- function(x, y = NULL, d = 3L) {
         g <- g + 10
         g
 }
-```r
+```
+
 Which symbol in the above function is a free variable?
 
 **f**
