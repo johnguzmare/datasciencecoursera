@@ -125,4 +125,14 @@ Evaluate.R
 [1] 7
 ```
 
+```r
+
+| Try using evaluate() along with an anonymous function to return the first element of the vector
+| c(8, 4, 0). Your anonymous function should only take one argument which should be a variable
+| `x`.
+
+> evaluate(function(x){x[1]}, c(8, 4, 0))
+[1] 8
+
+```
 
