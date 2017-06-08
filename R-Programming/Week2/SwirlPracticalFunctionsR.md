@@ -48,3 +48,50 @@ function(x) {
 
 ```
 
+```r
+
+| Time to make a more useful function! We're going to replicate the functionality of the mean()
+| function by creating a function called: my_mean(). Remember that to calculate the average of all
+| of the numbers in a vector you find the sum of all the numbers in the vector, and then divide
+| that sum by the number of numbers in the vector.
+
+| Now test out your my_mean() function by finding the mean of the vector c(4, 5, 10).
+
+> my_mean(c(4, 5, 10))
+[1] 6.333333
+
+
+```
+
+```r
+
+| Next, let's try writing a function with default arguments. You can set default values for a
+| function's arguments, and this can be useful if you think someone who uses your function will
+| set a certain argument to the same value most of the time.
+
+remainder.R
+```
+
+```r
+
+| Let's do some testing of the remainder function. Run remainder(5) and see what happens.
+
+> remainder(5)
+[1] 1
+
+>  remainder(11, 5)
+[1] 1
+
+> remainder(divisor = 11, num = 5)
+[1] 5
+
+> remainder(4, div = 2)
+[1] 0
+
+> args(remainder) 
+function (num, divisor = 2) 
+NULL
+
+
+```
+
