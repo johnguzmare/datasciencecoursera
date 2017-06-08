@@ -184,3 +184,22 @@ mad_libs <- function(...){
 [1] "News from Here today where adjective students took to the streets in protest of the new noun being installed on campus."
 
 ```
+
+```r
+
+
+| You made your own binary operator! Let's test it out. Paste together the strings: 'I', 'love',
+| 'R!' using your new binary operator.
+```
+
+```r
+"%p%" <- function(left, right){ # Remember to add arguments!
+    paste(left,right)
+}
+```
+
+```r
+> "I" %p% "love" %p% "R!"  
+[1] "I love R!"
+```
+
