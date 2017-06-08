@@ -136,3 +136,51 @@ Evaluate.R
 
 ```
 
+```r
+
+| Now try using evaluate() along with an anonymous function to return the last element of the
+| vector c(8, 4, 0). Your anonymous function should only take one argument which should be a
+| variable `x`.
+
+> evaluate(function(x){x[length(x)]}, c(8, 4, 0))
+[1] 0
+
+```
+
+```r
+
+| Now let's test out your telegram function. Use your new telegram function passing in whatever
+| arguments you wish!
+
+> telegram("Hello")
+[1] "START Hello STOP"
+
+```
+
+```r
+
+| Your function should have three sections: capture the ellipsis in a list(), unpack the arguments
+| from the ellipsis and assign them to variables, then pass those variables to paste().
+```
+
+```r
+mad_libs <- function(...){
+    # Do your argument unpacking here!
+    args <- list(...)
+    
+    place <- args[["place"]]
+    adjective <- args[["adjective"]]
+    noun <- args[["noun"]]
+    # Don't modify any code below this comment.
+    # Notice the variables you'll need to create in order for the code below to
+    # be functional!
+    paste("News from", place, "today where", adjective, "students took to the streets in protest of the new", noun, "being         installed on campus.")
+}
+```
+
+```r
+
+> mad_libs(place="Here",adjective="adjective", noun="noun")
+[1] "News from Here today where adjective students took to the streets in protest of the new noun being installed on campus."
+
+```
