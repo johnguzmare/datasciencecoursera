@@ -21,7 +21,7 @@ An error is returned because 'n' is not specified in the call to 'cube'
 
 The users is prompted to specify the value of 'n'.
 
-*** The number 27 is returned ***
+**The number 27 is returned**
 
 
 2. The following code will produce a warning in R.
@@ -41,7 +41,7 @@ You cannot set 'x' to be 0 because 'x' is a vector and 0 is a scalar.
 
 The syntax of this R expression is incorrect.
 
-** 'x' is a vector of length 10 and 'if' can only test a single logical statement. **
+**'x' is a vector of length 10 and 'if' can only test a single logical statement.**
 
 The expression uses curly braces.
 
@@ -74,7 +74,7 @@ What value is returned?
 
 7
 
-** 10 **
+**10**
 
 4. Consider the following expression:
 -----------
@@ -89,7 +89,7 @@ y <- if(x < 3) {
 ```
 What is the value of 'y' after evaluating this expression?
 
-** 10 **
+**10**
 
 3
 
@@ -116,7 +116,7 @@ h <- function(x, y = NULL, d = 3L) {
 ```r
 Which symbol in the above function is a free variable?
 
-** f **
+**f**
 
 z
 
@@ -131,7 +131,7 @@ g
 
 a special type of function
 
-** a collection of symbol/value pairs **
+**a collection of symbol/value pairs**
 
 a list whose elements are all functions
 
@@ -146,14 +146,14 @@ compilation scoping
 
 global scoping
 
-** lexical scoping **
+**lexical scoping**
 
 
 8. How are free variables in R functions resolved?
 -----------
 The values of free variables are searched for in the environment in which the function was called
 
-** The values of free variables are searched for in the environment in which the function was defined **
+**The values of free variables are searched for in the environment in which the function was defined**
 
 The values of free variables are searched for in the global environment
 
@@ -166,7 +166,7 @@ R objects cannot be larger than 100 MB
 
 Functions cannot be nested
 
-** All objects must be stored in memory **
+**All objects must be stored in memory**
 
 All objects can be stored on the disk
 
@@ -175,7 +175,7 @@ All objects can be stored on the disk
 -----------
 It is always the global environment
 
-** It is the environment in which a function was called **
+**It is the environment in which a function was called**
 
 It is the package search list
 
