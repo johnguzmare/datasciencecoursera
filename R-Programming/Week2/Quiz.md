@@ -1,8 +1,9 @@
 Week 2 Quiz
 ======================
 
+
 1. Suppose I define the following function in R
------------
+--------------------
 
 ```r
 cube <- function(x, n) {
