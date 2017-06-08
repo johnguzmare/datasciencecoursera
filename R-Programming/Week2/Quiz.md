@@ -21,7 +21,7 @@ An error is returned because 'n' is not specified in the call to 'cube'
 
 The users is prompted to specify the value of 'n'.
 
-** The number 27 is returned **
+*** The number 27 is returned ***
 
 
 2. The following code will produce a warning in R.
