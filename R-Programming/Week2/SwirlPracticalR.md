@@ -173,4 +173,28 @@ Selection: 1
 > FALSE & FALSE
 [1] FALSE
 ```
+```r
+| You can use the `&` operator to evaluate AND across a vector. The `&&` version of AND only
+| evaluates the first member of a vector. Let's test both for practice. Type the expression TRUE &
+| c(TRUE, FALSE, FALSE). 
+| This is the equivalent statement as c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, FALSE).
 
+> TRUE & c(TRUE, FALSE, FALSE)
+[1]  TRUE FALSE FALSE
+
+```
+```r
+
+| Now we'll type the same expression except we'll use the `&&` operator. Type the expression TRUE
+| && c(TRUE, FALSE, FALSE).
+
+> TRUE && c(TRUE, FALSE, FALSE)
+[1] TRUE
+
+```
+
+```r
+```
+
+```r
+```
