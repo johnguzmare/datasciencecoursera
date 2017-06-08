@@ -95,3 +95,34 @@ NULL
 
 ```
 
+```r
+
+| You may not realize it but I just tricked you into doing something pretty interesting! args() is
+| a function, remainder() is a function, yet remainder was an argument for args(). Yes it's true:
+| you can pass functions as arguments! This is a very powerful concept. Let's write a script to
+| see how it works.
+
+Evaluate.R
+
+| Let's take your new evaluate() function for a spin! Use evaluate to find the standard deviation
+| of the vector c(1.4, 3.6, 7.9, 8.8).
+
+> evaluate(sd,c(1.4, 3.6, 7.9, 8.8))
+[1] 3.514138
+
+```
+
+```r
+| You may be surprised to learn that you can pass a function as an argument without first defining
+| the passed function. Functions that are not named are appropriately known as anonymous
+| functions.
+| Let's use the evaluate function to explore how anonymous functions work. For the first argument
+| of the evaluate function we're going to write a tiny function that fits on one line. In the
+| second argument we'll pass some data to the tiny anonymous function in the first argument.
+| Type the following command and then we'll discuss how it works: evaluate(function(x){x+1}, 6)
+
+> evaluate(function(x){x+1}, 6)
+[1] 7
+```
+
+
