@@ -1,7 +1,7 @@
-Practical R excecises in swirl
+Practical R excecises in swirl (Logic)
 =================================
 
-Isntall Swirl
+Install Swirl
 ----------------
 Since swirl is an R package, you can easily install it by entering a single command from the R console:
 
@@ -243,6 +243,109 @@ Selection: 1
 ```
 
 ```r
+| The function isTRUE() takes one argument. If that argument evaluates to TRUE, the function will
+| return TRUE. Otherwise, the function will return FALSE. Try using this function by typing:
+| isTRUE(6 > 4)
+
+> isTRUE(6 > 4)
+[1] TRUE
 ```
 
+```r
+
+| Which of the following evaluates to TRUE?
+
+1: !isTRUE(8 != 5)
+2: isTRUE(!TRUE)
+3: isTRUE(NA)
+4: isTRUE(3)
+5: !isTRUE(4 < 3)
+
+Selection: 5
+
+```
+
+```r
+
+| The function identical() will return TRUE if the two R objects passed to it as arguments are
+| identical. Try out the identical() function by typing: identical('twins', 'twins')
+
+> identical('twins', 'twins')
+[1] TRUE
+```
+
+```r
+| Which of the following evaluates to TRUE?
+
+1: identical(5 > 4, 3 < 3.1)
+2: !identical(7, 7)
+3: identical(4, 3.1)
+4: identical('hello', 'Hello')
+
+Selection: 1
+```
+
+```r
+| Try out the xor() function by typing: xor(5 == 6, !FALSE)
+
+> xor(5 == 6, !FALSE)
+[1] TRUE
+
+```
+
+```r
+| Which of the following evaluates to FALSE?
+
+1: xor(identical(xor, 'xor'), 7 == 7.0)
+2: xor(!isTRUE(TRUE), 6 > -1)
+3: xor(4 >= 9, 8 != 8.0)
+4: xor(!!TRUE, !!FALSE)
+
+Selection: 3
+```
+
+```r
+| Use the which() function to find the indices of ints that are greater than 7.
+
+> which(ints>7)
+[1] 3 6 8
+```
+
+```r
+| Which of the following commands would produce the indices of the elements in ints that are less
+| than or equal to 2?
+
+1: ints < 2
+2: which(ints <= 2)
+3: which(ints < 2)
+4: ints <= 2
+
+Selection: 2
+
+```
+
+```r
+
+| Like the which() function, the functions any() and all() take logical vectors as their argument.
+| The any() function will return TRUE if one or more of the elements in the logical vector is
+| TRUE. The all() function will return TRUE if every element in the logical vector is TRUE.
+
+| Use the any() function on the logical vector produced by: `ints < 0`
+
+>  any(ints<0)
+[1] FALSE
+
+| Use the all() function to see if all of the elements of ints are greater than zero.
+
+>  all(ints>0)
+[1] TRUE
+
+| Which of the following evaluates to TRUE?
+
+1: all(ints == 10)
+2: any(ints == 2.5)
+3: all(c(TRUE, FALSE, TRUE))
+4: any(ints == 10)
+
+Selection: 4
 
