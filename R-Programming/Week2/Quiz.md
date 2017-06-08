@@ -2,6 +2,7 @@ Week 2 Quiz
 ======================
 
 
+
 Suppose I define the following function in R
 --------------------
 
@@ -25,7 +26,7 @@ The users is prompted to specify the value of 'n'.
 **The number 27 is returned**
 
 
-2. The following code will produce a warning in R.
+The following code will produce a warning in R.
 -----------
 
 ```r
@@ -47,7 +48,7 @@ The syntax of this R expression is incorrect.
 The expression uses curly braces.
 
 
-3. Consider the following function
+Consider the following function
 -----------
 
 ```r
@@ -77,7 +78,7 @@ What value is returned?
 
 **10**
 
-4. Consider the following expression:
+Consider the following expression:
 -----------
 
 ```r
@@ -98,7 +99,7 @@ What is the value of 'y' after evaluating this expression?
 
 NA
 
-5. Consider the following R function
+Consider the following R function
 -----------
 
 ```r
@@ -128,7 +129,7 @@ L
 
 g
 
-6.  What is an environment in R?
+What is an environment in R?
 -----------
 
 a special type of function
@@ -139,7 +140,7 @@ a list whose elements are all functions
 
 an R package that only contains data
 
-7. The R language uses what type of scoping rule for resolving free variables?
+The R language uses what type of scoping rule for resolving free variables?
 -----------
 
 dynamic scoping
@@ -151,7 +152,7 @@ global scoping
 **lexical scoping**
 
 
-8. How are free variables in R functions resolved?
+How are free variables in R functions resolved?
 -----------
 The values of free variables are searched for in the environment in which the function was called
 
@@ -162,7 +163,7 @@ The values of free variables are searched for in the global environment
 The values of free variables are searched for in the working directory
 
 
-9. What is one of the consequences of the scoping rules used in R?
+What is one of the consequences of the scoping rules used in R?
 -----------
 R objects cannot be larger than 100 MB
 
@@ -173,7 +174,7 @@ Functions cannot be nested
 All objects can be stored on the disk
 
 
-10. In R, what is the parent frame?
+In R, what is the parent frame?
 -----------
 It is always the global environment
 
