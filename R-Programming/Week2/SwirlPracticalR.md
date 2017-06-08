@@ -194,7 +194,55 @@ Selection: 1
 ```
 
 ```r
+| Let's test out the vectorized version of the OR operator. Type the expression TRUE | c(TRUE,
+| FALSE, FALSE).
+
+> TRUE | c(TRUE, FALSE, FALSE)
+[1] TRUE TRUE TRUE
+
+```
+
+```r
+| Now let's try out the non-vectorized version of the OR operator. Type the expression TRUE ||
+| c(TRUE, FALSE, FALSE).
+
+> TRUE || c(TRUE, FALSE, FALSE)
+[1] TRUE
+```
+
+```r
+
+| As you may recall, arithmetic has an order of operations and so do logical expressions. All AND
+| operators are evaluated before OR operators. Let's look at an example of an ambiguous case.
+| Type: 5 > 8 || 6 != 8 && 4 > 3.9
+
+> 5 > 8 || 6 != 8 && 4 > 3.9
+[1] TRUE
+```
+
+```r
+| Which one of the following expressions evaluates to TRUE?
+
+1: TRUE && 62 < 62 && 44 >= 44
+2: TRUE && FALSE || 9 >= 4 && 3 < 6
+3: FALSE || TRUE && FALSE
+4: 99.99 > 100 || 45 < 7.3 || 4 != 4.0
+
+Selection: 1
+```
+
+```r
+| Which one of the following expressions evaluates to FALSE?
+
+1: FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5
+2: FALSE || TRUE && 6 != 4 || 9 > 4
+3: !(8 > 4) ||  5 == 5.0 && 7.8 >= 7.79
+4: 6 >= -9 && !(6 > 7) && !(!TRUE)
+
+Selection: 1
 ```
 
 ```r
 ```
+
+
