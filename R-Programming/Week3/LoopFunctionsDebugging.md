@@ -61,6 +61,21 @@ $b
 
 ```
 
+
+MARGIN is a variable defining how the function is applied: when MARGIN=1, it applies over rows, whereas with MARGIN=2, it works over columns. Note that when you use the construct MARGIN=c(1,2), it applies to both rows and columns; and
+FUN, which is the function that you want to apply to the data. It can be any R function, including a User Defined Function (UDF).
+
+```r
+> # Construct a 5x6 matrix
+> X <- matrix(rnorm(30), nrow=5, ncol=6)
+> 
+> # Sum the values of each column with `apply()`
+> apply(X, 2, sum)
+[1] 3.7255160 1.3679714 0.2019320 0.7351061 1.4510589 6.8932036
+> 
+```
+
+
 ```r
 A <- matrix(1:9,nrow = 3, ncol = 3)
 
