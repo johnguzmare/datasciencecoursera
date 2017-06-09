@@ -3,64 +3,6 @@ Loop Functions and Debugging
 
 The apply() functions form the basis of more complex combinations and helps to perform operations with very few lines of code. More specifically, the family is made up of the apply(), lapply() , sapply(), vapply(), mapply(), rapply(), and tapply() functions.
 
-The lapply() Function
--------------------------
-
-You want to apply a given function to every element of a list and obtain a list as result. When you execute ?lapply, you see that the syntax looks like the apply() function.
-
-The difference is that:
-
-It can be used for other objects like dataframes, lists or vectors; and
-The output returned is a list (which explains the “l” in the function name), which has the same number of elements as the object passed to it.
-
-> lapply
-function (X, FUN, ...) 
-{
-    FUN <- match.fun(FUN)
-    if (!is.vector(X) || is.object(X)) 
-        X <- as.list(X)
-    .Internal(lapply(X, FUN))
-}
-<bytecode: 0x7fa1f1145c00>
-<environment: namespace:base>
-
-```r
-> x <- list(a=1:5,b=rnorm(10))
-
-> x
-$a
-[1] 1 2 3 4 5
-
-$b
- [1]  0.1914453 -0.4488061  0.1862152 -0.2003549 -0.3078116  1.5331059 -0.7914014 -0.9110498
- [9] -0.0952676  0.3689981
-```
-```r
-> lapply(x,mean)
-$a
-[1] 3
-
-$b
-[1] -0.0474927
-```
-```r
-> lapply(x,sum)
-$a
-[1] 15
-
-$b
-[1] -0.474927
-```
-```r
-> lapply(x,sd)
-$a
-[1] 1.581139
-
-$b
-[1] 0.6941875
-
-```
-
 
 MARGIN is a variable defining how the function is applied: when MARGIN=1, it applies over rows, whereas with MARGIN=2, it works over columns. Note that when you use the construct MARGIN=c(1,2), it applies to both rows and columns; and
 FUN, which is the function that you want to apply to the data. It can be any R function, including a User Defined Function (UDF).
@@ -123,6 +65,67 @@ Calculate the mean of 2x2 matrices, you have to collapse third dimension
 [1,] 0.7654450 -0.1898626
 [2,] 0.1358548 -0.6475317
 ```
+
+
+The lapply() Function
+-------------------------
+
+You want to apply a given function to every element of a list and obtain a list as result. When you execute ?lapply, you see that the syntax looks like the apply() function.
+
+The difference is that:
+
+It can be used for other objects like dataframes, lists or vectors; and
+The output returned is a list (which explains the “l” in the function name), which has the same number of elements as the object passed to it.
+
+> lapply
+function (X, FUN, ...) 
+{
+    FUN <- match.fun(FUN)
+    if (!is.vector(X) || is.object(X)) 
+        X <- as.list(X)
+    .Internal(lapply(X, FUN))
+}
+<bytecode: 0x7fa1f1145c00>
+<environment: namespace:base>
+
+```r
+> x <- list(a=1:5,b=rnorm(10))
+
+> x
+$a
+[1] 1 2 3 4 5
+
+$b
+ [1]  0.1914453 -0.4488061  0.1862152 -0.2003549 -0.3078116  1.5331059 -0.7914014 -0.9110498
+ [9] -0.0952676  0.3689981
+```
+```r
+> lapply(x,mean)
+$a
+[1] 3
+
+$b
+[1] -0.0474927
+```
+```r
+> lapply(x,sum)
+$a
+[1] 15
+
+$b
+[1] -0.474927
+```
+```r
+> lapply(x,sd)
+$a
+[1] 1.581139
+
+$b
+[1] 0.6941875
+
+```
+
+
 
 
 ```r
