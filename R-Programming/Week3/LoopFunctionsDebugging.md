@@ -439,3 +439,41 @@ $`3`
 
 
 ```
+
+Spliting a data frame
+------------------------
+
+Calculate the mean of ozone, solar radiation, wind and temperature in, within each month. 
+
+```r
+> library(datasets)
+> head(airquality)
+  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6
+
+```
+```r
+> s <- split(airquality,airquality$Month)
+> lapply(s,function(x) colMeans(x[,c("Ozone","Solar.R","Wind")]))
+$`5`
+   Ozone  Solar.R     Wind 
+      NA       NA 11.62258 
+$`6`
+    Ozone   Solar.R      Wind 
+       NA 190.16667  10.26667 
+$`7`
+     Ozone    Solar.R       Wind 
+        NA 216.483871   8.941935 
+$`8`
+   Ozone  Solar.R     Wind 
+      NA       NA 8.793548 
+$`9`
+   Ozone  Solar.R     Wind 
+      NA 167.4333  10.1800 
+
+```
