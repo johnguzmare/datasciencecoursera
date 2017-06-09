@@ -110,3 +110,21 @@ A <- matrix(1:9,nrow = 3, ncol = 3)
 [1] 1 2 3
 
 ```
+
+The sapply() Function
+-----------------------
+The sapply() function works like lapply(), but it tries to simplify the output to the most elementary data structure that is possible. And indeed, sapply() is a ‘wrapper’ function for lapply().
+
+An example may help to understand this: let’s say that you want to repeat the extraction operation of a single element as in the last example, but now take the first element of the second row (indexes 2 and 1) for each matrix.
+
+```r
+> sapply(x,sd)
+        a         b 
+1.5811388 0.6941875 
+```
+```r
+> sapply(x,mean)
+         a          b 
+ 3.0000000 -0.0474927 
+ 
+ ```
