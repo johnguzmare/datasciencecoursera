@@ -115,7 +115,6 @@ The sapply() Function
 -----------------------
 The sapply() function works like lapply(), but it tries to simplify the output to the most elementary data structure that is possible. And indeed, sapply() is a ‘wrapper’ function for lapply().
 
-An example may help to understand this: let’s say that you want to repeat the extraction operation of a single element as in the last example, but now take the first element of the second row (indexes 2 and 1) for each matrix.
 
 ```r
 > sapply(x,sd)
@@ -128,3 +127,41 @@ An example may help to understand this: let’s say that you want to repeat the 
  3.0000000 -0.0474927 
  
  ```
+An example may help to understand this: let’s say that you want to repeat the extraction operation of a single element as in the last example, but now take the first element of the second row (indexes 2 and 1) for each matrix.
+
+```r
+> # Return a list with `lapply()`
+> lapply(MyList,"[", 2, 1 )
+[[1]]
+[1] 2
+
+[[2]]
+[1] 5
+
+[[3]]
+[1] 9
+```
+```r
+> # Return a vector with `sapply()`
+> sapply(MyList,"[", 2, 1 )
+[1] 2 5 9
+```
+```r
+> # Return a list with `sapply()`
+> sapply(MyList,"[", 2, 1, simplify=F)
+[[1]]
+[1] 2
+
+[[2]]
+[1] 5
+
+[[3]]
+[1] 9
+
+```
+```r
+> # Return a vector with `unlist()`
+> unlist(lapply(MyList,"[", 2, 1 ))
+[1] 2 5 9
+> 
+```
