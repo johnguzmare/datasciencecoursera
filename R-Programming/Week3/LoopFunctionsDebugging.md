@@ -232,3 +232,106 @@ An example may help to understand this: let’s say that you want to repeat the 
 [1] 2 5 9
 > 
 ```
+
+
+The mapply() Function
+------------------------
+
+The mapply() function stands for ‘multivariate’ apply. Its purpose is to be able to vectorize arguments to a function that is not usually accepting vectors as arguments.
+
+In short, mapply() applies a Function to Multiple List or multiple Vector Arguments.
+
+
+The tapply() Function
+------------------------
+
+The tapply function is useful when we need to break up a vector into groups defined by some classifying factor, compute a function on the subsets, and return the results in a convenient form. You can even specify multiple factors as the grouping variable, for example treatment and sex, or team and handedness.
+
+Simple example
+
+simulating a vector of normal random variables and uniform random variables with 10 normals, 10 uniforms, then 10 normals that have a mean of 1. 
+So you can think of this vector as having three groups. create another factor variable using the gl function, and its going to be, this factor variable going to have three levels. And each level is going to be repeated ten times. 
+
+So when I print out the factor variable here, you can see that there's 10 ones, 10 twos, and there's 10 threes. So each, so that the factor variable indicates kind of which group the, the observation is in. Apply tapply on x, pass it the factor variable factorv in the mean function, that allows me to take the mean of each group of numbers in
+
+```r
+> x <- c(rnorm(10),runif(10),rnorm(10,1))
+> factorv <- gl(3,10)
+> x
+ [1]  0.22149247 -0.63798105 -0.35101104  1.01265767 -1.19214767
+ [6]  0.09546738 -1.02883196 -0.81827332  1.41880464  2.24375258
+[11]  0.01882982  0.02847130  0.91825580  0.97593839  0.10881426
+[16]  0.20331415  0.90899996  0.93472766  0.18143133  0.07733458
+[21]  1.17116114  2.48910849  1.50457980  0.44161363  0.67211332
+[26]  0.66836891  1.87386274  2.10787431  1.78786135  0.25788754
+> factorv
+ [1] 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3
+Levels: 1 2 3
+> 
+> 
+> 
+> tapply(x,factorv,mean)
+         1          2          3 
+0.09639297 0.43561173 1.29744312 
+```
+
+medical example
+
+we have a dataset from a medical trial. We want to break up the dataset into two groups, `treatment` and `control`, and then compute the sample average for `age` within each group.
+
+```r
+> ## generate data for medical example
+> medical.example <-
+    data.frame(patient = 1:100,
+               age = rnorm(100, mean = 60, sd = 12),
+               treatment = gl(2, 50,
+                 labels = c("Treatment", "Control")))
+> summary(medical.example)
+    patient            age             treatment 
+ Min.   :  1.00   Min.   : 29.40   Treatment:50  
+ 1st Qu.: 25.75   1st Qu.: 54.31   Control  :50  
+ Median : 50.50   Median : 61.24                 
+ Mean   : 50.50   Mean   : 61.29                 
+ 3rd Qu.: 75.25   3rd Qu.: 66.22                 
+ Max.   :100.00   Max.   :102.47     
+ 
+> ## generate data for baseball example
+> ## 5 teams with 5 players per team
+> 
+> baseball.example <-
+    data.frame(team = gl(5, 5,
+                 labels = paste("Team", LETTERS[1:5])),
+               player = sample(letters, 25),
+               batting.average = runif(25, .200, .400))
+> summary(baseball.example)
+     team       player   batting.average 
+ Team A:5   a      : 1   Min.   :0.2172  
+ Team B:5   c      : 1   1st Qu.:0.2553  
+ Team C:5   d      : 1   Median :0.2854  
+ Team D:5   e      : 1   Mean   :0.2887  
+ Team E:5   f      : 1   3rd Qu.:0.3013  
+            g      : 1   Max.   :0.3859  
+            (Other):19                    
+            
+```
+
+Now we have some sample data. Using tapply is now straightforward. Then, actual calls to the function using the data we defined above are shown.
+
+```r
+> ## Generic Example
+> ## tapply(Summary Variable, Group Variable, Function)
+> 
+> ## Medical Example
+> tapply(medical.example$age, medical.example$treatment, mean)
+Treatment   Control 
+ 62.26883  60.30371  
+> ## Baseball Example
+> tapply(baseball.example$batting.average, baseball.example$team,
+         max)
+   Team A    Team B    Team C    Team D    Team E 
+0.3784396 0.3012680 0.3488655 0.2962828 0.3858841  
+
+```
+
+
+
