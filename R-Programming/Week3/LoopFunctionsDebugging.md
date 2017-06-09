@@ -124,6 +124,17 @@ Calculate the mean of 2x2 matrices, you have to collapse third dimension
 
 ```
 
+We can neaten things up a bit by passing our data in an argument to our function, and using the … special argument which all the apply functions have for passing extra arguments.
+
+This time, our function has 2 arguments, x and y. The x variable will be as it was before, whatever sapply is currently going through. The y variable we will pass using the optional arguments to sapply. 
+In this case we have passed in m, explicitly naming the y argument in the sapply call. 
+
+```r
+> sapply(1:3, function(x, y) mean(y[,x]), y=m)
+[1] 0.09904255 2.10603011 4.54839854
+```
+
+
 The lapply() Function
 -------------------------
 
