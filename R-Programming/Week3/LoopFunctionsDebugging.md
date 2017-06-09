@@ -62,7 +62,7 @@ $b
 ```
 
 ```r
-A <- matrix(1:20,nrow = 3, ncol = 3)
+A <- matrix(1:9,nrow = 3, ncol = 3)
 
 > A
      [,1] [,2] [,3]
