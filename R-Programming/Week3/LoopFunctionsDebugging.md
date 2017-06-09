@@ -286,7 +286,6 @@ $`3`
 
 
 ```
-
 ** medical example **
 
 https://www.r-bloggers.com/r-function-of-the-day-tapply-2/
