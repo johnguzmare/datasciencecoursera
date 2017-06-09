@@ -247,7 +247,7 @@ The tapply() Function
 
 The tapply function is useful when we need to break up a vector into groups defined by some classifying factor, compute a function on the subsets, and return the results in a convenient form. You can even specify multiple factors as the grouping variable, for example treatment and sex, or team and handedness.
 
-Simple example
+** Simple example **
 
 simulating a vector of normal random variables and uniform random variables with 10 normals, 10 uniforms, then 10 normals that have a mean of 1. 
 So you can think of this vector as having three groups. create another factor variable using the gl function, and its going to be, this factor variable going to have three levels. And each level is going to be repeated ten times. 
@@ -287,8 +287,9 @@ $`3`
 
 ```
 
-medical example
+** medical example **
 
+https://www.r-bloggers.com/r-function-of-the-day-tapply-2/
 we have a dataset from a medical trial. We want to break up the dataset into two groups, `treatment` and `control`, and then compute the sample average for `age` within each group.
 
 ```r
