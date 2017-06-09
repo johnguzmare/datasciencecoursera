@@ -525,3 +525,17 @@ List of 10
  $ 1.5: num(0) 
  $ 2.5: num [1:2] 1.58 -0.24
  ```
+
+Empty levels can be dropped
+
+```r
+> str(split(x,list(f1,f2),drop = TRUE))
+List of 6
+ $ 1.1: num [1:2] -1.195 -0.152
+ $ 1.2: num [1:2] 2.133 -0.715
+ $ 1.3: num 0.00263
+ $ 2.3: num -1.88
+ $ 2.4: num [1:2] -0.974 -0.371
+ $ 2.5: num [1:2] 1.58 -0.24
+ ```
+
