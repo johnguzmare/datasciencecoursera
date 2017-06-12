@@ -78,6 +78,7 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 > plot(x = cars$speed, y = cars$dist)
 
+![rplot05](https://user-images.githubusercontent.com/5162499/27059749-d5f7a73c-4f9d-11e7-97e5-c9aff9f325c5.png)
 
 | Note that this produces a slightly different answer than plot(cars). In this case, R is not sure what
 | you want to use as the labels on the axes, so it just uses the arguments which you pass in, data frame
@@ -94,7 +95,7 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 > plot(y = cars$speed, x = cars$dist)
 
-![rplot05](https://user-images.githubusercontent.com/5162499/27059749-d5f7a73c-4f9d-11e7-97e5-c9aff9f325c5.png)
+![rplot06](https://user-images.githubusercontent.com/5162499/27059750-d60e8506-4f9d-11e7-8c90-9eeb42a7f672.png)
 
 | It probably makes more sense for speed to go on the x-axis since stopping distance is a function of
 | speed more than the other way around. So, for the rest of the questions in this portion of the lesson,
@@ -109,16 +110,14 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 > plot(x = cars$speed, y = cars$dist, xlab="Speed")
 
-
-![rplot06](https://user-images.githubusercontent.com/5162499/27059750-d60e8506-4f9d-11e7-8c90-9eeb42a7f672.png)
+![rplot07](https://user-images.githubusercontent.com/5162499/27059753-d61761b2-4f9d-11e7-87e1-2227dd8aa2ed.png)
 
 | Recreate the plot with the label of the y-axis set to "Stopping
 | Distance".
 
 > plot(x = cars$speed, y = cars$dist,ylab="Stopping Distance", xlab="Speed")
 
-
-![rplot07](https://user-images.githubusercontent.com/5162499/27059753-d61761b2-4f9d-11e7-87e1-2227dd8aa2ed.png)
+![rplot08](https://user-images.githubusercontent.com/5162499/27059752-d6172fa8-4f9d-11e7-9d9e-f7283af4a490.png)
 
 | That's not the answer I was looking for, but try again. Or, type info() for more options.
 
@@ -126,13 +125,13 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 > plot(x = cars$speed, y = cars$dist, ylab = "Stopping Distance")
 
-![rplot08](https://user-images.githubusercontent.com/5162499/27059752-d6172fa8-4f9d-11e7-9d9e-f7283af4a490.png)
+![rplot09](https://user-images.githubusercontent.com/5162499/27059755-d61a8df6-4f9d-11e7-9e46-746c9bf96f0b.png)
 
 | Recreate the plot with "Speed" and "Stopping Distance" as axis labels.
 
 > plot(x = cars$speed, y = cars$dist,ylab="Stopping Distance", xlab="Speed")
 
-![rplot09](https://user-images.githubusercontent.com/5162499/27059755-d61a8df6-4f9d-11e7-9e46-746c9bf96f0b.png)
+![rplot17](https://user-images.githubusercontent.com/5162499/27059868-a11d6488-4f9e-11e7-9b1a-e1b59a72e65c.png)
 
 | The reason that plots(cars) worked at the beginning of the lesson was that R was smart enough to know that the
 | first element (i.e., the first column) in cars should be assigned to the x argument and the second element to the
@@ -141,7 +140,6 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 | For each question, we will only want one additional argument at a time. Of course, you can pass in more than one
 | argument when doing a real project.
-
 
 | Plot cars with a main title of "My Plot". Note that the argument for the main title is "main" not "title".
 
