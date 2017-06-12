@@ -132,4 +132,160 @@ Error in plot.xy(xy, type, ...) : invalid color name 'Stopping Distance'
 | y argument. To save on typing, the next set of answers will all be of the form, plot(cars, ...) with various
 | arguments added.
 
+| For each question, we will only want one additional argument at a time. Of course, you can pass in more than one
+| argument when doing a real project.
+
+...
+
+  |======================================================                                         |  57%
+
+| Plot cars with a main title of "My Plot". Note that the argument for the main title is "main" not "title".
+
+> plot(cars, main = "My Plot")
+
+| Excellent work!
+
+  |========================================================                                       |  59%
+
+| Plot cars with a sub title of "My Plot Subtitle".
+
+> plot(cars, sub = "My Plot Subtitle")
+
+| All that practice is paying off!
+
+  |==========================================================                                     |  61%
+
+| The plot help page (?plot) only covers a small number of the many arguments that can be passed in to plot() and to
+| other graphical functions. To begin to explore the many other options, look at ?par. Let's look at some of the
+| more commonly used ones. Continue using plot(cars, ...) as the base answer to these questions.
+
+...
+
+  |============================================================                                   |  63%
+
+| Plot cars so that the plotted points are colored red. (Use col = 2 to achieve this effect.)
+
+> plot(cars, col = 2)
+
+| You got it!
+
+  |==============================================================                                 |  65%
+
+| Plot cars while limiting the x-axis to 10 through 15.  (Use xlim = c(10, 15) to achieve this effect.)
+
+> plot(cars, xlim = c(10, 15))
+
+| Your dedication is inspiring!
+
+  |================================================================                               |  67%
+
+| You can also change the shape of the symbols in the plot. The help page for points (?points) provides the details.
+
+...
+
+  |==================================================================                             |  70%
+
+| Plot cars using triangles.  (Use pch = 2 to achieve this effect.)
+
+> plot(cars,pch = 2)
+
+| That's the answer I was looking for.
+
+  |====================================================================                           |  72%
+
+| Arguments like "col" and "pch" may not seem very intuitive. And that is because they aren't! So, many/most people
+| use more modern packages, like ggplot2, for creating their graphics in R.
+
+...
+
+  |======================================================================                         |  74%
+
+| It is, however, useful to have an introduction to base graphics because many of the idioms in lattice and ggplot2
+| are modeled on them.
+
+...
+
+  |========================================================================                       |  76%
+
+| Let's now look at some other functions in base graphics that may be useful, starting with boxplots.
+
+...
+
+  |==========================================================================                     |  78%
+
+| Load the mtcars data frame.
+
+> data(mtcars)
+
+| That's a job well done!
+
+  |============================================================================                   |  80%
+
+| Anytime that you load up a new data frame, you should explore it before using it. In the middle of a swirl lesson,
+| just type play(). This temporarily suspends the lesson (without losing the work you have already done) and allows
+| you to issue commands like dim(mtcars) and head(mtcars). Once you are done examining the data, just type nxt() and
+| the lesson will pick up where it left off.
+
+...
+
+  |==============================================================================                 |  83%
+
+| Look up the help page for boxplot().
+
+> play()
+
+| Entering play mode. Experiment as you please, then type nxt() when you are ready to resume the lesson.
+
+> head(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+> summary(mtcars)
+      mpg             cyl             disp             hp             drat             wt             qsec      
+ Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760   Min.   :1.513   Min.   :14.50  
+ 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89  
+ Median :19.20   Median :6.000   Median :196.3   Median :123.0   Median :3.695   Median :3.325   Median :17.71  
+ Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7   Mean   :3.597   Mean   :3.217   Mean   :17.85  
+ 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90  
+ Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0   Max.   :4.930   Max.   :5.424   Max.   :22.90  
+       vs               am              gear            carb      
+ Min.   :0.0000   Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+ 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+ Median :0.0000   Median :0.0000   Median :4.000   Median :2.000  
+ Mean   :0.4375   Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+ 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :1.0000   Max.   :1.0000   Max.   :5.000   Max.   :8.000  
+> dim(mtcars)
+[1] 32 11
+
+
+| Instead of adding data columns directly as input arguments, as we did with plot(), it is often handy to pass in
+| the entire data frame. This is what the "data" argument in boxplot() allows.
+
+| boxplot(), like many R functions, also takes a "formula" argument, generally an expression with a tilde ("~") which
+| indicates the relationship between the input variables. This allows you to enter something like mpg ~ cyl to plot the
+| relationship between cyl (number of cylinders) on the x-axis and mpg (miles per gallon) on the y-axis.
+
+| Use boxplot() with formula = mpg ~ cyl and data = mtcars to create a box plot.
+
+> boxplot(formula = mpg ~ cyl, data = mtcars)
+
+| The plot shows that mpg is much lower for cars with more cylinders. Note that we can use the same set of arguments that
+| we explored with plot() above to add axis labels, titles and so on.
+
+| When looking at a single variable, histograms are a useful tool. hist() is the associated R function. Like plot(), hist()
+| is best used by just passing in a single vector.
+
+| Use hist() with the vector mtcars$mpg to create a histogram.
+
+> hist(mtcars$mpg )
+
+| In this lesson, you learned how to work with base graphics in R. The best place to go from here is to study the ggplot2
+| package. If you want to explore other elements of base graphics, then this web page
+| (http://www.ling.upenn.edu/~joseff/rstudy/week4.html) provides a useful overview.
+
 
