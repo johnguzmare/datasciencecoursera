@@ -31,7 +31,7 @@ data(mtcars)
 
 There will be an object names 'mtcars' in your workspace. You can find some information about the dataset by running
 How can one calculate the average miles per gallon (mpg) by number of cylinders in the car (cyl)? Select all that apply.
-
+------------------
 ```r
 with(mtcars, tapply(mpg, cyl, mean))
 
@@ -45,10 +45,14 @@ Continuing with the 'mtcars' dataset from the previous Question, what is the abs
 
 (Please round your final answer to the nearest whole number. Only enter the numeric result and nothing else.)
 ```r
-127
+> diff <- tapply(mtcars$hp, mtcars$cyl, mean)
+> diff
+> round(abs(diff[3]-diff[1]))
+> 127
 ```
 
 If you run `debug(ls)` what happens when you next call the 'ls' function?
+------------------
 
 ```r 
 Execution of 'ls' will suspend at the beginning of the function and you will be in the browser.
