@@ -71,5 +71,6 @@ curve(dnorm(x, mean(y), sd(y)), add=TRUE, col="darkblue", lwd=2)
 Here, the curve() function takes as its first parameter a function itself (or an expression) that must be written as some function of x.  Our function here is dnorm(). The x in the dnorm() function is not an object we have created; rather, it’s indicating that there’s a variable that is being evaluated, and the evaluation is the normal density at the mean of y and standard deviation of y. Make sure to include add=TRUE so that the curve is plotted on the same plot as the histogram.  Here is what we get:
 
 
+![rplot01](https://user-images.githubusercontent.com/5162499/27052704-21c6e614-4f80-11e7-9159-35b73f55f80f.png)
 
 
