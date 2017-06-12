@@ -12,9 +12,11 @@ data(iris)
 There will be an object called 'iris' in your workspace. In this dataset, what is the mean of 'Sepal.Length' for the species virginica? Please round your answer to the nearest whole number.
 -------------------
 
+```r 
 > tapply(iris$Sepal.Length,iris$Species,mean)
 > 6.589
- 
+```
+
 Continuing with the 'iris' dataset from the previous Question, what R code returns a vector of the means of the variables 'Sepal.Length', 'Sepal.Width', 'Petal.Length', and 'Petal.Width'?
 --------------------
 ```r
