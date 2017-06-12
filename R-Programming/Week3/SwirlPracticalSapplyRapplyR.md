@@ -142,7 +142,7 @@ Use the head() function to look at the first 6 lines of flag_colors.
 4   1     0    1    1     1     0      1
 5   1     0    1    1     0     0      0
 6   1     0    0    1     0     1      0
-```r
+```
 
 To get a list containing the sum of each column of flag_colors, call the lapply() function with two
 arguments. The first argument is the object over which we are looping (i.e. flag_colors) and the second
