@@ -2,7 +2,7 @@ Simulation
 =================
 
 To start, here is a table with all four normal distribution functions and their purpose, syntax, and an example:
-
+https://www.r-bloggers.com/normal-distribution-functions/
 
 | PURPOSE  |  SYNTAX |  EXAMPLE |  
 |----------|---------|----------|
