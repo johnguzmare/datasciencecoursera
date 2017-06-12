@@ -7,9 +7,9 @@ To start, here is a table with all four normal distribution functions and their 
 | PURPOSE  |  SYNTAX |  EXAMPLE |  
 |---|---|---|
 | RNORM  | Generates random numbers   | from normal distribution	rnorm(n, mean, sd)	rnorm(1000, 3, .25)
-Generates 1000 numbers
-from a normal with mean 3
-and sd=.25  |
+|   |   |Generates 1000 numbers|
+|   |   |from a normal with mean 3|
+|   |   |and sd=.25  |
 |---|---|---|
 |   |   |   |  
 
