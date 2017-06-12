@@ -51,8 +51,10 @@ plot(xseq, cumulative, col="darkorange", xlab="", ylab="Cumulative Probability",
 hist(randomdeviates, main="Random draws from Std Normal", cex.axis=.8, xlim=c(-4,4))
 
 ```
+![rplot](https://user-images.githubusercontent.com/5162499/27052556-a2af385e-4f7f-11e7-84a4-d125aa056aae.png)
 
-Now, when we have our actual data, we can do a visual check of the normality of our outcome variable, which, if we assume a linear relationship with normally distributed errors, should also be normal. Let’s make up some data, where I add noise by using rnorm() – here I’m generating the same amount of random numbers as is the length of the xseq vector, with a mean of 0 and a standard deviation of `5.5`.
+
+Now, when we have our actual data, we can do a visual check of the normality of our outcome variable, which, if we assume a linear relationship with normally distributed errors, should also be normal. Let’s make up some data, where I add noise by using `rnorm()` – here I’m generating the same amount of random numbers as is the length of the `xseq` vector, with a mean of `0` and a standard deviation of `5.5`.
 
 ```r
 xseq<-seq(-4,4,.01)
@@ -67,6 +69,7 @@ curve(dnorm(x, mean(y), sd(y)), add=TRUE, col="darkblue", lwd=2)
 ```
 
 Here, the curve() function takes as its first parameter a function itself (or an expression) that must be written as some function of x.  Our function here is dnorm(). The x in the dnorm() function is not an object we have created; rather, it’s indicating that there’s a variable that is being evaluated, and the evaluation is the normal density at the mean of y and standard deviation of y. Make sure to include add=TRUE so that the curve is plotted on the same plot as the histogram.  Here is what we get:
+
 
 
 
