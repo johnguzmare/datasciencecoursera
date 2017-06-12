@@ -94,6 +94,7 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 > plot(y = cars$speed, x = cars$dist)
 
+![rplot05](https://user-images.githubusercontent.com/5162499/27059749-d5f7a73c-4f9d-11e7-97e5-c9aff9f325c5.png)
 
 | It probably makes more sense for speed to go on the x-axis since stopping distance is a function of
 | speed more than the other way around. So, for the rest of the questions in this portion of the lesson,
@@ -108,12 +109,16 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 > plot(x = cars$speed, y = cars$dist, xlab="Speed")
 
+
+![rplot06](https://user-images.githubusercontent.com/5162499/27059750-d60e8506-4f9d-11e7-8c90-9eeb42a7f672.png)
+
 | Recreate the plot with the label of the y-axis set to "Stopping
 | Distance".
 
-> plot(x = cars$speed, y = cars$dist,col="Stopping Distance", xlab="Speed")
-Error in plot.xy(xy, type, ...) : invalid color name 'Stopping Distance'
 > plot(x = cars$speed, y = cars$dist,ylab="Stopping Distance", xlab="Speed")
+
+
+![rplot07](https://user-images.githubusercontent.com/5162499/27059753-d61761b2-4f9d-11e7-87e1-2227dd8aa2ed.png)
 
 | That's not the answer I was looking for, but try again. Or, type info() for more options.
 
@@ -121,11 +126,13 @@ Error in plot.xy(xy, type, ...) : invalid color name 'Stopping Distance'
 
 > plot(x = cars$speed, y = cars$dist, ylab = "Stopping Distance")
 
+![rplot08](https://user-images.githubusercontent.com/5162499/27059752-d6172fa8-4f9d-11e7-9d9e-f7283af4a490.png)
 
 | Recreate the plot with "Speed" and "Stopping Distance" as axis labels.
 
 > plot(x = cars$speed, y = cars$dist,ylab="Stopping Distance", xlab="Speed")
 
+![rplot09](https://user-images.githubusercontent.com/5162499/27059755-d61a8df6-4f9d-11e7-9e46-746c9bf96f0b.png)
 
 | The reason that plots(cars) worked at the beginning of the lesson was that R was smart enough to know that the
 | first element (i.e., the first column) in cars should be assigned to the x argument and the second element to the
@@ -135,102 +142,60 @@ Error in plot.xy(xy, type, ...) : invalid color name 'Stopping Distance'
 | For each question, we will only want one additional argument at a time. Of course, you can pass in more than one
 | argument when doing a real project.
 
-...
-
-  |======================================================                                         |  57%
 
 | Plot cars with a main title of "My Plot". Note that the argument for the main title is "main" not "title".
 
 > plot(cars, main = "My Plot")
 
-| Excellent work!
-
-  |========================================================                                       |  59%
+![rplot10](https://user-images.githubusercontent.com/5162499/27059751-d616ca68-4f9d-11e7-908b-57a225671cc2.png)
 
 | Plot cars with a sub title of "My Plot Subtitle".
 
 > plot(cars, sub = "My Plot Subtitle")
 
-| All that practice is paying off!
-
-  |==========================================================                                     |  61%
+![rplot11](https://user-images.githubusercontent.com/5162499/27059754-d617d43a-4f9d-11e7-9977-47f63c5da7c8.png)
 
 | The plot help page (?plot) only covers a small number of the many arguments that can be passed in to plot() and to
 | other graphical functions. To begin to explore the many other options, look at ?par. Let's look at some of the
 | more commonly used ones. Continue using plot(cars, ...) as the base answer to these questions.
 
-...
-
-  |============================================================                                   |  63%
-
 | Plot cars so that the plotted points are colored red. (Use col = 2 to achieve this effect.)
 
 > plot(cars, col = 2)
 
-| You got it!
-
-  |==============================================================                                 |  65%
+![rplot12](https://user-images.githubusercontent.com/5162499/27059756-d6288afa-4f9d-11e7-9c39-771e62dbc5c6.png)
 
 | Plot cars while limiting the x-axis to 10 through 15.  (Use xlim = c(10, 15) to achieve this effect.)
 
 > plot(cars, xlim = c(10, 15))
 
-| Your dedication is inspiring!
-
-  |================================================================                               |  67%
+![rplot13](https://user-images.githubusercontent.com/5162499/27059760-d634b488-4f9d-11e7-8171-a78ab613387b.png)
 
 | You can also change the shape of the symbols in the plot. The help page for points (?points) provides the details.
-
-...
-
-  |==================================================================                             |  70%
 
 | Plot cars using triangles.  (Use pch = 2 to achieve this effect.)
 
 > plot(cars,pch = 2)
 
-| That's the answer I was looking for.
-
-  |====================================================================                           |  72%
+![rplot14](https://user-images.githubusercontent.com/5162499/27059757-d62f5fd8-4f9d-11e7-8676-1265c267fc34.png)
 
 | Arguments like "col" and "pch" may not seem very intuitive. And that is because they aren't! So, many/most people
 | use more modern packages, like ggplot2, for creating their graphics in R.
 
-...
-
-  |======================================================================                         |  74%
-
 | It is, however, useful to have an introduction to base graphics because many of the idioms in lattice and ggplot2
 | are modeled on them.
 
-...
-
-  |========================================================================                       |  76%
-
 | Let's now look at some other functions in base graphics that may be useful, starting with boxplots.
-
-...
-
-  |==========================================================================                     |  78%
 
 | Load the mtcars data frame.
 
 > data(mtcars)
 
-| That's a job well done!
-
-  |============================================================================                   |  80%
 
 | Anytime that you load up a new data frame, you should explore it before using it. In the middle of a swirl lesson,
 | just type play(). This temporarily suspends the lesson (without losing the work you have already done) and allows
 | you to issue commands like dim(mtcars) and head(mtcars). Once you are done examining the data, just type nxt() and
 | the lesson will pick up where it left off.
-
-...
-
-  |==============================================================================                 |  83%
-
-| Look up the help page for boxplot().
 
 > play()
 
@@ -274,6 +239,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 
 > boxplot(formula = mpg ~ cyl, data = mtcars)
 
+![rplot15](https://user-images.githubusercontent.com/5162499/27059759-d631af22-4f9d-11e7-91ba-24f49feb3fd8.png)
 | The plot shows that mpg is much lower for cars with more cylinders. Note that we can use the same set of arguments that
 | we explored with plot() above to add axis labels, titles and so on.
 
@@ -283,6 +249,8 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 | Use hist() with the vector mtcars$mpg to create a histogram.
 
 > hist(mtcars$mpg )
+
+![rplot16](https://user-images.githubusercontent.com/5162499/27059758-d62fd512-4f9d-11e7-9404-98c7bd73344f.png)
 
 | In this lesson, you learned how to work with base graphics in R. The best place to go from here is to study the ggplot2
 | package. If you want to explore other elements of base graphics, then this web page
