@@ -180,4 +180,4 @@ Practice Programming Assignment: swrl Lesson 2: Simulation
 ```r
 > hist(cm)
 ```
-
+![rplot04](https://user-images.githubusercontent.com/5162499/27058725-94be6ff8-4f98-11e7-89a7-ed1b26a17fec.png)
