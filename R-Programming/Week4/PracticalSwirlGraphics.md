@@ -14,9 +14,9 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 
 | Load the included data frame cars with data(cars).
-
+```r
 > data(cars)
-
+```
 | All that hard work is paying off!
 
 | To fix ideas, we will work with simple data frames. Our main goal is to introduce various plotting
@@ -24,15 +24,15 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 | data sets.
 
 | Pull up the help page for cars.
-
+```r
 > ?cars
-
+```
 
 | As you can see in the help page, the cars data set has only two variables: speed and stopping
 | distance. Note that the data is from the 1920s.
 
 | Run head() on the cars data.
-
+```r
 > head(cars)
   speed dist
 1     4    2
@@ -41,14 +41,14 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 4     7   22
 5     8   16
 6     9   10
-
+```
 | Before plotting, it is always a good idea to get a sense of the data. Key R commands for doing so
 | include, dim(), names(), head(), tail() and summary().
 
 | Run the plot() command on the cars data frame.
-
+```r
 > plot(cars)
-
+```
 
 
 | As always, R tries very hard to give you something sensible given the information that you have
@@ -65,8 +65,9 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 
 | Look up the help page for plot().
-
+```r
 > ?plot
+```
 
 | The help page for plot() highlights the different arguments that the function can take. The two most
 | important are x and y, the variables that will be plotted. For the next set of questions, include the
@@ -75,9 +76,9 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 | Use plot() command to show speed on the x-axis and dist on the y-axis from the cars data frame. Use
 | the form of the plot command in which vectors are explicitly passed in as arguments for x and y.
-
+```r
 > plot(x = cars$speed, y = cars$dist)
-
+```
 ![rplot05](https://user-images.githubusercontent.com/5162499/27059749-d5f7a73c-4f9d-11e7-97e5-c9aff9f325c5.png)
 
 | Note that this produces a slightly different answer than plot(cars). In this case, R is not sure what
@@ -92,9 +93,9 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 | Use plot() command to show dist on the x-axis and speed on the y-axis from the cars data frame. This
 | is the opposite of what we did above.
-
+```r
 > plot(y = cars$speed, x = cars$dist)
-
+```
 ![rplot06](https://user-images.githubusercontent.com/5162499/27059750-d60e8506-4f9d-11e7-8c90-9eeb42a7f672.png)
 
 | It probably makes more sense for speed to go on the x-axis since stopping distance is a function of
@@ -107,30 +108,30 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 
 
 | Recreate the plot with the label of the x-axis set to "Speed".
-
+```r
 > plot(x = cars$speed, y = cars$dist, xlab="Speed")
-
+```
 ![rplot07](https://user-images.githubusercontent.com/5162499/27059753-d61761b2-4f9d-11e7-87e1-2227dd8aa2ed.png)
 
 | Recreate the plot with the label of the y-axis set to "Stopping
 | Distance".
-
+```r
 > plot(x = cars$speed, y = cars$dist,ylab="Stopping Distance", xlab="Speed")
-
+```
 ![rplot08](https://user-images.githubusercontent.com/5162499/27059752-d6172fa8-4f9d-11e7-9d9e-f7283af4a490.png)
 
 | That's not the answer I was looking for, but try again. Or, type info() for more options.
 
 | Type plot(x = cars$speed, y = cars$dist, ylab = "Stopping Distance") to create the plot.
-
+```r
 > plot(x = cars$speed, y = cars$dist, ylab = "Stopping Distance")
-
+```
 ![rplot09](https://user-images.githubusercontent.com/5162499/27059755-d61a8df6-4f9d-11e7-9e46-746c9bf96f0b.png)
 
 | Recreate the plot with "Speed" and "Stopping Distance" as axis labels.
-
+```r
 > plot(x = cars$speed, y = cars$dist,ylab="Stopping Distance", xlab="Speed")
-
+```
 ![rplot17](https://user-images.githubusercontent.com/5162499/27059868-a11d6488-4f9e-11e7-9b1a-e1b59a72e65c.png)
 
 | The reason that plots(cars) worked at the beginning of the lesson was that R was smart enough to know that the
@@ -142,15 +143,15 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 | argument when doing a real project.
 
 | Plot cars with a main title of "My Plot". Note that the argument for the main title is "main" not "title".
-
+```r
 > plot(cars, main = "My Plot")
-
+```
 ![rplot10](https://user-images.githubusercontent.com/5162499/27059751-d616ca68-4f9d-11e7-908b-57a225671cc2.png)
 
 | Plot cars with a sub title of "My Plot Subtitle".
-
+```r
 > plot(cars, sub = "My Plot Subtitle")
-
+```
 ![rplot11](https://user-images.githubusercontent.com/5162499/27059754-d617d43a-4f9d-11e7-9977-47f63c5da7c8.png)
 
 | The plot help page (?plot) only covers a small number of the many arguments that can be passed in to plot() and to
@@ -158,23 +159,23 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 | more commonly used ones. Continue using plot(cars, ...) as the base answer to these questions.
 
 | Plot cars so that the plotted points are colored red. (Use col = 2 to achieve this effect.)
-
+```r
 > plot(cars, col = 2)
-
+```
 ![rplot12](https://user-images.githubusercontent.com/5162499/27059756-d6288afa-4f9d-11e7-9c39-771e62dbc5c6.png)
 
 | Plot cars while limiting the x-axis to 10 through 15.  (Use xlim = c(10, 15) to achieve this effect.)
-
+```r
 > plot(cars, xlim = c(10, 15))
-
+```
 ![rplot13](https://user-images.githubusercontent.com/5162499/27059760-d634b488-4f9d-11e7-8171-a78ab613387b.png)
 
 | You can also change the shape of the symbols in the plot. The help page for points (?points) provides the details.
 
 | Plot cars using triangles.  (Use pch = 2 to achieve this effect.)
-
+```r
 > plot(cars,pch = 2)
-
+```
 ![rplot14](https://user-images.githubusercontent.com/5162499/27059757-d62f5fd8-4f9d-11e7-8676-1265c267fc34.png)
 
 | Arguments like "col" and "pch" may not seem very intuitive. And that is because they aren't! So, many/most people
@@ -186,18 +187,19 @@ Practice Programming Assignment: swirl Lesson 3: Base Graphics
 | Let's now look at some other functions in base graphics that may be useful, starting with boxplots.
 
 | Load the mtcars data frame.
-
+```r
 > data(mtcars)
-
+```
 
 | Anytime that you load up a new data frame, you should explore it before using it. In the middle of a swirl lesson,
 | just type play(). This temporarily suspends the lesson (without losing the work you have already done) and allows
 | you to issue commands like dim(mtcars) and head(mtcars). Once you are done examining the data, just type nxt() and
 | the lesson will pick up where it left off.
-
+```r
 > play()
-
+```
 | Entering play mode. Experiment as you please, then type nxt() when you are ready to resume the lesson.
+```r
 
 > head(mtcars)
                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
@@ -207,6 +209,7 @@ Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
 Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
 > summary(mtcars)
       mpg             cyl             disp             hp             drat             wt             qsec      
  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760   Min.   :1.513   Min.   :14.50  
@@ -222,9 +225,10 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
  Mean   :0.4375   Mean   :0.4062   Mean   :3.688   Mean   :2.812  
  3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
  Max.   :1.0000   Max.   :1.0000   Max.   :5.000   Max.   :8.000  
+ 
 > dim(mtcars)
 [1] 32 11
-
+```
 
 | Instead of adding data columns directly as input arguments, as we did with plot(), it is often handy to pass in
 | the entire data frame. This is what the "data" argument in boxplot() allows.
@@ -234,9 +238,9 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 | relationship between cyl (number of cylinders) on the x-axis and mpg (miles per gallon) on the y-axis.
 
 | Use boxplot() with formula = mpg ~ cyl and data = mtcars to create a box plot.
-
+```r
 > boxplot(formula = mpg ~ cyl, data = mtcars)
-
+```
 ![rplot15](https://user-images.githubusercontent.com/5162499/27059759-d631af22-4f9d-11e7-91ba-24f49feb3fd8.png)
 | The plot shows that mpg is much lower for cars with more cylinders. Note that we can use the same set of arguments that
 | we explored with plot() above to add axis labels, titles and so on.
@@ -245,9 +249,9 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 | is best used by just passing in a single vector.
 
 | Use hist() with the vector mtcars$mpg to create a histogram.
-
+```r
 > hist(mtcars$mpg )
-
+```
 ![rplot16](https://user-images.githubusercontent.com/5162499/27059758-d62fd512-4f9d-11e7-9404-98c7bd73344f.png)
 
 | In this lesson, you learned how to work with base graphics in R. The best place to go from here is to study the ggplot2
