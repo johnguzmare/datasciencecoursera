@@ -52,14 +52,14 @@ hist(randomdeviates, main="Random draws from Std Normal", cex.axis=.8, xlim=c(-4
 
 ```
 
-Now, when we have our actual data, we can do a visual check of the normality of our outcome variable, which, if we assume a linear relationship with normally distributed errors, should also be normal. Let’s make up some data, where I add noise by using rnorm() – here I’m generating the same amount of random numbers as is the length of the xseq vector, with a mean of 0 and a standard deviation of 5.5.
+Now, when we have our actual data, we can do a visual check of the normality of our outcome variable, which, if we assume a linear relationship with normally distributed errors, should also be normal. Let’s make up some data, where I add noise by using rnorm() – here I’m generating the same amount of random numbers as is the length of the xseq vector, with a mean of 0 and a standard deviation of `5.5`.
 
 ```r
 xseq<-seq(-4,4,.01)
 y<-2*xseq + rnorm(length(xseq),0,5.5)
 ```
 
-And now I can plot a histogram of y (check out my post on histograms if you want more detail) and add a curve() function to the plot using the mean and standard deviation of y as the parameters:
+And now I can plot a histogram of `y` and add a `curve()` function to the plot using the mean and standard deviation of y as the parameters:
 
 ```r
 hist(y, prob=TRUE, ylim=c(0,.06), breaks=20)
