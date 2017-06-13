@@ -36,7 +36,7 @@ parsedHtml = htmlParse(content2,asText=TRUE)
 parsedHtml = htmlParse(content2,asText=TRUE)
 xpathSApply(,"//title", xmlValue)
 ```
-
+```r
 pg1 = GET(url)
 pg1
 
@@ -52,12 +52,12 @@ Response...
   "authenticated":true,
   "user",:"user"
 }
-
+```
 
 Using handles
 ---------
-
+```r
 google = handle("http://google.com")
 pg1 = GET(handle=google,path="/")
 pg2 = GET(handle=google,path="search")
-
+```
