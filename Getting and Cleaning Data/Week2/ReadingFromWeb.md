@@ -61,3 +61,15 @@ google = handle("http://google.com")
 pg1 = GET(handle=google,path="/")
 pg2 = GET(handle=google,path="search")
 ```
+
+
+Reading From API's
+-----------
+
+
+
+
+Reading From Other sources
+-----------
+
+
