@@ -28,8 +28,8 @@ head(which(agricultureLogical), 3)
 
 ```
 
-# Answer: 
-# 125 238 262
+Answer: 
+125 238 262
 
 Question 2
 ----
@@ -55,9 +55,9 @@ picture <- jpeg::readJPEG('jeff.jpg'
 quantile(picture, probs = c(0.3, 0.8) )
 ```
 
-# Answer: 
-#       30%       80% 
-# -15259150 -10575416 
+Answer: 
+      30%       80% 
+-15259150 -10575416 
 
 Question 3
 ----
@@ -96,8 +96,8 @@ mergedDT <- merge(FGDP, FEDSTATS_Country, by = 'CountryCode')
 nrow(mergedDT)
 ```
 
-# Answer: 
-# 189
+Answer: 
+189
 
 ```r
 # Sort the data frame in descending order by GDP rank (so United States is last). 
@@ -105,10 +105,10 @@ nrow(mergedDT)
 mergedDT[order(-Rank)][13,.(Economy)]
 ```
 
-# Answer: 
+Answer: 
 
-#                Economy
-# 1: St. Kitts and Nevis
+               Economy
+1: St. Kitts and Nevis
 
 Question 4
 ----
@@ -133,9 +133,9 @@ mergedDT[`Income Group` == "High income: nonOECD"
          , by = "Income Group"]
 ```
 
-# Answer
-#            Income Group     Rank
-# 1: High income: nonOECD 91.91304
+Answer
+           Income Group     Rank
+1: High income: nonOECD 91.91304
 
 
 Question 5
