@@ -1,4 +1,4 @@
-Getting and Cleaning Data Quiz 3 (JHU) Coursera
+Quiz 3 
 =======
 
 Question 1
@@ -134,9 +134,8 @@ mergedDT[`Income Group` == "High income: nonOECD"
 ```
 
 Answer
-
 Income Group     Rank
-High income: nonOECD 91.91304
+High income nonOECD 91.91304
 
 
 Question 5
