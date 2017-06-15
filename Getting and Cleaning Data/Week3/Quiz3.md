@@ -134,8 +134,9 @@ mergedDT[`Income Group` == "High income: nonOECD"
 ```
 
 Answer
-           Income Group     Rank
-1: High income: nonOECD 91.91304
+
+Income Group     Rank
+High income: nonOECD 91.91304
 
 
 Question 5
