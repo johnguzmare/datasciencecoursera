@@ -96,7 +96,7 @@ mergedDT <- merge(FGDP, FEDSTATS_Country, by = 'CountryCode')
 nrow(mergedDT)
 ```
 
-Answer: 
+Answer
 189
 
 ```r
@@ -105,10 +105,10 @@ Answer:
 mergedDT[order(-Rank)][13,.(Economy)]
 ```
 
-Answer: 
+Answer
 
-               Economy
-1: St. Kitts and Nevis
+Economy
+St. Kitts and Nevis
 
 Question 4
 ----
