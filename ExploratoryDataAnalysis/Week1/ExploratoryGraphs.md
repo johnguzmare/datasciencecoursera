@@ -93,13 +93,17 @@ Histogram
 
 ![alt text](Rplot02.png)
 
+![alt text](Rplot03.png)
+
+![alt text](Rplot04.png)
+
 Overlaying Features
 ----
 ```r
 boxplot(pollution$pm25, col = "blue")
 abline(h = 12)
 ```
-![alt text](Rplot03.png)
+![alt text](Rplot05.png)
 
 Overlaying Features 
 ----
@@ -110,7 +114,7 @@ abline(v = 12, lwd = 2)
 abline(v = median(pollution$pm25), col = "magenta", lwd = 4)
 ```
 
-![alt text](Rplot04.png)
+![alt text](Rplot06.png)
 
 Barplot Barplot
 ----
@@ -118,14 +122,14 @@ Barplot Barplot
 barplot(table(pollution$region), col = "wheat", main = "Number of Counties in Each Region")
 ```
 
-![alt text](Rplot05.png)
+
 
 Multiple Boxplots Multiple Boxplots
 ----
 ```r
 boxplot(pm25 ~ region, data = pollution, col = "blue")
 ```
-![alt text](Rplot06.png)
+
 
 Multiple Histograms Multiple Histograms
 ----
