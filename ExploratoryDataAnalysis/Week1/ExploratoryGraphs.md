@@ -122,14 +122,14 @@ Barplot Barplot
 barplot(table(pollution$region), col = "wheat", main = "Number of Counties in Each Region")
 ```
 
-
+![alt text](Rplot07.png)
 
 Multiple Boxplots Multiple Boxplots
 ----
 ```r
 boxplot(pm25 ~ region, data = pollution, col = "blue")
 ```
-
+![alt text](Rplot08.png)
 
 Multiple Histograms Multiple Histograms
 ----
@@ -138,8 +138,8 @@ par(mfrow = c(2, 1), mar = c(4, 4, 2, 1))
 hist(subset(pollution, region == "east")$pm25, col = "grey")
 hist(subset(pollution, region == "west")$pm25, col = "grey")
 ```
-![alt text](Rplot07.png)
 
+![alt text](Rplot09.png)
 
 Scatterplot Scatterplot
 ----
@@ -147,7 +147,7 @@ Scatterplot Scatterplot
 with(pollution, plot(latitude, pm25))
 abline(h = 12, lwd = 2, lty = 2)
 ```
-![alt text](Rplot08.png)
+![alt text](Rplot10.png)
 
 Multiple Scatterplots Multiple Scatterplots
 ----
@@ -157,8 +157,6 @@ with(subset(pollution, region == "west"), plot(latitude, pm25, main = "West"))
 with(subset(pollution, region == "east"), plot(latitude, pm25, main = "East"))
 ```
 
-![alt text](Rplot09.png)
 
-![alt text](Rplot10.png)
 ![alt text](Rplot11.png)
 ![alt text](Rplot12.png)
