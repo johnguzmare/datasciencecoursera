@@ -74,6 +74,7 @@ Boxplot
 boxplot(pollution$pm25, col = "blue")
 ```
 
+![alt text](/Rplot.png )
 
 Histogram
 ----
