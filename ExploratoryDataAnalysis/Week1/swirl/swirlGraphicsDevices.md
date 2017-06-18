@@ -55,7 +55,7 @@ The following devices will be functional if R was compiled to use them (they exi
 
 * `tiff` TIFF bitmap device
 
-* `quartz The graphics device for the macOS native Quartz 2d graphics system. (This is only functional on macOS where it can be used from the R.app GUI and from the command line: but it will display on the local screen even for a remote session.)
+* `quartz` The graphics device for the macOS native Quartz 2d graphics system. (This is only functional on macOS where it can be used from the R.app GUI and from the command line: but it will display on the local screen even for a remote session.)
 
   As an example, run the R command with with 2 arguments. The first is a dataset, faithful, which
   comes with R, and the second is a call to the base plotting function plot. Your call to plot
