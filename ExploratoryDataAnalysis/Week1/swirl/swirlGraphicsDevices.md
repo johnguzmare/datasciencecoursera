@@ -27,35 +27,35 @@ Graphics Devices in R
   device, and obviously not all graphics devices are available on all platforms (i.e. you cannot
   launch windows() on a Mac).
 
-The following graphics devices are currently available:
+The fo`llowing graphics devices are currently available:
 
-* pdf Write PDF graphics commands to a file
+* `pdf` Write PDF graphics commands to a file
 
-* postscript Writes PostScript graphics commands to a file
+* `postscript` Writes PostScript graphics commands to a file
 
-* xfig Device for XFIG graphics file format
+* `xfig` Device for XFIG graphics file format
 
-* bitmap bitmap pseudo-device via Ghostscript (if available).
+* `bitmap` bitmap pseudo-device via Ghostscript (if available).
 
-* pictex Writes TeX/PicTeX graphics commands to a file (of historical interest only)
+* `pictex` Writes TeX/PicTeX graphics commands to a file (of historical interest only)
 
 The following devices will be functional if R was compiled to use them (they exist but will return with a warning on other systems):
 
-* X11 The graphics device for the X11 windowing system
+* `X11` The graphics device for the X11 windowing system
 
-* cairo_pdf, cairo_ps PDF and PostScript devices based on cairo graphics.
+* `cairo_pdf`, cairo_ps PDF and PostScript devices based on cairo graphics.
 
-* svg SVG device based on cairo graphics.
+* `svg` SVG device based on cairo graphics.
 
-* png PNG bitmap device
+* `png` PNG bitmap device
 
-* jpeg JPEG bitmap device
+* `jpeg` JPEG bitmap device
 
-* bmp BMP bitmap device
+* `bmp` BMP bitmap device
 
-* tiff TIFF bitmap device
+* `tiff` TIFF bitmap device
 
-* quartz The graphics device for the macOS native Quartz 2d graphics system. (This is only functional on macOS where it can be used from the R.app GUI and from the command line: but it will display on the local screen even for a remote session.)
+* `quartz The graphics device for the macOS native Quartz 2d graphics system. (This is only functional on macOS where it can be used from the R.app GUI and from the command line: but it will display on the local screen even for a remote session.)
 
   As an example, run the R command with with 2 arguments. The first is a dataset, faithful, which
   comes with R, and the second is a call to the base plotting function plot. Your call to plot
