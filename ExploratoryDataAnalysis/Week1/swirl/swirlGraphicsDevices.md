@@ -59,12 +59,13 @@ The following devices will be functional if R was compiled to use them (they exi
 
   As an example, run the R command with with 2 arguments. The first is a dataset, faithful, which
   comes with R, and the second is a call to the base plotting function plot. Your call to plot
-  should have two arguments, eruptions and waiting. Try this now to see what happens.
+  should have two arguments, eruptions and waiting. Try this now to see what happens.
 
+```r
 > with(faithful, plot(eruptions, waiting,main =  "Old Faithful Geyser data"))
+```
 
-
-Rplot22.png
+![plot](Rplot22.png)
 
   See how R created a scatterplot on the screen for you? This shows that relationship between
   eruptions of the geyser Old Faithful and waiting time. Now use the R function title with the
@@ -72,36 +73,36 @@ Rplot22.png
   plot.
 
   Type title(main = "Old Faithful Geyser data") at the command prompt.
-
+```r
 > title(main = "Old Faithful Geyser data")
+```
 
-Rplot23.png
+![plot](Rplot23.png)
 
   Simple, right?  Now run the command dev.cur(). This will show you the current plotting device,
   the screen.
-
+```r
 > dev.cur()
 RStudioGD 
         2
-        
+     ```   
   The second way to create a plot is to send it to a file device. Depending on the type of plot
   you're making, you explicitly launch a graphics device, e.g., a pdf file. Type the command
   pdf(file="myplot.pdf") to launch the file device. This will create the pdf file myplot.pdf in
   your working directory.
-
+```r
 > pdf(file="myplot.pdf")
-
+```
   You then call the plotting function (if you are using a file device, no plot will appear on the
   screen). Run the with command again to plot the Old Faithful data. Use the up arrow key to
   recover the command and save yourself some typing.
-
-> with(faithful, plot(eruptions, waiting)
-+ )
-
+```r
+> with(faithful, plot(eruptions, waiting))
+```
   Now rerun the title command and annotate the plot. (Up arrow keys are great!)
-
+```r
 > title(main = "Old Faithful Geyser data")
-
+```
   Finally, when plotting to a file device, you have to close the device with the command dev.off().
   This is very important! Don't do it yet, though. After closing, you'll be able to view the pdf
   file on your computer.
@@ -140,23 +141,23 @@ RStudioGD
 
   The currently active graphics device can be found by calling dev.cur(). Try it now to see what
   number is assigned to your pdf device.
-
+```r
 > dev.cur()
 pdf 
   4 
-  
+  ```
   Now use dev.off() to close the device.
-
+```r
 > dev.off()
 RStudioGD 
         2 
-
+```
   Now rerun dev.cur() to see what integer your plotting window is assigned.
-
+```r
 > dev.cur()
 RStudioGD 
         2 
-        
+        ```
   The device is back to what it was when you started. As you might have guessed, every open
   graphics device is assigned an integer greater than or equal to 2. You can change the active
   graphics device with dev.set(<integer>) where <integer> is the number associated with the
@@ -165,15 +166,15 @@ RStudioGD
   Now run dev.copy with the 2 arguments. The first is png, and the second is file set equal to
   "geyserplot.png". This will copy your screen plot to a png file in your working directory which you
   can view AFTER you close the device.
-
+```r
 > dev.copy(png,file = "geyserplot.png")
-
-geyserplot.png 
+```
+![plot](geyserplot.png)
 
   Don't forget to close the PNG device! Do it NOW!!! Then you'll be able to view the file.
-
+```r
 > dev.off()
 RStudioGD 
         2 
-        
+    ```    
 
