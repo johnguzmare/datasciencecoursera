@@ -38,64 +38,65 @@ activityLabels[,2] <- as.character(activityLabels[,2])
 head(activityLabels)
 ```
 
-# Reading feature vector and get column V2
+#### Reading feature vector and get column V2
 ```r
 features <- read.table("UCI HAR Dataset/features.txt")
 features[,2] <- as.character(features[,2])
 head(features)
 ```
-# Reading trainings tables
+#### Reading trainings tables
 ```r
 trainingSet <- read.table("UCI HAR Dataset/train/X_train.txt")
 trainingLabels <- read.table("UCI HAR Dataset/train/Y_train.txt")
 trainSubjects <- read.table("UCI HAR Dataset/train/subject_train.txt")
 ```
 
-# Reading testing tables
+#### Reading testing tables
 ```r
 testSet <- read.table("UCI HAR Dataset/test/X_test.txt")
 testLabels <- read.table("UCI HAR Dataset/test/Y_test.txt")
 testSubjects <- read.table("UCI HAR Dataset/test/subject_test.txt")
 ```
 
-# Combine objects from train and test files by column
+#### Combine objects from train and test files by column
 ```r
 trainingSet <- cbind(trainSubjects, trainingLabels, trainingSet)
 testSet <- cbind(testSubjects, testLabels, testSet)
 ```
 
-# Merges the training and test sets by rows.
+#### Merges the training and test sets by rows.
 ```r
 tData <- rbind(trainingSet, testSet)
 ```
 
-## 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+### 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
-Extract only the data on mean and standard deviation from features
+#### Extract only the data on mean and standard deviation from features
 ```r
 tFeats <- grep(".*mean.*|.*std.*", features[,2])
 tFeats.names <- features[tFeats,2]
 ```
 
-Set appropriately labels for variable names
+#### Set appropriately labels for variable names
 ```r
 tFeats.names <- gsub('-mean', 'Mean', tFeats.names)
 tFeats.names <- gsub('-std', 'Std', tFeats.names)
 tFeats.names <- gsub('[-()]', '', tFeats.names)
 ```
 
-4. Appropriately labels the data set with descriptive variable names.
+### 3. Appropriately labels the data set with descriptive variable names.
 ```r
 colnames(tData) <- c("subject", "activity", tFeats.names)
 ```
 
-3. Uses descriptive activity names to name the activities in the data set
+### 4. Uses descriptive activity names to name the activities in the data set
 ```r
 tData$activity <- factor(tData$activity, levels = activityLabels[,1], labels = activityLabels[,2])
 tData$subject <- as.factor(tData$subject)
 ```
 
-Creates a second, independent tidy data set with the average of each variable for:
+### 5. Creates a second, independent tidy data set with the average of each variable for:
+
  - each subject
  - each activity
 ```r
