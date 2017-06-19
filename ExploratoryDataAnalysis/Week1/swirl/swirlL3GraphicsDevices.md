@@ -1,4 +1,4 @@
-Graphics Devices in R 
+Lesson 3: Graphics Devices in R 
 ================
 
 
