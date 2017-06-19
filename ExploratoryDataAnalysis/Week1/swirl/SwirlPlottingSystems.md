@@ -97,12 +97,13 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766   W
   As you can see state holds 9 pieces of information for each of the 50 states. The last variable,
   region, specifies a category for each state. Run the R command table with the argument state$region
   to see how many categories there are and how many states are in each.
+
 ```r
 > table(state$region)
 
     Northeast         South North Central          West 
             9            16            12            13 
-      ```      
+ ```      
   So there are 4 categories and the 50 states are sorted into them appropriately. Let's use the
   lattice command xyplot to see how life expectancy varies with income in each of the four regions.
   To do this we'll give xyplot 3 arguments. The first is the most complicated. It is this R formula,
@@ -133,6 +134,7 @@ Selection: 2
 
   Just for fun rerun the xyplot and this time set layout to the vector c(2,2). To save typing use the
   up arrow to recover the previous xyplot command.
+  
 ```r
 > xyplot(Life.Exp ~ Income   region, data = state, layout = c(2, 2))
 ```
@@ -171,6 +173,7 @@ The ggplot2 plotting system
 5         audi    a4   2.8  1999     6   auto(l5)     f    16    26     p compact
 6         audi    a4   2.8  1999     6 manual(m5)     f    18    26     p compact
 ```
+
 ```r
 > dim(mpg)
 [1] 234  11
