@@ -49,7 +49,7 @@ The base system is very intuitive and easy to use when you're starting to do exp
 > with(cars,plot(speed,dist))
 ```
 
-Rplot24.png)
+![plot](Rplot24.png)
 
   Simple, right? You can see the relationship between the two variables, speed and distance. The first
   variable is plotted along the x-axis and the second along the y-axis.
@@ -61,7 +61,7 @@ Rplot24.png)
 ```r
 > text(mean(cars$speed),max(cars$dist),"SWIRL rules!")
 ```
-Rplot25
+![plot](Rplot25.png)
 
 the Lattice System
 ----
@@ -114,11 +114,11 @@ Colorado         2541   4884        0.7    72.06    6.8    63.9   166 103766   W
 ```r
 > xyplot(Life.Exp ~ Income   region,state,c(4,1))
 ```
-Rplot26.png
+![plot](Rplot26.png)
 ```r
 > xyplot(Life.Exp ~ Income   region, data = state, layout = c(4, 1))
 ```
-Rplot27.png
+![plot](Rplot27.png)
 
   We see the data for each of the 4 regions plotted in one row. Based on this plot, which region of
   the U.S. seems to have the shortest life expectancy?
@@ -136,7 +136,7 @@ Selection: 2
 ```r
 > xyplot(Life.Exp ~ Income   region, data = state, layout = c(2, 2))
 ```
-Rplot28.png
+![plot](Rplot28.png)
 
 The ggplot2 plotting system
 ----
