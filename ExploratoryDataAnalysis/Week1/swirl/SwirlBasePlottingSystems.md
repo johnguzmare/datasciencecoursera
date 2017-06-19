@@ -65,7 +65,7 @@ swirl Lesson 5: Base Plotting Systems
 ```r
 > hist(airquality$Ozone)
 ```
-Rplot29
+![plot](Rplot29.png)
 
   Simple, right? R put a title on the histogram and labeled both axes for you. What is the most
   frequent count?
@@ -91,7 +91,7 @@ Selection: 3
 ```r
 > boxplot(Ozone~Month,airquality)
 ```
-Rplot30
+![plot](Rplot30.png)
 
   Let's call boxplot again to specify labels. (Use the up arrow to recover the previous command and
   save yourself some typing.) We'll add more arguments to the call to specify labels for the 2 axes.
@@ -103,7 +103,7 @@ Rplot30
   Nice colors, but still no title. Let's add one with the R command title. Use the argument main set
   equal to the string "Ozone and Wind in New York City".
 
-Rplot31
+![plot](Rplot31.png)
 
   Now we'll show you how to plot a simple two-dimensional scatterplot using the R function plot. We'll
   show the relationship between Wind (x-axis) and Ozone (y-axis). We'll use the function plot with
@@ -114,7 +114,7 @@ Rplot31
 ```r
 > with(airquality, plot(Wind,Ozone))
 ```
-Rplot32
+![plot](Rplot32.png)
 
   Add one now with the R command title. Use the argument main set equal to the string "Ozone and Wind
   in New York City". (You can use the up arrow to recover the command if you don't want to type it.)
@@ -126,7 +126,7 @@ Rplot32
   par to set parameters OR to find out what values are already set. To see just how much flexibility
   you have, run the R command length with the argument par() now.
 
-Rplot33
+![plot](Rplot33.png)
 
   The basic plotting parameters are documented in the R help page for the function par. You can use
   par to set parameters OR to find out what values are already set. To see just how much flexibility
@@ -200,7 +200,7 @@ Selection: 3
 ```r
 > title("Wind and Ozone in NYC")
 ```
-Rplot34
+![plot](Rplot34.png)
 
   Now create a variable called may by subsetting airquality appropriately. (Recall that the data
   specifies months by number and May is the fifth month of the year.)
@@ -215,7 +215,7 @@ may <- subset(airquality, Month==5)
 ```r
 > points(may$Wind,may$Ozone,col="blue",pch=17) 
 ```
-Rplot35
+![plot](Rplot35.png)
 
   Now create the variable notmay by subsetting airquality appropriately.
 ```r
@@ -226,7 +226,7 @@ Rplot35
 ```r
 > points(notmay$Wind,notmay$Ozone,col="red",pch=8)
 ```
-Rplot36
+![plot](Rplot36.png)
 
   Now we'll use the R command legend to clarify the plot and explain what it means. The function has a
   lot of arguments, but we'll only use 4. The first will be the string "topright" to tell R where to
@@ -236,13 +236,13 @@ Rplot36
 ```r
 > legend("topright",pch = c(17,8),col = c("blue","red"),legend = c("May","Other Months"))
 ```
-Rplot37
+![plot](Rplot37.png)
 
   Now add a vertical line at the median of airquality$Wind. Make it dashed (lty=2) with a width of 2.
 ```r
 > abline(v=median(airquality$Wind), lty=2, lwd=2)
 ```
-Rplot38
+![plot](Rplot38.png)
 
 
   Use par with the parameter mfrow set equal to the vector (1,2) to set up the plot window for two
@@ -259,7 +259,7 @@ Rplot38
 ```r
 > plot(airquality$Ozone, airquality$Solar.R, main = "Ozone and Solar Radiation")
 ```
-Rplot39
+![plot](Rplot39.png)
 
   This one with 3 plots, to illustrate inner and outer margins. First, set up the plot window by
   typing par(mfrow = c(1, 3), mar = c(4, 4, 2, 1), oma = c(0, 0, 2, 0))
@@ -286,7 +286,7 @@ Rplot39
 ```r
 > mtext("Ozone and Weather in New York City", outer = TRUE)
 ```
-Rplot40
+![plot](Rplot40.png)
 
 
 
