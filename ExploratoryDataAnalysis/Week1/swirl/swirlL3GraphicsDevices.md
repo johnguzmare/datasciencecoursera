@@ -152,12 +152,15 @@ pdf
 RStudioGD 
         2 
 ```
+
   Now rerun dev.cur() to see what integer your plotting window is assigned.
+
 ```r
 > dev.cur()
 RStudioGD 
         2 
-        ```
+       
+```
   The device is back to what it was when you started. As you might have guessed, every open
   graphics device is assigned an integer greater than or equal to 2. You can change the active
   graphics device with dev.set(<integer>) where <integer> is the number associated with the
