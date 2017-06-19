@@ -31,20 +31,21 @@ create one R script called 'run_analysis.R' that does the following:
 
 ### 1. Merges the training and the test sets to create one data set.
 
-Reading activity labels and get column V2
+#### Reading activity labels and get column V2 as character
 ```r
 activityLabels <- read.table("UCI HAR Dataset/activity_labels.txt")
 activityLabels[,2] <- as.character(activityLabels[,2])
 head(activityLabels)
 ```
 
-#### Reading feature vector and get column V2
+#### Reading feature vector and get column V2 as character
 ```r
 features <- read.table("UCI HAR Dataset/features.txt")
 features[,2] <- as.character(features[,2])
 head(features)
+
 ```
-#### Reading trainings tables
+#### Reading trainings tables 
 ```r
 trainingSet <- read.table("UCI HAR Dataset/train/X_train.txt")
 trainingLabels <- read.table("UCI HAR Dataset/train/Y_train.txt")
@@ -72,12 +73,17 @@ tData <- rbind(trainingSet, testSet)
 ### 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
 #### Extract only the data on mean and standard deviation from features
+
+Use 'grep' to match the patterns for 'mean' and 'standard deviation' features and set the result to 'tFeats.names'
 ```r
 tFeats <- grep(".*mean.*|.*std.*", features[,2])
 tFeats.names <- features[tFeats,2]
 ```
 
 #### Set appropriately labels for variable names
+
+replaces all matches in 'tFeats.names' to clean variable names using 'gsub()' 
+
 ```r
 tFeats.names <- gsub('-mean', 'Mean', tFeats.names)
 tFeats.names <- gsub('-std', 'Std', tFeats.names)
@@ -102,7 +108,7 @@ tData$subject <- as.factor(tData$subject)
 ```r
 tDataMean <- dcast(melt(tData, id = c("subject", "activity")), subject + activity ~ variable, mean)
 ```
-Export the tidyData set to file 'tidy.txt'
+Export the tidy Data set to file 'tidy.txt'
 ```r
 write.table(tDataMean, "tidy.txt", row.names = FALSE, quote = FALSE)
 ```
