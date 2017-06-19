@@ -24,13 +24,12 @@ create one R script called 'run_analysis.R' that does the following:
 * 4- Appropriately labels the data set with descriptive variable names.
 * 5- From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-## Synopsis
 
-### Data processing
+## Data processing
 
 'Note:' file 'run_analysis.R' assume the data for the project is downloaded and unzipped in dir "UCI HAR Dataset"
 
-#### Merges the training and the test sets to create one data set.
+### 1. Merges the training and the test sets to create one data set.
 
 Reading activity labels and get column V2
 ```r
@@ -70,7 +69,7 @@ testSet <- cbind(testSubjects, testLabels, testSet)
 tData <- rbind(trainingSet, testSet)
 ```
 
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+## 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
 Extract only the data on mean and standard deviation from features
 ```r
