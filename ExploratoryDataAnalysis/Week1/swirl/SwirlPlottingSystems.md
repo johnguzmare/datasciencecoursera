@@ -215,7 +215,7 @@ land cruiser wagon 4wd                 malibu                 maxima        moun
 ```
 
 
-
+![plot](Rplot29.png)
 
 
 
