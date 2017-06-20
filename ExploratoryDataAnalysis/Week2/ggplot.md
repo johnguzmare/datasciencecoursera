@@ -54,31 +54,32 @@ Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	234 obs. of  11 variables:
 
 Facets
 -----
+```r
 > qplot(displ,hwy,data=mpg,facets= .~drv)
-```r
+```
 ![alt text](Rplot10.png)
-```
+```r
 > qplot(displ,hwy,data=mpg,facets= drv~.,binwidth=2)
-```r
+```
 ![alt text](Rplot11.png)
-```
-> qplot(hwy,data=mpg,facets= drv~.,binwidth=2)
 ```r
-![alt text](Rplot12.png)
+> qplot(hwy,data=mpg,facets= drv~.,binwidth=2)
 ```
+![alt text](Rplot12.png)
+```r
 
 > qplot(displ,hwy,data=mpg,color=drv) + geom_smooth(method = "lm")
-```r
+```
 ![alt text](Rplot16.png)
-```
+```r
 > qplot(displ,hwy,data=mpg,facets = .~drv) + geom_smooth(method = "lm")
-```r
+```
 ![alt text](Rplot17.png)
-```
-> qplot(displ,hwy,data=mpg,facets = drv~.) + geom_smooth(method = "lm")
 ```r
-![alt text](Rplot18.png)
+> qplot(displ,hwy,data=mpg,facets = drv~.) + geom_smooth(method = "lm")
 ```
+![alt text](Rplot18.png)
+
 
 
 
