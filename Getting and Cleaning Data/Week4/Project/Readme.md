@@ -104,7 +104,7 @@ tFeatsLabels  <- gsub('[-()]', '', tFeatsLabels )
 
 ### 3. Appropriately labels the data set with descriptive variable names.
 ```r
-colnames(tData) <- c("subject", "activity", tFeats.names)
+colnames(tData) <- c("subject", "activity", tFeatsLabels)
 ```
 
 ### 4. Uses descriptive activity names to name the activities in the data set
