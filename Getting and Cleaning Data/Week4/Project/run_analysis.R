@@ -53,15 +53,16 @@ tData <- rbind(trainingSet, testSet)
 
 # Extract only the data on mean and standard deviation from features
 tFeats <- grep(".*mean.*|.*std.*", features[,2])
-tFeats.names <- features[tFeats,2]
 
-# Set appropriately labels for variable names
-tFeats.names <- gsub('-mean', 'Mean', tFeats.names)
-tFeats.names <- gsub('-std', 'Std', tFeats.names)
-tFeats.names <- gsub('[-()]', '', tFeats.names)
+
+# Set appropriately labels for variable names replacing wrong strings
+tFeatsLabels <- features[tFeats,2]
+tFeatsLabels <- gsub('-mean', 'Mean', tFeatsLabels)
+tFeatsLabels <- gsub('-std', 'Std', tFeatsLabels)
+tFeatsLabels <- gsub('[-()]', '', tFeatsLabels)
 
 # 3. Appropriately labels the data set with descriptive variable names.
-colnames(tData) <- c("subject", "activity", tFeats.names)
+colnames(tData) <- c("subject", "activity",tFeatsLabels)
 
 # 4. Uses descriptive activity names to name the activities in the data set
 tData$activity <- factor(tData$activity, levels = activityLabels[,1], labels = activityLabels[,2])
@@ -70,7 +71,6 @@ tData$subject <- as.factor(tData$subject)
 # Creates a second, independent tidy data set with the average of each variable for:
 #  - each subject
 #  - each activity
-
 tDataMean <- dcast(melt(tData, id = c("subject", "activity")), subject + activity ~ variable, mean)
 
 # Export the tidyData set 
