@@ -4,7 +4,7 @@ Lesson 1: Lattice Plotting System
 
 Simple Lattice plot
 ---
-
+```r
 > library(lattice)
 > library(datasets)
 > 
@@ -20,21 +20,22 @@ Simple Lattice plot
 
 
 > xyplot(Ozone ~ Wind , data = airquality)
+```
 
-
-Rplot.png)
+![alt text](Rplot.png)
 
 Convert Month to a factor variable
-
+```r
 > airquality <- transform(airquality, Month = factor(Month))
 > xyplot(Ozone ~ Wind | Month , data = airquality, layout= c(5,1))
-
-Rplot01.png)
+```
+![alt text](Rplot01.png)
 
 
 Lattice Panel Function
 ---
 
+```r
 set.seed(10)
 x <- rnorm(100)
 f <- rep(0:1,each=50)
@@ -43,30 +44,33 @@ y <- x + f -f * x + rnorm(100,sd=0.5)
 f <- factor(f,label=c("G1,G2"))
 
 xyplot(y~x | f, layout=c(2,1))
+```
 
-Rplot02.png)
+![alt text](Rplot02.png)
 
 Custom panel functions
 ---
 
 add median doted line
 
+```r
 xyplot(y~x | f, panel=function(x,y,...) {
     panel.xyplot(x,y,...) # first call the default panel
     panel.abline(h=median(y),lty=2) # Add a horizontal line at the median
 })
+```
 
-Rplot03.png)
+![alt text](Rplot03.png)
 
 Add regression lines
-
+```r
 xyplot(y~x | f, panel=function(x,y,...) {
     panel.xyplot(x,y,...) # first call the default panel
     panel.abline(h=median(y),lty=2) # Add a horizontal line at the median
     panel.lmline(x,y, col=2) # overlay a simple regression line
 })
+```r
 
-
-Rplot04.png
+![alt text](Rplot04.png
 
 
