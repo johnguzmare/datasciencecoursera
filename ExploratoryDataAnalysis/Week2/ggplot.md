@@ -1,4 +1,4 @@
-Lesson 1: ggplot2
+Lesson 2: ggplot2
 =====
 
 ```r
