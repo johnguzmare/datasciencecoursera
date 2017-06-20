@@ -1,7 +1,7 @@
 Lesson 1: ggplot2
 =====
 
-
+```r
 > library(ggplot2)
 
 > str(mpg)
@@ -18,67 +18,67 @@ Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	234 obs. of  11 variables:
  $ fl          : chr  "p" "p" "p" "p" ...
  $ class       : chr  "compact" "compact" "compact" "compact" ...
 > 
-
-
+```
+```r
 > qplot(displ,hwy,data=mpg)
-
-Rplot05.png)
-
+```
+![alt text](Rplot05.png)
+```r
 > qplot(displ,hwy,data=mpg,color=drv)
-
-Rplot06.png)
-
+```
+![alt text](Rplot06.png)
+```r
 > qplot(displ,hwy,data=mpg,shape=drv)
-
-Rplot15.png)
-
+```
+![alt text](Rplot15.png)
+```r
 > qplot(displ,hwy,data=mpg,color=drv,geom=c("point","smooth"))
-
-Rplot07
-
+```
+![alt text](Rplot07.png)
+```r
 > qplot(displ,hwy,data=mpg,geom=c("point","smooth"))
-
-Rplot08
-
+```
+![alt text](Rplot08.png)
+```r
 > qplot(hwy,data=mpg,geom=c("density"))
-
-Rplot13
-
+```
+![alt text](Rplot13.png)
+```r
 > qplot(hwy,data=mpg,geom=c("density"),color=drv)
-
-Rplot14
-
+```
+![alt text](Rplot14.png)
+```r
 > qplot(hwy,data=mpg,fill=drv)
-
-Rplot09.png)
+```
+![alt text](Rplot09.png)
 
 Facets
 -----
 > qplot(displ,hwy,data=mpg,facets= .~drv)
-
-Rplot10
-
+```r
+![alt text](Rplot10.png)
+```
 > qplot(displ,hwy,data=mpg,facets= drv~.,binwidth=2)
-
-Rplot11
-
+```r
+![alt text](Rplot11.png)
+```
 > qplot(hwy,data=mpg,facets= drv~.,binwidth=2)
-
-Rplot12
-
+```r
+![alt text](Rplot12.png)
+```
 
 > qplot(displ,hwy,data=mpg,color=drv) + geom_smooth(method = "lm")
-
-Rplot16
-
+```r
+![alt text](Rplot16.png)
+```
 > qplot(displ,hwy,data=mpg,facets = .~drv) + geom_smooth(method = "lm")
-
-Rplot17
-
+```r
+![alt text](Rplot17.png)
+```
 > qplot(displ,hwy,data=mpg,facets = drv~.) + geom_smooth(method = "lm")
-
-Rplot18
-
+```r
+![alt text](Rplot18.png)
+```
 
 
 
