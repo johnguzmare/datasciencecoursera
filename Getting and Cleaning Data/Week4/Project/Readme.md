@@ -24,6 +24,12 @@ create one R script called 'run_analysis.R' that does the following:
 * 4- Appropriately labels the data set with descriptive variable names.
 * 5- From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
+### Files
+
+'CodeBook.md': Indicate all the variables and summaries calculated, along with units, and any other relevant information.	
+'Readme.md'	: Explains the analysis files in a clear and understandable way.
+'run_analysis.R' : 	R script to run data processing.
+'tidy.txt': Tidy data set with the average of each variable for each activity and each subject.
 
 ## Data processing
 
@@ -32,6 +38,7 @@ create one R script called 'run_analysis.R' that does the following:
 ### 1. Merges the training and the test sets to create one data set.
 
 #### Reading activity labels and get column V2 as character
+
 ```r
 activityLabels <- read.table("UCI HAR Dataset/activity_labels.txt")
 activityLabels[,2] <- as.character(activityLabels[,2])
