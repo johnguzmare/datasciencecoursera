@@ -31,6 +31,7 @@ create one R script called 'run_analysis.R' that does the following:
 'run_analysis.R' : 	R script to run data processing.
 'tidy.txt': Tidy data set with the average of each variable for each activity and each subject.
 
+
 ## Data processing
 
 `Note:` file 'run_analysis.R' assume the data for the project is downloaded and unzipped in dir "UCI HAR Dataset"
