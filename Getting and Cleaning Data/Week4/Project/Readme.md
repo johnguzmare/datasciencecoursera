@@ -120,7 +120,7 @@ tData$subject <- as.factor(tData$subject)
 ```r
 tDataMean <- dcast(melt(tData, id = c("subject", "activity")), subject + activity ~ variable, mean)
 ```
-Export the tidy Data set to file 'tidy.txt'
+Export the tidy Data set to file `tidy.txt`
 ```r
 write.table(tDataMean, "tidy.txt", row.names = FALSE, quote = FALSE)
 ```
