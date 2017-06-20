@@ -18,8 +18,6 @@
 
 ## ----------------------------------------------------------------------------------------
 
-setwd("/Users/jguzman/Documents/onedrive/DataScience/gitRepo/Getting\ and\ Cleaning\ Data/Week4/Project")
-
 library(reshape2)
 
 # 1. Merges the training and the test sets to create one data set.
