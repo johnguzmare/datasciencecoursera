@@ -27,7 +27,7 @@ create one R script called 'run_analysis.R' that does the following:
 
 ## Data processing
 
-'Note:' file 'run_analysis.R' assume the data for the project is downloaded and unzipped in dir "UCI HAR Dataset"
+`Note:` file 'run_analysis.R' assume the data for the project is downloaded and unzipped in dir "UCI HAR Dataset"
 
 ### 1. Merges the training and the test sets to create one data set.
 
