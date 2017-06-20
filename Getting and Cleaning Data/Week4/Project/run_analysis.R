@@ -7,8 +7,8 @@
 
 # 1. Merges the training and the test sets to create one data set.
 # 2. Extracts only the measurements on the mean and standard deviation for each measurement.
-# 3. Uses descriptive activity names to name the activities in the data set
-# 4. Appropriately labels the data set with descriptive variable names.
+# 3. Appropriately labels the data set with descriptive variable names.
+# 4. Uses descriptive activity names to name the activities in the data set
 # 5. Creates a second, independent tidy data set with the average of each variable for:
 #    - each activity
 #    - each subject.
@@ -60,10 +60,10 @@ tFeats.names <- gsub('-mean', 'Mean', tFeats.names)
 tFeats.names <- gsub('-std', 'Std', tFeats.names)
 tFeats.names <- gsub('[-()]', '', tFeats.names)
 
-# 4. Appropriately labels the data set with descriptive variable names.
+# 3. Appropriately labels the data set with descriptive variable names.
 colnames(tData) <- c("subject", "activity", tFeats.names)
 
-# 3. Uses descriptive activity names to name the activities in the data set
+# 4. Uses descriptive activity names to name the activities in the data set
 tData$activity <- factor(tData$activity, levels = activityLabels[,1], labels = activityLabels[,2])
 tData$subject <- as.factor(tData$subject)
 
