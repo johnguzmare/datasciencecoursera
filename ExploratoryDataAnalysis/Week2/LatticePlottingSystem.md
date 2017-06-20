@@ -69,8 +69,8 @@ xyplot(y~x | f, panel=function(x,y,...) {
     panel.abline(h=median(y),lty=2) # Add a horizontal line at the median
     panel.lmline(x,y, col=2) # overlay a simple regression line
 })
-```r
+```
 
-![alt text](Rplot04.png
+![alt text](Rplot04.png)
 
 
