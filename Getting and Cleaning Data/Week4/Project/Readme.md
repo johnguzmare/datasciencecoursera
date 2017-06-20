@@ -85,7 +85,7 @@ tData <- rbind(trainingSet, testSet)
 
 #### Extract only the data on mean and standard deviation from features
 
-Use `grep()` to match the patterns for 'mean' and 'standard deviation' features and set the result to 'tFeats.names'
+Use `grep()` to match the patterns for 'mean' and 'standard deviation' features 
 ```r
 tFeats <- grep(".*mean.*|.*std.*", features[,2])
 
@@ -93,7 +93,7 @@ tFeats <- grep(".*mean.*|.*std.*", features[,2])
 
 #### Set appropriately labels for variable names
 
-replaces all matches in `tFeatsLabels` to clean variable names using `gsub()` 
+replaces all string matches from `tFeats` in `features` and set to `tFeatsLabels` to clean variable names using `gsub()` 
 
 ```r
 tFeatsLabels  <- features[tFeats,2]
