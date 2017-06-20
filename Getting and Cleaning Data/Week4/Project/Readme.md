@@ -77,7 +77,7 @@ tData <- rbind(trainingSet, testSet)
 Use 'grep' to match the patterns for 'mean' and 'standard deviation' features and set the result to 'tFeats.names'
 ```r
 tFeats <- grep(".*mean.*|.*std.*", features[,2])
-tFeats.names <- features[tFeats,2]
+
 ```
 
 #### Set appropriately labels for variable names
@@ -85,9 +85,10 @@ tFeats.names <- features[tFeats,2]
 replaces all matches in 'tFeats.names' to clean variable names using 'gsub()' 
 
 ```r
-tFeats.names <- gsub('-mean', 'Mean', tFeats.names)
-tFeats.names <- gsub('-std', 'Std', tFeats.names)
-tFeats.names <- gsub('[-()]', '', tFeats.names)
+tFeatsLabels  <- features[tFeats,2]
+tFeatsLabels  <- gsub('-mean', 'Mean', tFeatsLabels )
+tFeatsLabels  <- gsub('-std', 'Std', tFeatsLabels )
+tFeatsLabels  <- gsub('[-()]', '', tFeatsLabels )
 ```
 
 ### 3. Appropriately labels the data set with descriptive variable names.
