@@ -1,4 +1,4 @@
-# Getting and Cleaning Data Course Project - Readme
+# Readme
 
 ## Synopsis
 
@@ -27,8 +27,11 @@ create one R script called 'run_analysis.R' that does the following:
 ### Files
 
 'CodeBook.md': Indicate all the variables and summaries calculated, along with units, and any other relevant information.	
+
 'Readme.md'	: Explains the analysis files in a clear and understandable way.
+
 'run_analysis.R' : 	R script to run data processing.
+
 'tidy.txt': Tidy data set with the average of each variable for each activity and each subject.
 
 
