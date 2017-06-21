@@ -1,4 +1,4 @@
-Lesson 2: ggplot2
+Lesson 2: The ggplot2 plotting System
 =====
 
 ```r
@@ -79,6 +79,231 @@ Facets
 > qplot(displ,hwy,data=mpg,facets = drv~.) + geom_smooth(method = "lm")
 ```
 ![alt text](Rplot18.png)
+
+
+Part 3
+=====
+
+> maacs <- read.csv("bmi_pm25_no2_sim.csv")
+> str(maacs)
+'data.frame':	517 obs. of  4 variables:
+ $ logpm25       : num  1.248 1.122 1.93 1.368 0.775 ...
+ $ logno2_new    : num  1.184 1.552 1.432 1.774 0.765 ...
+ $ bmicat        : Factor w/ 2 levels "normal weight",..: 1 2 1 2 1 1 1 1 1 2 ...
+ $ NocturnalSympt: int  1 0 0 2 0 0 0 0 0 3 ...
+
+> head(maacs[,1:3])
+    logpm25 logno2_new        bmicat
+1 1.2476997  1.1837987 normal weight
+2 1.1216476  1.5515362    overweight
+3 1.9300429  1.4323519 normal weight
+4 1.3679246  1.7736804    overweight
+5 0.7753367  0.7654826 normal weight
+6 1.4872785  1.1127378 normal weight
+
+# Initial call to ggplot
+                      #aesthetic
+> g <- ggplot(maacs, aes(logpm25, NocturnalSympt))
+
+# object summary
+> summary(g)
+data: logpm25, logno2_new, bmicat, NocturnalSympt [517x4]
+mapping:  x = logpm25, y = NocturnalSympt
+faceting: <ggproto object: Class FacetNull, Facet>
+    compute_layout: function
+    draw_back: function
+    draw_front: function
+    draw_labels: function
+    draw_panels: function
+    finish_data: function
+    init_scales: function
+    map: function
+    map_data: function
+    params: list
+    render_back: function
+    render_front: function
+    render_panels: function
+    setup_data: function
+    setup_params: function
+    shrink: TRUE
+    train: function
+    train_positions: function
+    train_scales: function
+    vars: function
+    super:  <ggproto object: Class FacetNull, Facet>
+
+> g + geom_point()
+
+Rplot19.png)
+
+Facets
+----
+
+> g + geom_point() +  geom_smooth(method = "lm")
+
+Rplot20.png)
+
+Add a categorical variable `bmicat` 
+> g + geom_point() + 
+    geom_smooth(method = "lm") +
+    facet_grid(. ~ bmicat) 
+> 
+
+Rplot21.png)
+
+> g + geom_point() + 
+    geom_smooth(method = "lm") +
+    facet_grid(bmicat ~ .) + 
+    theme_bw()
+> 
+
+Rplot22.png)
+
+For things that only make sense globally, use theme(), i.e. theme(legend.position = "none"). Two standard appearance themes are included
+
+theme_gray(): The default theme (gray background)
+
+theme_bw(): More stark/plain
+
+Modifiyng aesthetic
+---
+
+> g + geom_point(color = "steelblue", size = 2, alpha = 1/2)  + theme_bw()
+
+Rplot23.png)
+
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + theme_bw()
+
+Rplot24.png)
+
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
++     geom_smooth(method = "lm") +
++     facet_grid(. ~ bmicat)  +theme_bw()
+
+Rplot25.png)
+
+
+Modifiyng labels
+---
+
+g + geom_point(aes(color = bmicat)) + 
+        labs(title = "MAACS Cohort") + 
+        labs(x = expression("log " * PM[2.5]), y = "Nocturnal Symptoms") +
+        theme_bw()
+
+Rplot26.png)
+
+Customizing the Smooth
+---
+
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
+  geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
+  theme_bw()
+  
+  Rplot27.png)
+
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
+  geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
+  facet_grid(. ~ bmicat) +
+  theme_bw()
+  
+  Rplot28.png)
+  
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
+  geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
+  facet_grid(. ~ bmicat) +
+  theme_bw(base_family = "Times") 
+  
+  
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
+  geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
+  facet_grid(. ~ bmicat) +
+  theme_linedraw()
+  
+  Rplot29.png)
+  
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
+  geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
+  facet_grid(. ~ bmicat) +
+ theme_light()
+ 
+ Rplot30.png)
+ 
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
+  geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
+  facet_grid(. ~ bmicat) +
+ theme_dark()
+
+ Rplot31.png)
+ 
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
+  geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
+  facet_grid(. ~ bmicat) +
+ theme_minimal()
+ 
+ Rplot32.png)
+ 
+> g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
+  geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
+  facet_grid(. ~ bmicat) +
+ theme_classic()
+
+ Rplot33.png)
+ 
+More Complex Example
+---
+
+> cutpoints <- quantile(maacs$logno2_new, seq(0, 1, length = 4), na.rm = TRUE)
+> cutpoints
+       0% 33.33333% 66.66667%      100% 
+0.3419452 1.2286107 1.4679603 2.1695374 
+
+The not2tert variable is now a categorical factor variable containing 3 levels, indicating the ranges of NO2 (on the log scale).
+
+> head(maacs)
+    logpm25 logno2_new        bmicat NocturnalSympt      no2tert
+1 1.2476997  1.1837987 normal weight              1 (0.342,1.23]
+2 1.1216476  1.5515362    overweight              0  (1.47,2.17]
+3 1.9300429  1.4323519 normal weight              0  (1.23,1.47]
+4 1.3679246  1.7736804    overweight              2  (1.47,2.17]
+5 0.7753367  0.7654826 normal weight              0 (0.342,1.23]
+6 1.4872785  1.1127378 normal weight              0 (0.342,1.23]
+
+> levels(maacs$no2tert)
+[1] "(0.342,1.23]" "(1.23,1.47]"  "(1.47,2.17]" 
+
+> ## Setup ggplot with data frame
+> g <- ggplot(maacs, aes(logpm25, NocturnalSympt))
+
+## Add layers
+> g + geom_point(aes(color = bmicat ), size = 1, alpha = 1/2) + 
+  facet_wrap(bmicat ~ no2tert, nrow = 2, ncol = 4) + 
+  geom_smooth(size = 1/2, linetype = 1, method = "lm", se = FALSE, col="steelblue") +
+  theme_bw(base_family = "Avenir", base_size = 10) + 
+  labs(x = expression("log " * PM[2.5])) + 
+  labs(y = "Nocturnal Symptoms") + 
+  labs(title = "MAACS Cohort")
+  
+Rplot34.png)
+
+A Quick Aside about Axis Limits
+---
+
+testdat <- data.frame(x = 1:100, y = rnorm(100))
+testdat[50,2] <- 100  ## Outlier!
+
+plot(testdat$x, testdat$y, type = "l", ylim = c(-3,3))
+
+Rplot35.png)
+
+
+With `ggplot2` the default settings will give you this.
+
+g <- ggplot(testdat, aes(x = x, y = y))
+g + geom_line()
+
+Rplot36.png)
+
 
 
 
