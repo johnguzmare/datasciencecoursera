@@ -84,6 +84,7 @@ Facets
 Part 3
 =====
 
+```r
 > maacs <- read.csv("bmi_pm25_no2_sim.csv")
 > str(maacs)
 'data.frame':	517 obs. of  4 variables:
@@ -100,10 +101,14 @@ Part 3
 4 1.3679246  1.7736804    overweight
 5 0.7753367  0.7654826 normal weight
 6 1.4872785  1.1127378 normal weight
+```
 
+```r
 # Initial call to ggplot
                       #aesthetic
 > g <- ggplot(maacs, aes(logpm25, NocturnalSympt))
+```
+```r
 
 # object summary
 > summary(g)
@@ -131,33 +136,38 @@ faceting: <ggproto object: Class FacetNull, Facet>
     train_scales: function
     vars: function
     super:  <ggproto object: Class FacetNull, Facet>
+```
 
+```r
 > g + geom_point()
+```
 
-Rplot19.png)
+![alt text](Rplot19.png)
 
 Facets
 ----
-
+```r
 > g + geom_point() +  geom_smooth(method = "lm")
+```
 
-Rplot20.png)
+![alt text](Rplot20.png)
 
 Add a categorical variable `bmicat` 
+```r
 > g + geom_point() + 
     geom_smooth(method = "lm") +
     facet_grid(. ~ bmicat) 
-> 
+```
 
-Rplot21.png)
-
+![alt text](Rplot21.png)
+```r
 > g + geom_point() + 
     geom_smooth(method = "lm") +
     facet_grid(bmicat ~ .) + 
     theme_bw()
-> 
+```
 
-Rplot22.png)
+![alt text](Rplot22.png)
 
 For things that only make sense globally, use theme(), i.e. theme(legend.position = "none"). Two standard appearance themes are included
 
@@ -167,92 +177,92 @@ theme_bw(): More stark/plain
 
 Modifiyng aesthetic
 ---
-
+```r
 > g + geom_point(color = "steelblue", size = 2, alpha = 1/2)  + theme_bw()
-
-Rplot23.png)
-
+```
+![alt text](Rplot23.png)
+```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + theme_bw()
-
-Rplot24.png)
-
+```
+![alt text](Rplot24.png)
+```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
 +     geom_smooth(method = "lm") +
 +     facet_grid(. ~ bmicat)  +theme_bw()
-
-Rplot25.png)
+```
+![alt text](Rplot25.png)
 
 
 Modifiyng labels
 ---
-
+```r
 g + geom_point(aes(color = bmicat)) + 
         labs(title = "MAACS Cohort") + 
         labs(x = expression("log " * PM[2.5]), y = "Nocturnal Symptoms") +
         theme_bw()
-
-Rplot26.png)
+```
+![alt text](Rplot26.png)
 
 Customizing the Smooth
 ---
-
+```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
   geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
   theme_bw()
-  
-  Rplot27.png)
-
+  ```
+  ![alt text](Rplot27.png)
+```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
   geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
   facet_grid(. ~ bmicat) +
   theme_bw()
-  
-  Rplot28.png)
-  
+  ```
+  ![alt text](Rplot28.png)
+  ```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
   geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
   facet_grid(. ~ bmicat) +
   theme_bw(base_family = "Times") 
-  
-  
+  ```
+  ```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
   geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
   facet_grid(. ~ bmicat) +
   theme_linedraw()
-  
-  Rplot29.png)
-  
+  ```
+  ![alt text](Rplot29.png)
+  ```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
   geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
   facet_grid(. ~ bmicat) +
  theme_light()
- 
- Rplot30.png)
- 
+ ```
+ ![alt text](Rplot30.png)
+ ```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
   geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
   facet_grid(. ~ bmicat) +
  theme_dark()
-
- Rplot31.png)
- 
+```
+ ![alt text](Rplot31.png)
+ ```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
   geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
   facet_grid(. ~ bmicat) +
  theme_minimal()
- 
- Rplot32.png)
- 
+ ```
+ ![alt text](Rplot32.png)
+ ```r
 > g + geom_point(aes(color = bmicat), size = 2, alpha = 1/2) + 
   geom_smooth(size = 1/2, linetype = 2, method = "lm", se = FALSE) +
   facet_grid(. ~ bmicat) +
  theme_classic()
-
- Rplot33.png)
+```
+ ![alt text](Rplot33.png)
  
 More Complex Example
 ---
-
+```r
 > cutpoints <- quantile(maacs$logno2_new, seq(0, 1, length = 4), na.rm = TRUE)
 > cutpoints
        0% 33.33333% 66.66667%      100% 
@@ -271,10 +281,13 @@ The not2tert variable is now a categorical factor variable containing 3 levels, 
 
 > levels(maacs$no2tert)
 [1] "(0.342,1.23]" "(1.23,1.47]"  "(1.47,2.17]" 
+```
 
+```r
 > ## Setup ggplot with data frame
 > g <- ggplot(maacs, aes(logpm25, NocturnalSympt))
-
+```
+```r
 ## Add layers
 > g + geom_point(aes(color = bmicat ), size = 1, alpha = 1/2) + 
   facet_wrap(bmicat ~ no2tert, nrow = 2, ncol = 4) + 
@@ -283,26 +296,26 @@ The not2tert variable is now a categorical factor variable containing 3 levels, 
   labs(x = expression("log " * PM[2.5])) + 
   labs(y = "Nocturnal Symptoms") + 
   labs(title = "MAACS Cohort")
-  
-Rplot34.png)
+``` 
+![alt text](Rplot34.png)
 
 A Quick Aside about Axis Limits
 ---
-
+```r
 testdat <- data.frame(x = 1:100, y = rnorm(100))
 testdat[50,2] <- 100  ## Outlier!
 
 plot(testdat$x, testdat$y, type = "l", ylim = c(-3,3))
-
-Rplot35.png)
+```
+![alt text](Rplot35.png)
 
 
 With `ggplot2` the default settings will give you this.
-
+```r
 g <- ggplot(testdat, aes(x = x, y = y))
 g + geom_line()
-
-Rplot36.png)
+```
+![alt text](Rplot36.png)
 
 
 
