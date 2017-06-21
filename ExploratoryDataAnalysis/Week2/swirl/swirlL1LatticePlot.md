@@ -2,6 +2,7 @@
 Swirl Lesson 1: Lattice Plotting System
 =====
 
+```r
 > head(airquality)
   Ozone Solar.R Wind Temp Month Day
 1    41     190  7.4   67     5   1
@@ -10,27 +11,32 @@ Swirl Lesson 1: Lattice Plotting System
 4    18     313 11.5   62     5   4
 5    NA      NA 14.3   56     5   5
 6    28      NA 14.9   66     5   6
+```
 
-| Now try running xyplot with the formula Ozone~Wind as the first argument and the second argument data set equal
-| to airquality.
-
+Now try running xyplot with the formula Ozone~Wind as the first argument and the second argument data set equal to airquality.
+```r
 > xyplot(Ozone~Wind, data=airquality)
+```
 
-Rplot37.png)
+![alt text](Rplot37.png)
 
+```r
 > xyplot(Ozone ~ Wind, data = airquality, pch=8, col="red", main="Big Apple Data")
+```
 
-Rplot.png)
+![alt text](Rplot.png)
 
-
+```r
 > xyplot(Ozone~Wind | as.factor(Month), data = airquality, layout= c(5,1))
+```
 
-Rplot01.png)
+![alt text](Rplot01.png)
 
-
+```r
 > p <- xyplot(Ozone~Wind,data=airquality)
 > print(p)
-
+```
+```r
 > names(p)
  [1] "formula"           "as.table"          "aspect.fill"       "legend"            "panel"            
  [6] "page"              "layout"            "skip"              "strip"             "strip.left"       
@@ -41,9 +47,10 @@ Rplot01.png)
 [31] "call"              "x.scales"          "y.scales"          "panel.args.common" "panel.args"       
 [36] "packet.sizes"      "x.limits"          "y.limits"          "x.used.at"         "y.used.at"        
 [41] "x.num.limit"       "y.num.limit"       "aspect.ratio"      "prepanel.default"  "prepanel"         
+```
 
 Run mynames[myfull] to see which entries of p are not NULL.
-
+```r
 > mynames[myfull]
  [1] "formula"           "as.table"          "aspect.fill"       "panel"             "skip"             
  [6] "strip"             "strip.left"        "xscale.components" "yscale.components" "axis"             
@@ -51,13 +58,14 @@ Run mynames[myfull] to see which entries of p are not NULL.
 [16] "y.between"         "index.cond"        "perm.cond"         "condlevels"        "call"             
 [21] "x.scales"          "y.scales"          "panel.args.common" "panel.args"        "packet.sizes"     
 [26] "x.limits"          "y.limits"          "aspect.ratio"      "prepanel.default" 
-
+```
+```r
 > p[["formula"]]
 Ozone ~ Wind
 
 > p[["x.limits"]]
 [1]  0.37 22.03
-
+```
 
 Panel functions receive the x and y coordinates of the data points in their panel (along with any optional
 arguments). To see this, we've created some data for you - two 100-long vectors, x and y. For its first 50
@@ -65,23 +73,26 @@ values y is a function of x, for the last 50 values, y is random. We've also def
 which distinguishes between the first and last 50 elements of the two vectors. Run the R command table with f as
 it argument.
 
+```r
 > table(f)
 f
 Group 1 Group 2 
      50      50 
+```
      
 
 The first 50 entries of f are "Group 1" and the last 50 are "Group 2". Run xyplot with two arguments. The first
 is the formula y~x|f, and the second is layout set equal to c(2,1). Note that we're not providing an explicit
 data argument, so xyplot will look in the environment and see the x and y that we've generated for you.
-
+```r
 > xyplot(y~x|f,layout=c(2,1))
+```
 
-Rplot02.png)
+![alt text](Rplot02.png)
 
 Again, the values match the plot. That's reassuring. We've copied some code from the slides for you. To see it,
 type myedit("plot1.R"). This will open your editor and display the R code in it.
-
+```r
 > myedit("plot1.R")
 
 p <- xyplot(y ~ x | f, panel = function(x, y, ...) {
@@ -90,19 +101,21 @@ p <- xyplot(y ~ x | f, panel = function(x, y, ...) {
 })
 print(p)
 invisible()
+```
 
 We've defined a function for you, pathtofile, which takes a filename as its argument. This makes sure R can find
 the file on your computer. Now run the R command source with two arguments. The first is the call to pathtofile
 with the string "plot1.R" as its argument and the second is the argument local set equal to TRUE. This command
 will run the code contained in plot1.R within the swirl environment so you can see what it does.
 
-
+```r
 source(pathtofile("plot1.R"),local=TRUE)
+```
 
-Rplot03.png)
+![alt text](Rplot03.png)
 
 
-| See how the lines appear. The plot shows two panels because...?
+See how the lines appear. The plot shows two panels because...?
 
 1: lattice can handle at most 2 panels
 2: there are 2 variables
@@ -110,6 +123,8 @@ Rplot03.png)
 4: f contains 2 factors
 Selection: 4
 
+
+```r
 > myedit("plot2.R")
 
 p2 <- xyplot(y ~ x | f, panel = function(x, y, ...) {
@@ -121,17 +136,18 @@ invisible()
 
 
 source(pathtofile("plot2.R"),local=TRUE)
+```
 
-Rplot04.png)
+![alt text](Rplot04.png)
 
-| The regression lines are red because ...?
+The regression lines are red because ...?
 
 1: R is the first letter of the word red
 2: R always plots regression lines in red
 3: the custom panel function specified a col argument
 
 Selection: 3
-
+```r
 > str(diamonds)
 Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	53940 obs. of  10 variables:
  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
@@ -145,19 +161,22 @@ Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	53940 obs. of  10 variables:
  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
 
+```
 
 So the data frame contains 10 pieces of information for each of 53940 diamonds. Run the R command table with
 diamonds$color as an argument.
 
+```r
 > table(diamonds$color)
 
     D     E     F     G     H     I     J 
  6775  9797  9542 11292  8304  5422  2808 
+ ```
  
- 
-We see 7 colors each represented by a letter. Now run the R command table with two arguments, diamonds$color and
-diamonds$cut.
+We see 7 colors each represented by a letter. Now run the R command table with two arguments, ´diamonds$color and
+`diamonds$cut`.
 
+```r
 > table(diamonds$color, diamonds$cut)
    
     Fair Good Very Good Premium Ideal
@@ -168,21 +187,23 @@ diamonds$cut.
   H  303  702      1824    2360  3115
   I  175  522      1204    1428  2093
   J  119  307       678     808   896
-  
+```
 
+```r
 > source(pathtofile("myLabels.R"),local=TRUE)
 
 myxlab <- "Carat"
 myylab <- "Price"
 mymain <- "Diamonds are Sparkly!"
-
+```
 
 35 panels, one for each combination of color and cut. The dots (pch=20) show how prices for the diamonds in each category (panel) vary depending on carat.
 
-
+```r
 > xyplot(price~carat | color*cut, data = diamonds, strip=FALSE,pch=20,xlab = myxlab,ylab = myylab,main=mymain)
+```
 
-Rplot05.png)
+![alt text](Rplot05.png)
 
 Are colors defining the rows or columns of the plot? Recall that there were 7 colors and 5 cuts in the data.
 
