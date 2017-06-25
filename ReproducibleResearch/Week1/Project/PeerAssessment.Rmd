@@ -1,0 +1,197 @@
+---
+title: "Reproducible Research: Peer Assessment 1"
+author: "Jhon Guzman"
+date: "6/23/2017"
+output: html_document
+keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+
+getwd()
+setwd("/Users/jguzman/Documents/onedrive/DataScience/gitRepo/ReproducibleResearch/Week1/Project")
+list.files()
+
+
+```
+
+## Loading and preprocessing the data
+
+
+### Library dependencies
+```{r, include=TRUE}
+library(dplyr)
+library(ggplot2)
+```
+
+
+### Load raw data
+
+Load raw data from `activity.csv`
+
+```{r activityRawSet, include=TRUE}
+
+activityRawSet <- read.csv("activity.csv",sep = ",", na.strings = "NA", stringsAsFactors = FALSE)
+
+head(activityRawSet)
+
+```
+
+### Prepare data
+
+Create a data frame from `activityRawSet`
+
+```{r activitySet_df, include=TRUE}
+
+activitySet_df <- tbl_df(activityRawSet)
+
+activitySet_df <- mutate(activitySet_df, date = as.Date(activitySet_df$date, "%Y-%m-%d") )
+
+```
+
+Add `count_steps` variable
+
+```{r activity_steps_taken, include=TRUE}
+
+activity_steps_taken <- activitySet_df %>%
+    group_by(date) %>%
+    summarize(count_steps = sum(steps,na.rm=TRUE)
+    )
+
+activity_steps_taken
+
+```
+
+## What is mean total number of steps taken per day?
+
+The mean and median of total steps taken per day were calculated, using `mean()` and `median()` functions with `activity_steps_taken$count_steps` as parameter including observations with `NA` values.
+
+```{r , include=TRUE, echo=TRUE}
+
+activity_mean <- mean(activity_steps_taken$count_steps)
+activity_median <- median(activity_steps_taken$count_steps)
+
+```
+
+The mean total number of steps taken per day is:  **``r round(activity_mean, digits=2)``** and the median total number of steps taken per day is: **``r activity_median``**.
+
+*Figure 1*, shows the histogram of the total number of steps taken each day including its total mean and median values represented by red and blue doted lines respectively.
+
+```{r, echo=TRUE}
+# Generate histogram
+hist(activity_steps_taken$count_steps, breaks=25, main="Figure 1: Histogram of Total Number of Steps in each Day", xlab="Total Steps [count_steps]")
+rug(activity_steps_taken$count_steps)
+abline(v = activity_mean, col = "red", lwd = 1, lty = 2)
+abline(v = activity_median, col = "blue", lwd = 1, lty = 2)
+text(activity_mean-0.3e3, 8, bquote(bar(x) == .(activity_mean)), col = "red", srt = 90,cex=0.6)
+text(activity_median+0.4e3, 8,  bquote(mu == .(activity_median)), col = "blue", srt = 90,cex=0.6)
+
+
+
+
+
+```
+
+
+## What is the average daily activity pattern?
+
+Grouped dataset by time interval to obtain the total number and average number of steps taken per interval, averaged across all days.
+
+```{r activity_time, include=TRUE}
+
+# Avg number of steps grouped by interval
+# create count_steps and avg_steps variables 
+# include NA values
+activity_time <- activitySet_df %>%
+    group_by(interval) %>%
+    summarize(count_steps = sum(steps,na.rm=TRUE),
+              avg_steps = mean(steps,na.rm=TRUE)
+    )
+```
+
+Portion of `activity_time` dataset 
+
+```{r, include=TRUE, echo=FALSE}
+
+activity_time
+
+```
+
+The summary of `activity_time$avg_steps` shows on average the maximum number of steps in the column (`Max.`) 
+
+```{r, include=TRUE, echo=FALSE}
+
+summary(activity_time$avg_steps)
+
+steps_mean <- mean(activity_time$avg_steps)
+steps_median <- median(activity_time$avg_steps)
+
+```
+
+The 5-minute interval that on average, contains the maximum number of steps is calculated as follow:
+
+```{r max_interval, include=TRUE, echo=TRUE}
+
+# Get the index value from the max avg_steps value of activity_time dataset 
+# set result to max_interval object
+max_interval<-activity_time[which.max(activity_time$avg_steps), ]
+max_interval
+
+```
+
+Across all the days in the dataset, the 5-minute interval of **``r max_interval$interval``** minutes , with a total of **``r max_interval$count_steps``** steps, on average contains a maximum of **``r round(max_interval$avg_steps, digits=2)``** steps.
+
+*Figure 2*, shows the time series plot of the average number of steps taken, including the 5-minute interval that on average, contains the maximum number of steps (Doted red vertical line).
+
+```{r g2, include=TRUE, echo=TRUE}
+
+g2 <- ggplot(activity_time, aes(interval, avg_steps))
+g2 + geom_line() + ggtitle("Figure 2. Time series plot of the average number of steps taken") +  xlab("5  Interval (minutes)") +  ylab("Avg. Activity (steps)") + 
+    geom_vline(aes(xintercept=max_interval$interval), color="red", linetype="dashed", size=1/2) + theme_classic()
+
+```
+
+
+## Imputing missing values
+
+Note that there are a number of days/intervals where there are missing values (coded as 𝙽𝙰). The presence of missing days may introduce bias into some calculations or summaries of the data. The total number of observations containing missing values are calculated as follow.
+
+```{r, include=TRUE, echo=TRUE}
+activity_count_na_values <- sum(is.na(activityRawSet$steps))
+```
+
+The total number of observations containing missing values in steps variable is **``r activity_count_na_values``** 
+
+The strategy for filling in all of the missing values in the dataset is replacing NA values with the mean of 5-minute time interval and create a new dataset `activity_fill_na` that is equal to the original dataset `activitySet_df` but with the missing data filled in.
+
+```{r activity_fill_na, include=TRUE, echo=TRUE}
+
+# Group activitySet_df by interval
+# Replace NA values in steps variable with the mean() by interval
+activity_fill_na <- activitySet_df %>%
+    group_by(interval)  %>%
+    mutate(steps= ifelse(is.na(steps), mean(steps, na.rm=TRUE), steps))
+```
+
+Check  `activity_fill_na` dataset with 0 `NA` values
+
+```{r , include=TRUE, echo=FALSE}
+# Check NA values in dataset
+colSums(is.na(activity_fill_na))
+```
+
+Portion of `activity_fill_na` dataset 
+
+```{r , include=TRUE, echo=FALSE}
+# show data 
+activity_fill_na
+```
+
+
+## Are there differences in activity patterns between weekdays and weekends?
+
+
+
