@@ -1,9 +1,11 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
+title: 'Reproducible Research: Peer Assessment 1'
 author: "Jhon Guzman"
 date: "6/23/2017"
-output: html_document
-keep_md: true
+output:
+html_document: default
+pdf_document: default
+keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -22,9 +24,13 @@ list.files()
 
 
 ### Library dependencies
-```{r, include=TRUE}
-library(dplyr)
+```{r, include=TRUE, echo=TRUE}
+library(lubridate)
 library(ggplot2)
+library(lattice)
+library(plyr)
+library(dplyr)
+
 ```
 
 
@@ -89,10 +95,6 @@ abline(v = activity_median, col = "blue", lwd = 1, lty = 2)
 text(activity_mean-0.3e3, 8, bquote(bar(x) == .(activity_mean)), col = "red", srt = 90,cex=0.6)
 text(activity_median+0.4e3, 8,  bquote(mu == .(activity_median)), col = "blue", srt = 90,cex=0.6)
 
-
-
-
-
 ```
 
 
@@ -148,11 +150,25 @@ Across all the days in the dataset, the 5-minute interval of **``r max_interval$
 
 ```{r g2, include=TRUE, echo=TRUE}
 
-g2 <- ggplot(activity_time, aes(interval, avg_steps))
-g2 + geom_line() + ggtitle("Figure 2. Time series plot of the average number of steps taken") +  xlab("5  Interval (minutes)") +  ylab("Avg. Activity (steps)") + 
-    geom_vline(aes(xintercept=max_interval$interval), color="red", linetype="dashed", size=1/2) + theme_classic()
-
+    g2 <- ggplot(activity_time, aes(interval, avg_steps))
+    g2 + geom_line() + ggtitle("Figure 2. Time series plot of the average number of steps taken") + 
+    
+    # Label axis
+    xlab("5  Interval (minutes)") +  ylab("Avg. Activity (steps)") + 
+    
+    
+    # Add doted lines
+    geom_vline(aes(xintercept=max_interval$interval), color="red", linetype="dashed", size=1/3) +
+    
+    geom_hline(aes(yintercept=max_interval$avg_steps), color="red", linetype="dashed", size=1/3) + 
+    
+    # Add label to doted lines
+    geom_text(aes(x=550, label=paste(" Max. Steps =", round(max_interval$avg_steps, digits=2),  sep=" "), y=max_interval$avg_steps-0.1e2), colour="red", size=3) + 
+    
+    geom_text(aes(x=max_interval$interval+0.3e2, label=paste(" 5 min Interval =", round(max_interval$interval, digits=2),  sep=" "), y=100), colour="red", angle=90, size=3) + theme_classic()
+    
 ```
+
 
 
 ## Imputing missing values
@@ -174,6 +190,9 @@ The strategy for filling in all of the missing values in the dataset is replacin
 activity_fill_na <- activitySet_df %>%
     group_by(interval)  %>%
     mutate(steps= ifelse(is.na(steps), mean(steps, na.rm=TRUE), steps))
+
+
+
 ```
 
 Check  `activity_fill_na` dataset with 0 `NA` values
@@ -183,15 +202,130 @@ Check  `activity_fill_na` dataset with 0 `NA` values
 colSums(is.na(activity_fill_na))
 ```
 
-Portion of `activity_fill_na` dataset 
+Portion of `activity_fill_na` dataset after imputing NA values
 
 ```{r , include=TRUE, echo=FALSE}
 # show data 
 activity_fill_na
 ```
 
+Summary to compare `activity_steps_taken_im` dataset with imputed missing values and the original dataset `activity_steps_taken` 
+
+```{r , include=TRUE, echo=FALSE}
+
+# create activity_steps_taken_im group by date 
+# to compare with dataset with NA values
+activity_steps_taken_im <- activity_fill_na %>%
+    group_by(date) %>%
+    summarize(count_steps = sum(steps,na.rm=TRUE)
+    )
+
+# summaries for activity_steps_taken and activity_steps_taken_im
+summary(activity_steps_taken$count_steps)
+summary(activity_steps_taken_im$count_steps)
+
+```
+
+```{r , include=TRUE, echo=FALSE}
+# Calcualte mean and median for imputing dataset
+activity_mean_imp <- mean(activity_steps_taken_im$count_steps)
+activity_median_imp <- median(activity_steps_taken_im$count_steps)
+```
+
+
+*Figure 3*, Shows Histogram of the total number of steps taken each day after missing values are imputed including its total mean and median values represented by red and blue doted lines respectively. In this case after imputed **``r activity_count_na_values``** missing values generates a slight increase in the values of the average and the median (compares original dataset with NA values) which causes both values, the mean and the median to be equals **`10776.19`**.
+
+```{r, echo=TRUE}
+# Generate histogram
+hist(activity_steps_taken_im$count_steps, breaks=25, main="Figure 3: Histogram of Total Number of Steps in each Day \n With Imputing Missing Values", xlab="Total Steps [count_steps]")
+rug(activity_steps_taken_im$count_steps)
+abline(v = activity_mean_imp, col = "red", lwd = 1, lty = 2)
+abline(v = activity_median_imp, col = "blue", lwd = 1, lty = 2)
+text(activity_mean_imp-0.3e3, 8, bquote(bar(x) == .(activity_mean_imp)), col = "red", srt = 90,cex=0.6)
+text(activity_median_imp+0.5e3, 8,  bquote(mu == .(activity_median_imp)), col = "blue", srt = 90,cex=0.6)
+
+```
+
+
+*Figure 4*, Shows two histograms to compare the total number of steps taken each day, the first one shows the distribution before imputing and the second one shows the distribution after imputing missing values.
+
+
+```{r, echo=TRUE}
+
+#Generate Histograms
+par(mfrow = c(2, 1), oma = c(2, 2, 2, 2) , mar = c(2, 2, 2, 2))
+
+# Generate histogram without imputing values (Original)
+hist(activity_steps_taken$count_steps, breaks=25, main="Dataset Before Imputing Missing Values", xlab="Total Steps [count_steps]")
+rug(activity_steps_taken$count_steps)
+abline(v = activity_mean, col = "red", lwd = 1, lty = 2)
+abline(v = activity_median, col = "blue", lwd = 1, lty = 2)
+text(activity_mean-0.3e3, 8, bquote(bar(x) == .(activity_mean)), col = "red", srt = 90,cex=0.6)
+text(activity_median+0.4e3, 8,  bquote(mu == .(activity_median)), col = "blue", srt = 90,cex=0.6)
+
+# Generate histogram with imputing values
+hist(activity_steps_taken_im$count_steps, breaks=25, main="Dataset After Imputing Missing Values", xlab="Total Steps [count_steps]")
+rug(activity_steps_taken_im$count_steps)
+abline(v = activity_mean_imp, col = "red", lwd = 1, lty = 2)
+abline(v = activity_median_imp, col = "blue", lwd = 1, lty = 2)
+text(activity_mean_imp-0.3e3, 8, bquote(bar(x) == .(activity_mean_imp)), col = "red", srt = 90,cex=0.6)
+text(activity_median_imp+0.4e3, 8,  bquote(mu == .(activity_median_imp)), col = "blue", srt = 90,cex=0.6)
+
+title("Figure 4: Histogram of Total Number of Steps in each Day ", outer=TRUE)
+
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
 
+```{r , include=TRUE, echo=FALSE}
+
+# Create vector with weekdays
+weekdays_c <- c('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
+
+#Create dataset with factor for weekdays and weekend
+activity_fill_na$day_type <- factor((weekdays(activity_fill_na$date) %in% weekdays_c), 
+         levels=c(FALSE, TRUE), labels=c('Weekend', 'Weekday'))
+         
+# Avg number of steps grouped by day_type and interval
+# create count_steps and avg_steps variables 
+# include NA imputing values
+activity_day_type <- activity_fill_na %>%
+    group_by(day_type,interval) %>%
+    summarize(count_steps = sum(steps,na.rm=TRUE),
+              avg_steps = mean(steps,na.rm=TRUE)
+    )
+
+# Calculate summary mean
+summary_mean <- ddply(activity_day_type, "day_type", summarise, activity_mean=mean(avg_steps))
+
+# Calculate summary median
+summary_median <- ddply(activity_day_type, "day_type", summarise, activity_median=median(avg_steps))
+
+```
+
+The summary of mean and median by group (weekends and weekdays) is as follow:
+
+```{r , include=TRUE, echo=FALSE}
+summary_mean
+summary_median
+```
+
+*Figure 5*, Shows Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends including the mean for every group.
+
+The number of steps taken per 5-minute shows that on average, there is more activity on weekends (**`r round(summary_mean[1,2], digits=2)` Steps**)  than weekdays (**`r round(summary_mean[2,2], digits=2)` Steps**). 
+
+Activity during weekdays starts much earlier than on weekends. On weekdays the activity take place between 8:30 and 9:30 in the morning surpassing its own average during this period and although during the weekends begins activity around 8.30 only it is observed that it surpasses its own average around the 09:30
+
+
+```{r , include=TRUE, echo=FALSE}
+
+
+# Generates plot comapring Wdays and Wends
+g <- ggplot(activity_day_type, aes(interval, avg_steps, fill = day_type)) + facet_grid(day_type ~ .)
+g + geom_line() + ggtitle("Figure 5: Average number of steps taken per 5-minute \n interval across weekdays and weekends") + ylab("Average Steps Taken [Steps]")  + xlab("5-minute Time Interval [Minutes]") + 
+    geom_hline(data=summary_mean, aes(yintercept=activity_mean),
+               linetype="dashed", size=1/3, colour="red") + theme_classic()
+
+```
 
