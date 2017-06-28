@@ -27,7 +27,6 @@ list.files()
 ```{r, include=TRUE, echo=TRUE}
 library(lubridate)
 library(ggplot2)
-library(lattice)
 library(plyr)
 library(dplyr)
 
@@ -48,27 +47,34 @@ head(activityRawSet)
 
 ### Prepare data
 
-Create a data frame from `activityRawSet`
+Create a data frame from `activityRawSet` and mutate date column as date object
 
 ```{r activitySet_df, include=TRUE}
 
 activitySet_df <- tbl_df(activityRawSet)
-
+# add mutate date as date object
 activitySet_df <- mutate(activitySet_df, date = as.Date(activitySet_df$date, "%Y-%m-%d") )
 
 ```
 
-Add `count_steps` variable
+create data frame grouped by date and add `count_steps` variable including NA values.
 
-```{r activity_steps_taken, include=TRUE}
-
+```{r , include=TRUE}
+# create df group by date
 activity_steps_taken <- activitySet_df %>%
     group_by(date) %>%
     summarize(count_steps = sum(steps,na.rm=TRUE)
     )
 
-activity_steps_taken
 
+
+```
+
+Part of data is shown as follow:
+
+```{r , include=TRUE}
+# show data
+activity_steps_taken
 ```
 
 ## What is mean total number of steps taken per day?

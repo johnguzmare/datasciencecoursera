@@ -134,7 +134,6 @@ $(document).ready(function () {
 ## 
 ##     date</code></pre>
 <pre class="r"><code>library(ggplot2)
-library(lattice)
 library(plyr)</code></pre>
 <pre><code>## 
 ## Attaching package: 'plyr'</code></pre>
@@ -174,16 +173,18 @@ head(activityRawSet)</code></pre>
 </div>
 <div id="prepare-data" class="section level3">
 <h3>Prepare data</h3>
-<p>Create a data frame from <code>activityRawSet</code></p>
+<p>Create a data frame from <code>activityRawSet</code> and mutate date column as date object</p>
 <pre class="r"><code>activitySet_df &lt;- tbl_df(activityRawSet)
-
+# add mutate date as date object
 activitySet_df &lt;- mutate(activitySet_df, date = as.Date(activitySet_df$date, &quot;%Y-%m-%d&quot;) )</code></pre>
-<p>Add <code>count_steps</code> variable</p>
-<pre class="r"><code>activity_steps_taken &lt;- activitySet_df %&gt;%
+<p>create data frame grouped by date and add <code>count_steps</code> variable including NA values.</p>
+<pre class="r"><code># create df group by date
+activity_steps_taken &lt;- activitySet_df %&gt;%
     group_by(date) %&gt;%
     summarize(count_steps = sum(steps,na.rm=TRUE)
-    )
-
+    )</code></pre>
+<p>Part of data is shown as follow:</p>
+<pre class="r"><code># show data
 activity_steps_taken</code></pre>
 <pre><code>## # A tibble: 61 x 2
 ##          date count_steps
