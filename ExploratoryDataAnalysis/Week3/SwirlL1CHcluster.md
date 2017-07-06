@@ -14,7 +14,7 @@ swirl Lesson 1: Hierarchical Clustering
    demonstrate hierarchical clustering in this lesson. We'll do this in several steps, but first we have to clarify our
    terms and concepts.
 
-Rplot.png
+![alt text](Rplot.png)
 
 Hierarchical clustering is an agglomerative, or bottom-up, approach. From Wikipedia
    (http://en.wikipedia.org/wiki/Hierarchical_clustering), we learn that in this method, "each observation starts in
@@ -29,7 +29,7 @@ Euclidean distance is what you learned about in high school algebra. Given two p
    x-coordinates (x1-x2) and the two y-coordinates (y1-y2). You probably recognize this as an application of the
    Pythagorean theorem which yields the length of the hypotenuse of a right triangle.
 
-Rplot01.png
+![alt text](Rplot01.png)
 
 
 ### Manhattan or city block distance
@@ -39,7 +39,7 @@ Rplot01.png
    coordinate, so the distance between the points (x1,y1) and (x2,y2) is   x1-x2  +  y1-y2  . As with Euclidean
    distance, this too generalizes to more than 2 dimensions.
 
-Rplot02.png
+![alt text](Rplot02.png)
 
 
 Now we'll go back to our random points. You might have noticed that these points don't really look
@@ -50,12 +50,12 @@ We'll use this dataFrame to demonstrate an agglomerative (bottom-up) technique o
    dataset cluster together. Two clusters (initially, these are points) that are close are connected with a
    line, We'll use Euclidean distance as our metric of closeness.
 
-Rplot03.png
+![alt text](Rplot03.png)
 
 Run the R command dist with the argument dataFrame to compute the distances between all pairs of these
    points. By default dist uses Euclidean distance as its metric, but other metrics such as Manhattan, are
    available. Just use the default.
-
+```r
 > dist(dataFrame)
 1          2          3          4          5          6          7          8          9
 2  0.34120511                                                                                        
@@ -81,7 +81,7 @@ Run the R command dist with the argument dataFrame to compute the distances betw
 10                      
 11 0.08317570           
 12 0.19128645 0.20802789
-
+```
 
    You see that the output is a lower triangular matrix with rows numbered from 2 to 12 and columns numbered
    from 1 to 11. Entry (i,j) indicates the distance between points i and j. Clearly you need only a lower
@@ -89,18 +89,20 @@ Run the R command dist with the argument dataFrame to compute the distances betw
 
 
  From the output of dist, what is the minimum distance between two points?
-
+ 
+```r
 1: 0.0815
 2: 0.08317
 3: 0.1085
 4: -0.0700
 
 Selection: 1
+```
 
    So 0.0815 (units are unspecified) between points 5 and 6 is the shortest distance. We can put these
    points in a single cluster and look for another close pair of points.
 
-Rplot04.png
+![alt text](Rplot04.png)
 
  Looking at the picture, what would be another good pair of points to put in another cluster given that 5
    and 6 are already clustered?
@@ -116,7 +118,7 @@ Selection: 4
    So 10 and 11 are another pair of points that would be in a second cluster. We'll start creating our
    dendrogram now. Here're the original plot and two beginning pieces of the dendrogram.
 
-Rplot05.png
+![alt text](Rplot05.png)
 
 
 We can keep going like this in the obvious way and pair up individual points,
@@ -126,11 +128,12 @@ We can keep going like this in the obvious way and pair up individual points,
    you in a variable called distxy. Run hclust now with distxy as its argument and
    put the result in the variable hc.
 
-
+```r
 > hc <- hclust(distxy) 
 > plot(hc)
+```
 
-Rplot06.png
+![alt text](Rplot06.png)
 
 
 R's plot conveniently labeled everything for you. The points
@@ -139,8 +142,11 @@ R's plot conveniently labeled everything for you. The points
    together as leaves on the picture. That's reassuring.  Now call plot again, this
    time with the argument as.dendrogram(hc).
 
+```r
 > plot(as.dendrogram(hc))
-> Rplot07.png
+```
+
+![alt text](Rplot07.png)
 
 
 The essentials are the same, but the labels are missing and the leaves (original
@@ -149,21 +155,23 @@ The essentials are the same, but the labels are missing and the leaves (original
    distance. Use the R command abline to draw a horizontal blue line at 1.5 on this
    plot. Recall that this requires 2 arguments, h=1.5 and col="blue".
 
+```r
 > abline(h=1.5, col="blue")
-
+```
 We see that this blue line intersects 3 vertical lines and this tells us that
    using the distance 1.5 (unspecified units) gives us 3 clusters (1 through 4), (9
    through 12), and (5 through 8). We call this a "cut" of our dendrogram. Now cut
    the dendrogam by drawing a red horizontal line at .4.
-
+```r
 > abline(h=.4, col="red")
-
+```
    We see that by cutting at .4 we have 5 clusters, indicating that this distance
    is small enough to break up our original grouping of points. If we drew a
    horizontal line at .05, how many clusters would we get
 
-
+```r
 > abline(h=.05, col="green")
+```
 
    So the number of clusters in your data depends on where you draw the line! (We
    said there's a lot of flexibility here.) Now that we've seen the practice, let's
@@ -172,7 +180,7 @@ We see that this blue line intersects 3 vertical lines and this tells us that
    display. You're probably wondering how distances between clusters of points are
    measured.
 
-Rplot08
+![alt text](Rplot08.png)
 
 
 There are several ways to do this. We'll just mention two. The first is called
@@ -185,16 +193,17 @@ There are several ways to do this. We'll just mention two. The first is called
    the distance between points 4 and 8 as the measure since this is the largest
    distance between the pairs of those groups.
 
-Rplot09.png
+![alt text](Rplot09.png)
 
 We've created the dataframe dFsm for you containing these 3 points, 4, 8, and
    11. Run dist on dFsm to see what the smallest distance between these 3 points
    is.
-
+```r
 > dist(dFsm)
 1        2
 2 2.028495         
 3 2.374620 1.869994
+```
 
    We see that the smallest distance is between points 2 and 3 in this reduced set,
    (these are actually points 8 and 11 in the original set), indicating that the
@@ -203,22 +212,23 @@ We've created the dataframe dFsm for you containing these 3 points, 4, 8, and
    with the third cluster (1 through 4). This is consistent with the dendrogram we
    plotted.
 
-Rplot10.png
+![alt text](Rplot10.png)
 
 The second way to measure a distance between two clusters that we'll just
    mention is called average linkage. First you compute an "average" point in each
    cluster (think of it as the cluster's center of gravity). You do this by
    computing the mean (average) x and y coordinates of the points in the cluster.
 
-Rplot11.png
+![alt text](Rplot11.png)
 
    Then you compute the distances between each cluster average to compute the
    intercluster distance.
 
-Rplot12.png
+![alt text](Rplot12.png)
 
    Now look at the hierarchical cluster we created before, hc.
-
+   
+```r
 > hc
 
 Call:
@@ -227,6 +237,7 @@ Call:
 Cluster method   : complete 
 Distance         : euclidean 
 Number of objects: 12 
+```
 
 Which type of linkage did hclust() use to agglomerate clusters?
 
@@ -261,10 +272,11 @@ R provides a handy function to produce heat maps. It's called heatmap. We've put
    now with 2 arguments. The first is dataMatrix and the second is col set equal to
    cm.colors(25). This last is optional, but we like the colors better than the
    default ones.
-
+```r
 > heatmap(dataMatrix,col=cm.colors(25))
+```
 
-Rplot13.png
+![alt text](Rplot13.png)
 
 We see an interesting display of sorts. This is a very simple heat map - simple
    because the data isn't very complex. The rows and columns are grouped together
@@ -278,16 +290,18 @@ We see an interesting display of sorts. This is a very simple heat map - simple
 We've subsetted some vehicle data from mtcars, the Motor Trend Car Road Tests
    which is part of the package datasets. The data is in the matrix mt and contains
    6 factors of 11 cars. Run heatmap now with mt as its only argument.
-
+```r
 > heatmap(mt)
+```
 
-Rplot14.png
+![alt text](Rplot14.png)
 
 This looks slightly more interesting than the heatmap for the point data. It
    shows a little better how the rows and columns are treated (clustered and
    colored) independently of one another. To understand the disparity in color
    (between the left 4 columns and the right 2) look at mt now.
 
+```r
 > mt
                   mpg cyl  disp  hp drat    wt
 Dodge Challenger 15.5   8 318.0 150 2.76 3.520
@@ -301,7 +315,7 @@ Ford Pantera L   15.8   8 351.0 264 4.22 3.170
 Ferrari Dino     19.7   6 145.0 175 3.62 2.770
 Maserati Bora    15.0   8 301.0 335 3.54 3.570
 Volvo 142E       21.4   4 121.0 109 4.11 2.780
-
+```
 
    See how four of the columns are all relatively small numbers
    and only two (disp and hp) are large? That explains the big
@@ -309,9 +323,11 @@ Volvo 142E       21.4   4 121.0 109 4.11 2.780
    the rows call plot with one argument, the dendrogram object
    denmt we've created for you.
 
+```r
 > plot(denmt)
+```
 
-Rplot15.png
+![alt text](Rplot15.png)
 
 
 
