@@ -95,7 +95,7 @@ legend("bottomright",legend=unique(sub1$activity),col=unique(sub1$activity), pch
 par(mfrow=c(1,1))
 ```
 
-![alt text](Rplot40.png)
+![alt text](Rplot41.png)
 
 You see both the code and its output! The plots are a little squished, but we see that the
    active activities related to walking (shown in the two blues and magenta) show more
@@ -121,7 +121,7 @@ Now call the pretty plotting function (which we've already sourced) myplclust wi
 > myplclust(hclustering,lab.col = unclass(sub1$activity))
 
 ```
-![alt text](Rplot41.png)
+![alt text](Rplot42.png)
 
 Well that dendrogram doesn't look too helpful, does it? There's no clear grouping of colors,
    except that active colors (blues and magenta) are near each other as are the passive (black,
