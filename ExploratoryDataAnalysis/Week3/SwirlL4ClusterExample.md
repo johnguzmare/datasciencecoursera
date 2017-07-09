@@ -95,7 +95,7 @@ legend("bottomright",legend=unique(sub1$activity),col=unique(sub1$activity), pch
 par(mfrow=c(1,1))
 ```
 
-![alt text](Rplot41.png)
+![alt text](Rplot40.png)
 
 You see both the code and its output! The plots are a little squished, but we see that the
    active activities related to walking (shown in the two blues and magenta) show more
