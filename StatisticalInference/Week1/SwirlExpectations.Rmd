@@ -62,13 +62,13 @@ You can see the effect of loading the dice on the expectations of the rolls. For
   you in two variables, edh and edl. We'll need them later.
 
 One of the nice properties of the expected value operation is that it's linear. This means that, if c is
-  a constant, then E(cX) = c*E(X). Also, if X and Y are two random variables then E(X+Y)=E(X)+E(Y). It
-  follows that E(aX+bY)=aE(X)+bE(Y).
+  a constant, then `E(cX) = c*E(X)`. Also, if X and Y are two random variables then `E(X+Y)=E(X)+E(Y)`. It
+  follows that `E(aX+bY)=aE(X)+bE(Y)`.
 
 Suppose you were rolling our two loaded dice, dice_high and dice_low. You can use this linearity property
   of expectation to compute the expected value of their average. Let X_hi and X_lo represent the respective
-  outcomes of the dice roll. The expected value of the average is E((X_hi + X_lo)/2) or .5 *(
-  E(X_hi)+E(X_lo) ). Compute this now. Remember we stored the expected values in edh and edl.
+  outcomes of the dice roll. The expected value of the average is `E((X_hi + X_lo)/2) or .5 *(
+  E(X_hi)+E(X_lo) )`. Compute this now. Remember we stored the expected values in edh and edl.
 ```r
 > (edh+edl)/2
 [1] 3.5
@@ -78,16 +78,16 @@ Suppose you were rolling our two loaded dice, dice_high and dice_low. You can us
   case. Instead of summing over discrete values, however, the expectation integrates over a continuous
   function.
 
-It follows that for continuous random variables, E(X) is the area under the function t*f(t), where f(t)
+It follows that for continuous random variables, E(X) is the area under the function `t*f(t)`, where `f(t)`
   is the PDF (probability density function) of X. This definition borrows from the definition of center of
   mass of a continuous body.
 
 ![alt text](Rplot02.png)
 
-  Here's a figure from the slides. It shows the constant (1) PDF on the left and the graph of t*f(t) on the
+  Here's a figure from the slides. It shows the constant (1) PDF on the left and the graph of `t*f(t)` on the
   right.
 
-Knowing that the expected value is the area under the triangle, t*f(t), what is the expected value of the
+Knowing that the expected value is the area under the triangle, `t*f(t)`, what is the expected value of the
   random variable with this PDF?
 
 1: .25
@@ -104,9 +104,9 @@ For the purposes of illustration, here's another figure using a PDF from our pre
 ![alt text](Rplot03.png)
 
 
-To find the expected value of this random variable you need to integrate the function t*f(t). Here
-  f(t)=t/2, the diagonal line. (You might recall this from the last probability lesson.) The function
-  you're integrating over is therefore t^2/2. We've defined a function myfunc for you representing this.
+To find the expected value of this random variable you need to integrate the function `t*f(t)`. Here
+  `f(t)=t/2`, the diagonal line. (You might recall this from the last probability lesson.) The function
+  you're integrating over is therefore `t^2/2`. We've defined a function myfunc for you representing this.
   You can use the R function 'integrate' with parameters myfunc, 0 (the lower bound), and 2 (the upper
   bound) to find the expected value. Do this now.
 ```r
