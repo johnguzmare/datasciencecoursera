@@ -35,9 +35,9 @@ The LLN forms the basis of frequency style thinking.
   it computes the cumulative sum (assuming heads are 1 and tails 0), but after each toss it divides the
   cumulative sum by the number of flips performed so far. It then plots this value for each of the k=1...n
   tosses. Try it now for n=10.
-
+```r
 > coinPlot(n=10)
-
+```
 
 ![alt text](Rplot13.png)
 
@@ -45,9 +45,9 @@ The LLN forms the basis of frequency style thinking.
  Your output depends on R's random number generator, but your plot probably jumps around a bit and, by the
   10th flip, your cumulative sum/10 is probably different from mine. If you did this several times, your
   plots would vary quite a bit. Now call coinPlot again, this time with 10000 as the argument.
-
+```r
 > coinPlot(n=10000)
-
+```
 ![alt text](Rplot14.png)
 
 See the difference? Asymptotics in Action! The line approaches its asymptote of .5. This is the
@@ -59,12 +59,12 @@ See the difference? Asymptotics in Action! The line approaches its asymptote of 
 
 Based on our previous lesson do you think the sample variance (and hence sample deviation) are consistent
   as well?
-
+```r
 1: Yes
 2: No
 
 Selection: 1
-
+```
 Now for something really important - the CENTRAL LIMIT THEOREM (CLT) - one of the most important theorems
   in all of statistics. It states that the distribution of averages of iid variables (properly normalized)
   becomes that of a standard normal as the sample size increases.
@@ -78,11 +78,13 @@ Second, the CLT says that for large n, this normalized variable, (X'-mu)/(sigma/
 
 Do you recognize sigma/sqrt(n) from our lesson on variance? Since the population std deviation sigma is
   unknown, sigma/sqrt(n) is often approximated by what?
-
+  
+```r
 1: the variance of the population
 2: the standard error of the sample mean
 3: I give up
 4: the mean of the population
+```
 
 Let's rephrase the CLT. Suppose X_1, X_2, ... X_n are independent, identically distributed random
   variables from an infinite population with mean mu and variance sigma^2. Then if n is large, the mean of
@@ -148,32 +150,32 @@ Note that for a 95% confidence interval we divide (100-95) by 2 (since we have b
   and add the result to 95 to compute the quantile we need. The 97.5 quantile is actually 1.96, but for
   simplicity it's often just rounded up to 2. If you wanted to find a 90% confidence interval what quantile
   would you want?
-
+```r
 1: 90
 2: 85
 3: 100
 4: 95
 
 Selection: 4
-
+```
 Use the R function qnorm to find the 95th quantile for a standard normal distribution. Remember that
   qnorm takes a probability as an input. You can use default values for all the other arguments.
-
+```r
 > qnorm(0.95)
 [1] 1.644854
-
+```
 As we've seen before, in a binomial distribution in which p represents the probability or proportion of
   success, the variance sigma^2 is p(1-p), so the standard error of the sample mean p' is sqrt(p(1-p)/n)
   where n is the sample size. The 95% confidence interval of p is then p' +/- 2*sqrt(p(1-p)/n). The 2 in
   this formula represents what?
-
+```r
 1: the variance of p'
 2: the standard error of p'
 3: the approximate 97.5% normal quantile
 4: the mean of p'
 
 Selection: 3
-
+```
 A critical point here is that we don't know the true value of p; that's what we're trying to estimate.
   How can we compute a confidence interval if we don't know p(1-p)? We could be conservative and try to
   maximize it so we get the largest possible confidence interval. Calculus tells us that p(1-p) is
@@ -182,13 +184,13 @@ A critical point here is that we don't know the true value of p; that's what we'
 
 Using 1/2 for the value of p in the formula above yields what expression for the 95% confidence interval
   for p?
-
+```r
 1: p'+/- 2*sqrt(n)
 2: p'+/- 1/sqrt(n)
 3: p'+/- 1/(2*sqrt(n))
 
 Selection: 2
-
+```
 
 Here's another example of applying this formula from the slides. Suppose you were running for office and
   your pollster polled 100 people. Of these 60 claimed they were going to vote for you. You'd like to
@@ -196,53 +198,54 @@ Here's another example of applying this formula from the slides. Suppose you wer
   estimate. We need to find the limits that will contain the true proportion of your supporters with 95%
   confidence, so we'll use the formula p' +/- 1/sqrt(n) to answer this question. First, what value would
   you use for p', the sampled estimate?
-
+```r
 1: .10
 2: 1.00
 3: .60
 4: .56
 
 Selection: 3
-
+```
 What would you use for 1/sqrt(n)?
-
+```r
 1: 1/100
 2: 1/10
 3: 1/sqrt(56)
 4: 1/sqrt(60)
 
 Selection: 2
+```
 
 The bounds of the interval then are what?
  We know p'- 1/sqrt(n) is the lower bound and p'+ 1/sqrt(n) is the upper bound, so use the answers from
   the two previous answers to fill in values for these variables.
-
+```r
 1: .5 and .7
 2: I haven't a clue
 3: .55 and .65
 4: .46 and .66
 
 Selection: 1
-
+```
 Another technique for calculating confidence intervals for binomial distributions is to replace p with
   p'. This is called the Wald confidence interval. We can also use the R function qnorm to get a more
   precise quantile value (closer to 1.96) instead of our ballpark estimate of 2.
-
+```r
 > .6 + c(-1,1)*qnorm(.975)*sqrt(.6*.4/100) 
 [1] 0.5039818 0.6960182
-
+```
 As an alternative to this Wald interval, we can also use the R function binom.test with the parameters 60
   and 100 and let all the others default. This function "performs an exact test of a simple null hypothesis
   about the probability of success in a Bernoulli experiment." (This means it guarantees the coverages,
   uses a lot of computation and doesn't rely on the CLT.) This function returns a lot of information but
   all we want now are the values of the confidence interval that it returns. Use the R construct x$conf.int
   to find these now.
-
+```r
 > binom.test(60,100)$conf.int
 [1] 0.4972092 0.6967052
 attr(,"conf.level")
 [1] 0.95
-
+```
 Close to what we've seen before, right? Now we're going to see that the Wald interval isn't very accurate
   when n is small. We'll use the example from the slides.
 
@@ -260,7 +263,7 @@ Suppose we flip a coin a small number of times, say 20. Also suppose we have a f
   the percentage you get. Usually it suffices to just count the number of times (out of the 30) that .2 is
   less than the upper bound.
 
-
+```r
 > mywald(.2)
 [1] "Here are the p' values"
  [1] 0.05 0.10 0.25 0.30 0.20 0.05 0.15 0.15 0.25 0.25 0.10 0.25 0.25 0.35 0.10 0.15 0.15 0.10 0.10 0.20
@@ -275,7 +278,7 @@ Suppose we flip a coin a small number of times, say 20. Also suppose we have a f
 [11] 0.2314784 0.4397727 0.4397727 0.5590373 0.2314784 0.3064906 0.3064906 0.2314784 0.2314784 0.3753045
 [21] 0.3064906 0.5590373 0.3753045 0.3064906 0.2314784 0.4397727 0.5008365 0.3753045 0.3753045 0.3753045
 [1] 0.9333333
-
+```
 Now that you understand the underlying principle, suppose instead of 30 trials, we used 1000 trials. Also
   suppose we did this experiment for a series of probabilities, say from .1 to .9 taking steps of size .05.
   More specifically, we'll call our function using 17 different probabilities, namely .1, .15, .2, .25, ...
@@ -321,10 +324,13 @@ For all k less than n/2, you see FALSE indicating that the new fraction is great
   the old and new fractions are equal.
 
 Try running ACCompar now with an input of 20.
+```r
+ACCompar(20)
 
  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 [18]  TRUE  TRUE  TRUE
 [1] 10
+```
 
  Let's move on to Poisson distributions and confidence intervals. Recall that Poisson distributions apply
   to counts or rates. For the latter, we write X~Poisson(lambda*t) where lambda is the expected count per
@@ -338,34 +344,35 @@ Try running ACCompar now with an input of 20.
   approximate the variance of lambda_hat as lambda_hat/t.
 
 In this example what would you use as the estimated mean x/t?
-
+```r
 1: 5/94.32
 2: 94.32/5
 3: I haven't a clue
 
 Selection: 1
-
+```
 Set a variable lamb now with this value.
-
+```r
 > lamb <- 5/94.32
-
-  You are doing so well!
+```
 
 So lamb is our estimated mean and lamb/t is our estimated variance. The formula we've used to calculate a
   95% confidence interval is est mean + c(-1,1)*qnorm(.975)*sqrt(est var). Use this formula now making the
   appropriate substitutions.
-
+```r
 > lamb +c(-1,1)*qnorm(.975)*sqrt(lamb/94.32)
 [1] 0.006545667 0.099476386
+```
 
 As a check we can use R's function poisson.test with the arguments 5 and 94.32 to check this result. This
   is an exact test so it guarantees coverage. As with the binomial exact test, we only need to look at the
   conf portion of the result using the x$conf construct. Do this now.
-
+```r
 > poisson.test(5,94.32)$conf
 [1] 0.01721254 0.12371005
 attr(,"conf.level")
 [1] 0.95
+```
 
 Pretty close, right? Now to check the coverage of our estimate we'll run the same simulation experiment
   we ran before with binomial distributions. We'll vary our lambda values from .005 to .1 with steps of .01
@@ -385,96 +392,106 @@ Now it's interesting to see how the coverage improves when we increase the unit 
 ![alt text](Rplot23.png)
 
 What tells us that averages of iid samples converge to the population means that they are estimating?
-
+```r
 1: the CLT
 2: the law of small numbers
 3: the BLT
 4: the law of large numbers
 
 Selection: 1
+```
 
 The Central Limit Theorem (CLT) tells us that averages have what kind of distributions?
-
+```r
 1: abnormal
 2: Poisson
 3: normal
 4: binomial
 
 Selection: 3
+```
 
 The Central Limit Theorem (CLT) tells us that averages have normal distributions centered at what?
-
+```r
 1: the population mean
 2: the population variance
 3: the standard error
 
 Selection: 1
+```
 
 The Central Limit Theorem (CLT) tells us that averages have normal distributions with standard deviations
   equal to what?
-
+```r
 1: the population mean
 2: the standard error
 3: the population variance
 
 Selection: 2
+```
 
 True or False - The Central Limit Theorem (CLT) tells us that averages always have normal distributions
   no matter how big the sample size
-
+```r
 1: False
 2: True
 
 Selection: 1
+```
 
   To calculate a confidence interval for a mean you take the sample mean and add and subtract the relevant
   normal quantile times the what?
-
+```r
 1: variance/n
 2: variance
 3: standard error
 4: mean
 
 Selection: 3
+```
 
 For a 95% confidence interval approximately how many standard errors would you add and subtract from the
   sample mean?
-
+```r
 1: 4
 2: 8
 3: 2
 4: 6
 
 Selection:3
+```
 
 If you wanted increased coverage what would you do to your confidence interval?
-
+```r
 1: keep it the same
 2: decrease it
 3: increase it
 
 Selection: 3
+```
 
 If you had less variability in your data would your confidence interval get bigger or smaller?
-
+```r
 1: bigger
 2: smaller
 
 Selection: 2
+```
 
 If you had larger sample size would your confidence interval get bigger or smaller?
-
+```r
 1: bigger
 2: smaller
 
 Selection: 2
+```
 
 A quick fix for small sample size binomial calculations is what?
-
+```r
 1: changing data seem dishonest
 2: add 2 successes and 2 failures
 3: add 2 successes and subtract 2 failures
 4: add 2 successes and 4 failures
 
 Selection: 2
-
+```
