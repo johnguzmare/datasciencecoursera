@@ -110,44 +110,46 @@ Now recall that the means of unbiased estimators equal the values they're trying
 
 Which of the following does Var(X') equal? Here X' represents the sample mean and 'Sum(X_i)' represents
  the sum of the n samples X_1,...X_n. Assume these samples are independent.
-
+```r
 1: sigma
 2: Var(1/n * Sum(X_i))
 3: mu
 4: E(1/n * Sum(X_i))
 
 Selection: 2
+```
 
 Which of the following does Var(1/n * Sum(X_i)) equal?
-
+```r
 1: sigma/n
 2: 1/n^2*E(Sum(X_i))
 3: 1/n^2*Var(Sum(X_i))
 4: mu/n^2
 
 Selection: 3
-
+```
 
  Recall that Var is an expected value and expected values are linear. Also recall that our samples X_1,
  X_2,...,X_n are independent. What does Var(Sum(X_i)) equal?
-
+```r
 1: E(Sum(X_i))
 2: Sum(Var(X_i))
 3: E(mu)
 4: Var(sigma)
 
 Selection: 2
+```
 
 Finally, each X_i comes from a population with variance sigma^2. What does Sum(Var(X_i)) equal? As
  before, Sum is taken over n values.
-
+```r
 1: n*mu
 2: n*E(mu)
 3: (n^2)*Var(sigma)
 4: n*(sigma)^2
 
 Selection: 4
-
+```
 
  So we've shown that Var(X')=Var(1/n*Sum(X_i))=(1/n^2)*Var(Sum(X_i))=(1/n^2)*Sum(sigma^2)=sigma^2/n for
  infinite populations when our samples are independent.
@@ -179,14 +181,14 @@ This returns the standard deviation of 1000 averages, each of a sample of 10 ran
 ```
 Pretty close, right? Let's try a few more. Standard uniform distributions have variance 1/12. The theory
  tells us the standard error of means of independent samples of size n would have which standard error?
-
+```r
 1: I haven't a clue
 2: 12/sqrt(n)
 3: 1/sqrt(12*n)
 4: 1/(12*sqrt(n))
 
 Selection: 3
-
+```
 
 Compute 1/sqrt(120). This would be the standard error of the means of uniform samples of size 10.
 ```r
@@ -200,13 +202,14 @@ Now check it as we did before. Use the expression sd(apply(matrix(runif(10000),1
 ```
 Pretty close again, right? Poisson(4) are distributions with variance 4; what standard error would means
  of random samples of n Poisson(4) have?
-
+```r
 1: 2/sqrt(n)
 2: 1/sqrt(2*n)
 3: I haven't a clue
 4: 2*sqrt(n)
 
 Selection: 1
+```
 
 We'll do another simulation to test the theory. First, assume you're taking averages of 10 Poisson(4)
  samples and compute the standard error of these means. Use the formula you just chose.
@@ -215,13 +218,13 @@ We'll do another simulation to test the theory. First, assume you're taking aver
 [1] 0.6324555
 ```
 Now check it as we did before. Use the expression sd(apply(matrix(rpois(10000,4),1000),1,mean)).
-
+```r
 > sd(apply(matrix(rpois(10000,4),1000),1,mean))
 [1] 0.6297071
-
+```
 Like magic, right? One final test. Fair coin flips have variance 0.25; means of random samples of n coin
  flips have what standard error?
-
+```r
 1: 2*sqrt(n)
 2: 2/sqrt(n)
 3: 1/sqrt(2*n)
@@ -229,6 +232,7 @@ Like magic, right? One final test. Fair coin flips have variance 0.25; means of 
 5: 1/(2*sqrt(n))
 
 Selection: 5
+```
 
 You know the drill. Assume you're taking averages of 10 coin flips and compute the standard error of
  these means with the theoretical formula you just picked.
@@ -254,6 +258,7 @@ However this estimate is quite conservative for random variables that are normal
 Suppose you had a measurement that was 4 standard deviations from the distribution's mean. What would be
  the upper bound of the probability of this happening using Chebyshev's inequality?
 Chebyshev's inequality estimates that probability as 1/16. Convert this to a probability.
+```r
 1: 11%
 2: 96%
 3: 25%
@@ -261,49 +266,51 @@ Chebyshev's inequality estimates that probability as 1/16. Convert this to a pro
 5: 0%
 
 Selection: 4
+```
 
 Now to review. The sample variance estimates what?
-
+```r
 1: sample standard deviation
 2: population variance
 3: sample mean
 4: population
 
 Selection: 2
+```
 
 What is the sample variance estimating?
-
+```r
 1: sample standard deviation
 2: sample mean
 3: population
 4: population variance
 
 Selection: 4
-
+```
 True or False - The sample variance gets more concentrated around the population variance with larger
  sample sizes
-
+```r
 1: True
 2: False
 
 Selection: 1
-
+```
 The variance of the sample mean is the population variance divided by ?
-
+```r
 1: I haven't a clue
 2: sqrt(n)
 3: n^2
 4: n
 
 Selection: 4
-
+```
 The standard error of the sample mean is the sample standard deviation s divided by ?
-
+```r
 1: I haven't a clue
 2: n
 3: sqrt(n)
 4: n^2
 
 Selection: 3
-
+```
 
