@@ -11,38 +11,41 @@ The first distribution we'll examine is the Bernoulli which is associated with e
 For simplicity, we usually say that Bernoulli random variables take only the values 1 and 0. Suppose we
  also specify that the probability that the Bernoulli outcome of 1 is p. Which of the following represents
  the probability of a 0 outcome?
-
+```r
 1: p^2
 2: p
 3: p(1-p)
 4: 1-p
 
 Selection: 4
+```
 
  If the probability of a 1 is p and the probability of a 0 is 1-p which of the following represents the
  PMF of a Bernoulli distribution? Recall that the PMF is the function representing the probability that
  X=x.
-
+```r
 1: p^x * (1-p)^(1-x)
 2: x*(1-x)
 3: p^(1-x) *(1-p)*(1-x)
 4: p*(1-p)
 
 Selection: 1
+```
 
 Recall the definition of the expectation of a random variable. Suppose we have a Bernoulli random
  variable and, as before, the probability it equals 1 (a success) is p and probability it equals 0 (a
  failure) is 1-p. What is its mean?
-
+```r
 1: 1-p
 2: p(1-p)
 3: p
 4: p^2
 
 Selection: 3
+```
 
 Given the same Bernoulli random variable above, which of the following represents E(X^2)
-
+```r
 1: p(1-p)
 2: p
 3: 1-p
@@ -50,17 +53,18 @@ Given the same Bernoulli random variable above, which of the following represent
 5: p^2
 
 Selection: 2
+```
 
 Use the answers of the last two questions to find the variance of the Bernoulli random variable. Recall
  Var = E(X^2)-(E(X))^2
-
+```r
 1: p(1-p)
 2: p(p-1)
 3: p^2-p
 4: p^2*(1-p)^2
 
 Selection: 1
-
+```
 
 Binomial random variables are obtained as the sum of iid Bernoulli trials.  Specifically, let X_1, ...,
  X_n be iid Bernoulli(p) random variables; then X = X_1 + X_2 + ... X_n is a binomial random variable.
@@ -72,22 +76,25 @@ Binomial random variables are obtained as the sum of iid Bernoulli trials.  Spec
  of a binomial distribution? Here x, the number of successes, goes from 0 to n, the number of trials, and
  choose(n,x) represents the binomial coefficient 'n choose x' which is the number of ways x successes out
  of n trials can occur regardless of order.
-
+```r
 1: choose(n,x) * p^x * (1-p)^(n-x)
 2: p^x
 3: choose(n,x) * p*x*(1-p)*(1-x)
 4: choose(n,x) * p^(n-x) * (1-p)^x
 
 Selection: 1
+```
 
  Suppose we were going to flip a biased coin 5 times. The probability of tossing a head is .8 and a tail
  .2. What is the probability that you'll toss at least 3 heads.
+ 
 ```r
 > choose(5,3)*(.8)^3*(.2)^(5-3) + choose(5,4)*(.8)^4*(.2)^(5-4) + choose(5,5)*(.8)^5*(.2)^(5-5)
 [1] 0.94208
 ```
  Now you can verify your answer with the R function pbinom. The quantile is 2, the size is 5, the prob is
  .8 and the lower.tail is FALSE. Try it now.
+ 
 ```r
 > pbinom(2,size = 5,prob = .8,lower.tail = FALSE)
 [1] 0.94208
@@ -129,7 +136,7 @@ Approximately 68%, 95% and 99% of the normal density lie within 1, 2 and 3 stand
  We'll see this now by drawing the vertical line at the quantile -1.281552.
 
 Which of the following would you expect to be the 1st percentile?
-
+```r
 1: 0
 2: -2.33
 3: 2.33
@@ -137,6 +144,7 @@ Which of the following would you expect to be the 1st percentile?
 5: -1.0
 
 Selection: 2
+```
 
 By looking at the picture can you say what the 50th percentile is?
 ```r
@@ -146,14 +154,14 @@ By looking at the picture can you say what the 50th percentile is?
 
 We can use the symmetry of the bell curve to determine other quantiles. Given that 2.5% of the area under
  the curve falls to the left of x=-1.96, what is the 97.5 percentile for the standard normal?
-
+```r
 1: -1.28
 2: 2.33
 3: 2
 4: 1.96
 
 Selection: 4
-
+```
 Here are two useful facts concerning normal distributions. If X is a normal random variable with mean mu
 and variance sigma^2, i.e., X ~ N(mu,sigma^2), then the random variable Z defined as Z = (X -mu)/sigma is normally distributed with mean 0 and variance 1, i.e., Z ~ N(0, 1). (Z is standard normal.)
 
