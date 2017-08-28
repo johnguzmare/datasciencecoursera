@@ -1,0 +1,50 @@
+
+Practice Programming Assignment: swirl Lesson : basics of statistical inference.
+=========================
+
+In this lesson, we'll briefly introduce basics of statistical inference, the process of drawing
+ conclusions "about a population using noisy statistical data where uncertainty must be
+ accounted for". In other words, statistical inference lets scientists formulate conclusions
+ from data and quantify the uncertainty arising from using incomplete data.
+
+
+Which of the following would NOT be a source of bad data?
+
+1: Selection bias
+2: Small sample size
+3: A poorly designed study
+4: A randomly selected sample of population
+
+Selection: 4
+
+So with statistical inference we use data to draw general conclusions about a population. Which
+ of the following would a scientist using statistical inference techniques consider a problem?
+
+1: Our data sample is representative of the population
+2: Our study has no bias and is well-designed
+3: Contaminated data
+
+Selection: 3
+
+Which of the following is NOT an example of statistical inference in action?
+
+1: Counting sheep
+2: Determining a causative mechanism underlying a disease
+3: Testing the effectiveness of a medical treatment
+4: Estimating the proportion of people who will vote for a candidate
+
+Selection: 1
+
+ We want to emphasize a couple of important points here. First, a statistic (singular) is a
+ number computed from a sample of data. We use statistics to infer information about a
+ population. Second, a random variable is an outcome from an experiment. Deterministic
+ processes, such as computing means or variances, applied to random variables, produce
+ additional random variables which have their own distributions. It's important to keep straight
+ which distributions you're talking about.
+
+ Finally, there are two broad flavors of inference. The first is frequency, which uses "long run
+ proportion of times an event occurs in independent, identically distributed repetitions." The
+ second is Bayesian in which the probability estimate for a hypothesis is updated as additional
+ evidence is acquired. Both flavors require an understanding of probability so that's what the
+ next lessons will cover.
+

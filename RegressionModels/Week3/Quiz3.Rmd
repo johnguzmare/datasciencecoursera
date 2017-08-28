@@ -1,0 +1,222 @@
+
+Quiz 3.
+=========================
+
+1. 
+Consider the 𝚖𝚝𝚌𝚊𝚛𝚜 data set. Fit a model with mpg as the outcome that includes number of cylinders as a factor variable and weight as confounder. Give the adjusted estimate for the expected change in mpg comparing 8 cylinders to 4.
+
+```r
+> head(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+> fit <- lm(mpg ~ factor(cyl) + wt, data = mtcars)
+> summary(fit)
+```
+
+2. 
+Consider the 𝚖𝚝𝚌𝚊𝚛𝚜 data set. Fit a model with mpg as the outcome that includes number of cylinders as a factor variable and weight as a possible confounding variable. Compare the effect of 8 versus 4 cylinders on mpg for the adjusted and unadjusted by weight models. 
+```r
+> fitwt <- lm(mpg ~ factor(cyl) + wt, data = mtcars)
+> fitnowt <- lm(mpg ~ factor(cyl), data = mtcars)
+```
+```r
+> summary(fitwt)$coef
+              Estimate Std. Error   t value     Pr(>|t|)
+(Intercept)  33.990794  1.8877934 18.005569 6.257246e-17
+factor(cyl)6 -4.255582  1.3860728 -3.070244 4.717834e-03
+factor(cyl)8 -6.070860  1.6522878 -3.674214 9.991893e-04
+wt           -3.205613  0.7538957 -4.252065 2.130435e-04
+```
+```r
+> summary(fitnowt)$coef
+               Estimate Std. Error   t value     Pr(>|t|)
+(Intercept)   26.663636  0.9718008 27.437347 2.688358e-22
+factor(cyl)6  -6.920779  1.5583482 -4.441099 1.194696e-04
+factor(cyl)8 -11.563636  1.2986235 -8.904534 8.568209e-10
+```
+```r
+mpg decrease -10 + wg 
+mpg decrease -17
+```
+Here, adjusted means including the weight variable as a term in the regression model and unadjusted means the model without weight included. What can be said about the effect comparing 8 and 4 cylinders after looking at models with and without weight included?.
+
+```r
+> mtcars$wtmean <- mean(mtcars$wt)
+> fitwtc <- lm(mpg ~ factor(cyl) + wtmean, data = mtcars)
+
+> summary(fitwtc)$coef
+               Estimate Std. Error   t value     Pr(>|t|)
+(Intercept)   26.663636  0.9718008 27.437347 2.688358e-22
+factor(cyl)6  -6.920779  1.5583482 -4.441099 1.194696e-04
+factor(cyl)8 -11.563636  1.2986235 -8.904534 8.568209e-10
+```
+
+It is both true and sensible that including weight would attenuate the effect of number of cylinders on mpg.
+
+
+Within a given weight, 8 cylinder vehicles have an expected 12 mpg drop in fuel efficiency.
+
+Holding weight constant, cylinder appears to have more of an impact on mpg than if weight is disregarded.
+
+Holding weight constant, cylinder appears to have less of an impact on mpg than if weight is disregarded. (X)
+
+Including or excluding weight does not appear to change anything regarding the estimated impact of number of cylinders on mpg.
+
+
+3. 
+Consider the 𝚖𝚝𝚌𝚊𝚛𝚜 data set. Fit a model with mpg as the outcome that considers number of cylinders as a factor variable and weight as confounder. Now fit a second model with mpg as the outcome model that considers the interaction between number of cylinders (as a factor variable) and weight. Give the P-value for the likelihood ratio test comparing the two models and suggest a model using 0.05 as a type I error rate significance benchmark.
+```r
+> anova(fitwt,fitwti)
+Analysis of Variance Table
+
+Model 1: mpg ~ factor(cyl) + wt
+Model 2: mpg ~ factor(cyl) * wt
+  Res.Df    RSS Df Sum of Sq      F Pr(>F)
+1     28 183.06                           
+2     26 155.89  2     27.17 2.2658 0.1239
+
+```
+
+The P-value is small (less than 0.05). Thus it is surely true that there is an interaction term in the true model.
+
+The P-value is larger than 0.05. So, according to our criterion, we would fail to reject, which suggests that the interaction terms may not be necessary. (X)
+
+The P-value is small (less than 0.05). So, according to our criterion, we reject, which suggests that the interaction term is necessary
+
+The P-value is small (less than 0.05). Thus it is surely true that there is no interaction term in the true model.
+
+The P-value is small (less than 0.05). So, according to our criterion, we reject, which suggests that the interaction term is not necessary.
+
+The P-value is larger than 0.05. So, according to our criterion, we would fail to reject, which suggests that the interaction terms is necessary.
+
+
+4. 
+Consider the 𝚖𝚝𝚌𝚊𝚛𝚜 data set. Fit a model with mpg as the outcome that includes number of cylinders as a factor variable and weight inlcuded in the model as
+
+```r
+fitwt4 <- lm(mpg ~ I(wt * 0.5) + factor(cyl), data = mtcars)
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    33.991      1.888  18.006  < 2e-16 ***
+I(wt * 0.5)    -6.411      1.508  -4.252 0.000213 ***
+factor(cyl)6   -4.256      1.386  -3.070 0.004718 ** 
+factor(cyl)8   -6.071      1.652  -3.674 0.000999 ***
+```
+
+How is the wt coefficient interpretted?
+
+The estimated expected change in MPG per half ton increase in weight for for a specific number of cylinders (4, 6, 8).
+
+The estimated expected change in MPG per half ton increase in weight.
+
+The estimated expected change in MPG per half ton increase in weight for the average number of cylinders.
+
+The estimated expected change in MPG per one ton increase in weight.
+
+The estimated expected change in MPG per one ton increase in weight for a specific number of cylinders (4, 6, 8). (X)
+
+
+5. 
+Consider the following data set
+```r
+x <- c(0.586, 0.166, -0.042, -0.614, 11.72)
+y <- c(0.549, -0.026, -0.127, -0.751, 1.344)
+
+
+n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(runif(n/2), runif(n/2));
+beta0 <- 0; beta1 <- 2; tau <- 1; sigma <- .2
+y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
+plot(x, y, type = "n", frame = FALSE)
+abline(lm(y ~ x), lwd = 2)
+abline(h = mean(y[1 : (n/2)]), lwd = 3)
+abline(h = mean(y[(n/2 + 1) : n]), lwd = 3)
+fit <- lm(y ~ x + t)
+abline(coef(fit)[1], coef(fit)[2], lwd = 3)
+abline(coef(fit)[1] + coef(fit)[3], coef(fit)[2], lwd = 3)
+points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", cex = 2)
+points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
+
+
+> x <- c(0.586, 0.166, -0.042, -0.614, 11.72)
+> y <- c(0.549, -0.026, -0.127, -0.751, 1.344)
+> fitxy <- lm(x ~ y)
+> hatvalues(fitxy)
+```
+or...
+```r
+> influence(lm(y ~ x))$hat
+        1         2         3         4         5 
+0.2286650 0.2438146 0.2525027 0.2804443 0.9945734 
+```
+or...
+```r
+> xm <- cbind(1, x)
+> diag(xm %*% solve(t(xm) %*% xm) %*% t(xm))
+[1] 0.2286650 0.2438146 0.2525027 0.2804443 0.9945734
+```
+
+Give the hat diagonal for the most influential point
+
+0.2025
+
+0.9946 (x)
+
+0.2804
+
+0.2287
+
+6. 
+Consider the following data set
+```r
+x <- c(0.586, 0.166, -0.042, -0.614, 11.72)
+y <- c(0.549, -0.026, -0.127, -0.751, 1.344)
+```
+Give the slope dfbeta for the point with the highest hat value.
+```r
+> dfbetas(fitxy)
+  (Intercept)             x
+1  1.06212391   -0.37811633
+2  0.06748037   -0.02861769
+3 -0.01735756    0.00791512
+4 -1.24958248    0.67253246
+5  0.20432010 -133.82261293
+```
+or...
+```r
+> influence.measures(lm(y ~ x))
+Influence measures of
+	 lm(formula = y ~ x) :
+
+   dfb.1_     dfb.x     dffit cov.r   cook.d   hat inf
+1  1.0621 -3.78e-01    1.0679 0.341 2.93e-01 0.229   *
+2  0.0675 -2.86e-02    0.0675 2.934 3.39e-03 0.244    
+3 -0.0174  7.92e-03   -0.0174 3.007 2.26e-04 0.253   *
+4 -1.2496  6.73e-01   -1.2557 0.342 3.91e-01 0.280   *
+5  0.2043 -1.34e+02 -149.7204 0.107 2.70e+02 0.995   *
+```
+
+-.00134
+
+-0.378 
+
+-134 (X)
+
+0.673
+
+7. Consider a regression relationship between Y and X with and without adjustment for a third variable Z. Which of the following is true about comparing the regression coefficient between Y and X with and without adjustment for Z.
+See lecture 02_03 for various examples.
+
+It is possible for the coefficient to reverse sign after adjustment. For example, it can be strongly significant and positive before adjustment and strongly significant and negative after adjustment. (X)
+
+For the the coefficient to change sign, there must be a significant interaction term.
+
+The coefficient can't change sign after adjustment, except for slight numerical pathological cases.
+
+Adjusting for another variable can only attenuate the coefficient toward zero. It can't materially change sign.

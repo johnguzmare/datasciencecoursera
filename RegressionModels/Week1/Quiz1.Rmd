@@ -1,0 +1,292 @@
+Quiz 1.
+=========================
+
+1. 
+Consider the data set given below
+
+x <- c(0.18, -1.54, 0.42, 0.95)
+And weights given by
+
+w <- c(2, 1, 3, 1)
+Give the value of μ that minimizes the least squares equation
+
+∑ni=1wi(xi−μ)2
+
+0.300
+
+0.0025
+
+1.077
+
+0.1471 
+
+```r
+u <- sum(x*w) / sum(w)
+final <- sum(w*(x-u)^2)
+
+c(minu, final)
+## [1] 0.1471429 3.7165429
+
+mu <- c(0.1471, 1.077, 0.0025, 0.300)
+for (u in mu)
+  {print( c(v, sum(w*(x-u)^2)) )}
+  
+  ```
+
+2. 
+Consider the following data set
+
+
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0.05)
+Fit the regression through the origin and get the slope treating y
+
+as the outcome and x as the regressor. (Hint, do not center the data since we want regression through the origin, not through the means of the data.)
+
+0.59915
+
+0.8263
+
+-0.04462
+
+-1.713
+
+the -1 means that do not include the Y intercept because
+just want to define the regression to the origin
+
+```r
+> lm1 <- lm(y ~ x -1)
+> summary(lm1)
+
+Call:
+lm(formula = y ~ x - 1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.0692 -0.2536  0.5303  0.8592  1.1286 
+
+Coefficients:
+  Estimate Std. Error t value Pr(>|t|)
+x   0.8263     0.5817   1.421    0.189
+
+Residual standard error: 1.094 on 9 degrees of freedom
+Multiple R-squared:  0.1831,	Adjusted R-squared:  0.09238 
+F-statistic: 2.018 on 1 and 9 DF,  p-value: 0.1892
+
+```
+
+3. 
+Do 𝚍𝚊𝚝𝚊(𝚖𝚝𝚌𝚊𝚛𝚜) from the datasets package and fit the regression
+
+model with mpg as the outcome and weight as the predictor. Give
+
+the slope coefficient.
+
+-5.344
+
+30.2851
+
+0.5591
+
+-9.559
+
+```r
+> head(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+> rm1 <- lm(mtcars$mpg ~ mtcars$wt)
+> summary(rm1)
+
+Call:
+lm(formula = mtcars$mpg ~ mtcars$wt)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.5432 -2.3647 -0.1252  1.4096  6.8727 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
+mtcars$wt    -5.3445     0.5591  -9.559 1.29e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.046 on 30 degrees of freedom
+Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
+
+```
+
+or 
+
+```r
+> cor(mtcars$wt,mtcars$mpg) *sd(mtcars$mpg)/sd(mtcars$wt)
+[1] -5.344472
+
+```
+
+
+4. 
+Consider data with an outcome (Y) and a predictor (X). The standard deviation of the predictor is one half that of the outcome. The correlation between the two variables is .5. What value would the slope coefficient for the regression model with Y as the outcome and X as the predictor?
+
+1
+
+0.25
+
+4
+
+3
+
+
+Note it is given that sd(Y)/sd(X)=2 and Cor(Y,X)=0.5.
+
+Therefore, we know that the regression coefficient would be:
+
+Cor(Y,X)sd(Y)sd(X)=0.5×2=1
+
+```r
+sx <- 1/2
+sy <- 1
+cor <- .5
+cor * sy / sx
+```
+
+5. 
+Students were given two hard tests and scores were normalized to have empirical mean 0 and variance 1. The correlation between the scores on the two tests was 0.4. What would be the expected score on Quiz 2 for a student who had a normalized score of 1.5 on Quiz 1?
+
+0.6
+
+0.16
+
+1.0
+
+0.4
+
+```r
+1.5 * .4
+## [1] 0.6
+```
+
+6. 
+Consider the data given by the following
+
+x <- c(8.58, 10.46, 9.01, 9.64, 8.86)
+What is the value of the first measurement if x were normalized (to have mean 0 and variance 1)?
+
+8.58
+
+9.31
+
+8.86
+
+-0.9719
+
+```r
+xn <- (x-mean(x)) / sd(x)
+> xn
+[1] -0.9718658  1.5310215 -0.3993969  0.4393366 -0.5990954
+```
+
+
+
+7. 
+Consider the following data set (used above as well). What is the intercept for fitting the model with x as the predictor and y as the outcome?
+
+
+
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0.05)
+
+-1.713
+
+1.567
+
+2.105
+
+1.252
+
+```r
+> fit <- lm(y ~ x)
+> summary(fit)
+
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.1640 -0.5818  0.2010  0.6669  1.1928 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)    1.567      1.252   1.252    0.246
+x             -1.713      2.105  -0.814    0.439
+
+Residual standard error: 1.061 on 8 degrees of freedom
+Multiple R-squared:  0.07642,	Adjusted R-squared:  -0.03903 
+F-statistic: 0.662 on 1 and 8 DF,  p-value: 0.4394
+```
+
+or 
+
+```r
+> coef(fit)[1]
+(Intercept) 
+   1.567461 
+```
+or
+
+```r
+> b1 <- cor(x,y)*sd(y)/sd(x)
+> b0 <- mean(y) - b1 * mean(x)
+```
+
+8. 
+You know that both the predictor and response have mean 0. What
+
+can be said about the intercept when you fit a linear regression?
+
+Nothing about the intercept can be said from the information given.
+
+It must be exactly one.
+
+It is undefined as you have to divide by zero.
+
+It must be identically 0.
+
+
+9. 
+Consider the data given by
+
+
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+What value minimizes the sum of the squared distances between these points and itself?
+
+0.36
+
+0.44
+
+0.8
+
+0.573
+
+```r
+> mean(x)
+[1] 0.573
+```
+
+10. 
+Let the slope having fit Y as the outcome and X as the predictor be denoted as β1. Let the slope from fitting X as the outcome and Y as the predictor be denoted as γ1. Suppose that you divide β1 by γ1; in other words consider β1/γ1. What is this ratio always equal to?
+
+1
+
+Cor(Y,X)
+
+Var(Y)/Var(X)
+
+2SD(Y)/SD(X)

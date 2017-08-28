@@ -1,0 +1,266 @@
+---
+title: 'Regression Models: Motor Trend Car Road Tests - Effects of Transmission on
+  MPG'
+author: "Jhon H. Guzman"
+date: "8/04/2017"
+output:
+  html_document:
+    code_folding: hide
+    theme: paper
+    toc: yes
+    toc_depth: 5
+  pdf_document:
+    fig_height: 4
+    fig_width: 6
+    toc: yes
+    toc_depth: '5'
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+setwd("/Users/jguzman/Documents/onedrive/DataScience/gitRepo/RegressionModels/Week4/project")
+
+library(datasets, quietly = TRUE)
+
+library(ggplot2, quietly = TRUE)
+library(dplyr, quietly = TRUE)
+library(gridExtra, quietly = TRUE)
+library(grid, quietly = TRUE)
+library(DT, quietly = TRUE)
+library(ggmap, quietly = TRUE)
+library(plotly, quietly = TRUE)
+library(car)
+
+options(DT.options = list(
+    deferRender = TRUE,
+    scrollY = 200,
+    scroller = TRUE,
+    sDom  = '<"top">lrt<"bottom">ip'
+))
+
+```
+
+
+\newpage
+## 1. Executive Summary
+
+The analysis attempts to find out the relationship between miles-per-gallon (Mpg) and other variables in the mtcars data set. In particular, to determine whether an automatic or manual transmission is better for Mpg, and quantifies the Mpg difference. The Analysis focuses on inference with a simple linear regression model and a multiple regression model. Both models support the conclusion that the cars in this study with manual transmissions have on average significantly higher MPG’s than cars with automatic transmissions. This conclusion holds whether we consider the relationship between `Mpg` and transmission type `am` alone or transmission type together with `weight` and `qsec` as aditional predictors. In the multiple regression model selected as best fit model, the MPG difference is **`2.9358`** Mpg in Manual transmission than those with automatic transmission.
+
+\newpage
+## 2. Exploratory Data Analysis
+
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+
+#### 2.1 Reading data
+
+load our dataset from the library *datasets* in R
+
+We first read in data from from the library *datasets* in R. The data is the data frame `mtcars (Motor Trend Car Road Tests)`  Initially we do read the header data.
+                  
+```{r read_raw_data,include=TRUE, cache=FALSE}
+data(mtcars)
+head(mtcars)
+
+```
+
+The variables of dataset are as follow:
+
+- `mpg` as a measure of Miles/(US) gallon
+- `cyl` as a measure of Number of cylinders
+- `disp` as a measure of Displacement (cu.in.)
+- `hp` as a measure of Gross horsepower
+- `drat` as a measure of Rear axle ratio
+- `wt` as a measure of Weight (1000 lbs)
+- `qsec` as a measure of 1/4 mile time
+- `vs` as a measure of V/S
+- `am` as a measure of Transmission (0 = automatic, 1 = manual)
+- `gear` as a measure of Number of forward gears
+- `carb` as a measure of Number of carburetors
+
+
+```{r data_dimensions, include=FALSE, echo=FALSE}
+dim(mtcars)
+dim0 <- strsplit(as.character(dim(mtcars))," ")
+
+mt <- mtcars
+
+```
+
+After reading, we check (there are **``r dim0[[1]]``**) observations and **``r dim0[[2]]``** variables in this dataset. 19 observations are for automatic transmission cars and 13 for manual transmission cars. There are no variables which allow us to compare manual vs automatic transmission directly.
+
+#### 2.2 Identify interested data
+
+According to the box plot in *Figure 1*, manual transmission (1) yields a higher Mpg and there is another interesting variable `weight` thats shows in the box plot (weight ~ am) that cars with manual transmission have less weigth than those with automatic transmission. 
+
+The above suggests that Mpg performance depends not only on the type of transimision `am` but also on additional variables that must be included in the model like `wt` and `qsec`.
+
+In *Figure 2*, a pair graph is used to generate scatterplots to show the relationship between best fit model variables. *Figure 3* shows the Residual best fit model mtcars in dataset.
+ 
+ 
+## 3. Regression Analysis
+
+First build different regression models using different variables in the model and find the best model fit using `step` R function, then perform analysis of residuals with the selected model.
+
+#### 3.1 Basic Model `mpg ~ am`
+
+The basic model includes `mpg` as intercept and the interest variable `am` as predictor.
+
+```{r, include=TRUE, echo=FALSE}
+
+lm.basic.model <- lm(mpg ~ am, mt)
+#summary(lm.basic.model)
+coef(summary(lm.basic.model))
+```
+
+With the basic model `lm(formula = mpg ~ am, data = mt)`, a car with an automatic transmission has an average of **``r round(summary(lm.basic.model)$coef[1] ,digits = 3) ``**  Mpg, and manual transmission increases mpg by **``r round(summary(lm.basic.model)$coef[2] ,digits = 3) ``**. However, this model has an Adjusted R-Squared of **``r summary(lm.basic.model)$r.squared  ``**, which means the model can only explain about **`35.97%`** of the variance of the MPG. 
+
+#### 3.2 Stepwise Model 
+
+With stepwise model selection we use `step` R function that runs the linear models multiple times, build RMs, and select the best variables using forward selection and backward elimination methods with the AIC algorithm. 
+
+```{r, include=FALSE, echo=FALSE}
+lm.full.model <- lm(mpg ~ ., data = mt)
+lm.basic.model2 <- lm(mpg ~ wt, data = mt)
+lm.basic.model3 <- lm(mpg ~ wt + qsec, data = mt)
+
+lm.best.model <- step(lm.full.model, direction = "both")
+
+```
+
+The result of `step` analysis shows that the best fit model is `lm(formula = mpg ~ wt + qsec + am, data = mt)` consists of three variables `wt` and `qsec`  as confounders and variable `am` as independent variable. The Adjusted R-Squared value is **``r summary(lm.best.model)$r.squared  ``**, which means the model can explain about **`84.96%`** of the variance of the MPG.
+
+```{r, include=TRUE, echo=FALSE}
+#summary(lm.best.model)
+coef(summary(lm.best.model))
+```
+
+Then, the regression equation is *mpg = 9.618 -3.917 wt + 1.226 qsec + 2.9358 am*. 
+
+#### 3.3 Selected Model Examination
+
+The best fit model is `lm(mpg ~ wt + qsec + am, data = mt)` 
+
+**Analysis of Variance Table (ANOVA)**
+
+The model include for the analysis are as follow:
+
+`Model 1` Model with *(mpg ~ wt)*  
+`Model 2` Best fit model from step function  *(mpg ~ wt + qsec + am)*  
+
+We are confident that `Model 2` is significantly better than `Model 1`, since the p-value analysis for the `am` coefficient in Model 2 is  `0.4432` and the p-value for the best fit model of `1.55e-09` from Analysis of Variance Table is highly significant, we reject the null hypothesis and conclude that the three confounders `wt`, `qsec` and `am` contribute significantly to the model.
+
+```{r, include=TRUE, echo=FALSE}
+# Analysis of variance (ANOVA)
+anova(lm.basic.model, lm.best.model)
+```
+
+**Model Coefficients**
+
+The best fit regression model shows that the coefficient for Manual transmission type is `2.9 Mpg` extra compared to automatic transmission. 
+
+```{r, include=TRUE, echo=FALSE}
+coef(lm.best.model)
+```
+
+**Residuals and Diagnostics**
+
+In the residual plots (*Figure 3.*) we can verify the independence condition by looking at the Residuals vs. Fitted plot and verifying the randomness of the scatter of points but there is a bit of a curve, so that it departs slightly from normality. The residuals for the  Merc 230, and Chrysler Imperial are called out because they exert potential influence as shown in *Figure 4.*. 
+
+The potential leverages coefficient are 
+
+```{r, include=TRUE, echo=FALSE}
+# Potential leverages
+fit.leverage <- hatvalues(lm.best.model)
+tail(sort(fit.leverage),5)
+```
+
+The potential influencers in coefficent values are 
+
+```{r, include=TRUE, echo=FALSE}
+# Potential influencers
+fit.influence <- dfbetas(lm.best.model)
+tail(sort(fit.influence),5)
+```
+
+QQ Plot verify the normality condition for the regression residuals as the points in the plot mostly fall on the normal line. 
+
+The points in the Scale-Location are scattered in a constant pattern which verifies the constant variance condition. Using the Residuals vs. Leverage plot we can visually identify some outliers. 
+
+## 4. Conclusions
+
+- The resulting best model `mpg ~ wt + qsec + am` is actually dependant on the transmission `am`, but also weight `wt` and 1/4 mile time `qsec`. 
+
+- Manual transmission is better for Mpg, holding all other parameters constant (wt, qsec), will increase an average of **`2.94`** more MPG than those with automatic transmission.
+
+- The best fit model `mpg ~ wt + qsec + am` conclude that (with a p < 0.05 confidence) cars with manual transmission have **`2.9358`** more miles per gallon than automatic transmissions. The model seems clean with a p < 0.05 and a Multiple R-squared can explain about  **`84.97%`** of the variance of the MPG.
+
+
+\newpage
+## Appendix Figures.
+
+#### Figure 1. Boxplot of Mpg & Weight by transmission type
+
+```{r pair_plot_0, include=TRUE, echo=FALSE}
+
+par(mfrow=c(1,2))
+boxplot(mpg ~ am, data=mtcars,
+        names = c("Automatic","Manual"),
+        main = "MPG by Type of Transmission",
+        ylab = "MPG Miles/(US) gallon")
+
+boxplot(wt ~ am, data=mtcars,
+        names = c("Automatic", "Manual"),
+        main ="Weight by Type of Transmission",
+        ylab = "Weight (1000 lbs)")
+
+```
+
+\newpage
+#### Figure 2. Pair plot mtcars
+
+This is a pair plot for selected variables correlations associated with the best fit model with variables `mpg`, `wt`, `qsec` and `am`
+
+```{r pair_plot_1, include=TRUE, echo=FALSE}
+
+mtcars_interested <- mtcars[, c(1, 6, 7, 9)]
+
+mar.default <- par()$mar  
+par(mar = c(1, 1, 1, 1))  
+pairs(mtcars_interested, panel = panel.smooth, col = 9 + mtcars$wt, main=" Figure 2. Selected Pair Plot mtcars")
+
+
+```
+
+\newpage
+#### Figure 3. Residual best fit model mtcars
+
+This is a pair plot for selected variables correlations associated with the best fit model with variables `mpg`, `wt`, `qsec` and `am`
+
+```{r pair_plot_3, include=TRUE, echo=FALSE}
+par(mfrow=c(2,2))
+plot(lm.best.model, main="Figure 3. Residual best fit model")
+```
+
+\newpage
+#### Figure 4. Influence Plot
+
+This is a  plot for influence hat values associated with the best fit model with variables `mpg`, `wt`, `qsec` and `am`
+
+```{r pair_plot_4, include=TRUE, echo=FALSE}
+par(mfrow=c(1,1))
+influencePlot(lm.best.model, main="Figure 4. Influence Plot",
+              sub = "size of circles represent influence")
+```
+
+
+
+
+
+
+
+
+
+

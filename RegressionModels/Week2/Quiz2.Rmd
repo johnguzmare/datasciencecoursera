@@ -1,0 +1,219 @@
+
+Quiz 2.
+=========================
+
+https://rpubs.com/kiichi/28424
+
+
+1. Consider the following data with x as the predictor and y as as the outcome.
+
+```r
+x <- c(0.61, 0.93, 0.83, 0.35, 0.54, 0.16, 0.91, 0.62, 0.62)
+y <- c(0.67, 0.84, 0.6, 0.18, 0.85, 0.47, 1.1, 0.65, 0.36)
+```
+
+Give a P-value for the two sided hypothesis test of whether β1 from a linear regression model is 0 or not.
+
+0.05296
+
+```r
+> x <- c(0.61, 0.93, 0.83, 0.35, 0.54, 0.16, 0.91, 0.62, 0.62)
+> y <- c(0.67, 0.84, 0.6, 0.18, 0.85, 0.47, 1.1, 0.65, 0.36)
+> fitq <- lm(x~y)
+> summary(fitq)
+
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.27636 -0.18807  0.01364  0.16595  0.27143 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)   0.1885     0.2061   0.914    0.391  
+x             0.7224     0.3107   2.325    0.053 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.223 on 7 degrees of freedom
+Multiple R-squared:  0.4358,	Adjusted R-squared:  0.3552 
+F-statistic: 5.408 on 1 and 7 DF,  p-value: 0.05296
+
+plot(x,y)
+abline(fit,col="red")
+
+```
+
+2. Consider the previous problem, give the estimate of the residual standard deviation.
+```r
+> summary(fitq)$sigma
+[1] 0.2037868
+```
+
+3. In the 𝚖𝚝𝚌𝚊𝚛𝚜 data set, fit a linear regression model of weight (predictor) on mpg (outcome). Get a 95% **confidence** interval for the expected mpg at the average weight. What is the lower endpoint?
+
+```r
+> rm1 <- lm(mpg ~ wt, data=mtcars)
+
+> (summary(rm1)$coeff)
+             Estimate Std. Error   t value     Pr(>|t|)
+(Intercept) 37.285126   1.877627 19.857575 8.241799e-19
+wt          -5.344472   0.559101 -9.559044 1.293959e-10
+
+> ndata1 <- data.frame(wt=mean(mtcars$wt))
+
+> predict(rm1, ndata1, interval=("confidence"))
+       fit      lwr      upr
+1 20.09062 18.99098 21.19027
+```
+
+OR.....
+
+```r
+data(mtcars)
+> rm1  <- lm(mpg ~ I(wt - mean(wt)), data = mtcars)
+> confint(rm1)
+                     2.5 %    97.5 %
+(Intercept)      18.990982 21.190268
+I(wt - mean(wt)) -6.486308 -4.202635
+```
+
+OR..... 
+
+```r
+> sumCoef <- summary(rm1)$coeff
+
+> sumCoef[1,1] + c(-1, 1) * qt(.975, df = rm1$df) * sumCoef[1, 2]
+[1] 18.99098 21.19027
+
+```
+
+5. Consider again the 𝚖𝚝𝚌𝚊𝚛𝚜 data set and a linear regression model with mpg as **predicted** by weight (1,000 lbs). A new car is coming weighing 3000 pounds. Construct a 95% prediction interval for its mpg. What is the upper endpoint?
+
+
+https://rstudio-pubs-static.s3.amazonaws.com/99888_399d4663b78e4e619e19ed2465763fe1.html
+
+```r
+> ndata1 <- data.frame(wt=3000/1000)
+> predict(rm1, ndata1, interval=("prediction"))
+       fit      lwr      upr
+1 21.25171 14.92987 27.57355
+
+```
+
+6. Consider again the 𝚖𝚝𝚌𝚊𝚛𝚜 data set and a linear regression model with mpg as predicted by weight (in 1,000 lbs). A “short” ton is defined as 2,000 lbs. Construct a 95% confidence interval for the expected change in mpg per 1 short ton increase in weight. Give the lower endpoint.
+
+```r
+> mtcars$wt_ton <- mtcars$wt / 2
+> rm1 <- lm(mpg ~ wt_ton, data=mtcars)
+
+> coef <- summary(rm1)$coeff
+> coef
+             Estimate Std. Error   t value     Pr(>|t|)
+(Intercept)  37.28513   1.877627 19.857575 8.241799e-19
+wt_ton      -10.68894   1.118202 -9.559044 1.293959e-10
+
+#Two sides T-Tests
+> coef[2,1] + c(-1, 1) * qt(.975, df=fit$df) * coef[2,2]
+[1] -12.883447  -8.494439
+```
+
+OR...
+
+```r
+fit <- lm(mpg ~ wt, data = mtcars)
+confint(fit)[2, ] * 2
+
+## Or equivalently change the units
+fit <- lm(mpg ~ I(wt * 0.5), data = mtcars)
+confint(fit)[2, ]
+```
+
+7.  If my X from a linear regression is measured in centimeters and I convert it to meters what would happen to the slope coefficient?
+
+```r
+summary(fit)$coefficients
+
+fit3<-lm(y~I(x/100))
+summary(fit3)$coefficients
+```
+
+8. 
+I have an outcome, Y, and a predictor, X and fit a linear regression model with Y=β0+β1X+ϵ to obtain β^0 and β^1. What would be the consequence to the subsequent slope and intercept if I were to refit the model with a new regressor, X+c for some constant, c?
+
+This is exactly covered in the notes. But note that if Y=β0+β1X+ϵ then Y=β0−cβ1+β1(X+c)+ϵ so that the answer is that the intercept gets subtracted by cβ1
+
+```r
+c<-5
+cf1<-summary(fit)$coefficients
+cf1
+
+fit4<-lm(y~I(x+c)) # add some constant c
+cf2<-summary(fit4)$coefficients
+cf2
+
+b0<-cf1[1,1]
+b1<-cf1[2,1]
+c(b0,b1)
+
+b0 - c*b1
+
+```
+
+9. 
+Refer back to the mtcars data set with mpg as an outcome and weight (wt) as the predictor. About what is the ratio of the the sum of the squared errors, ∑ni=1(Yi−Y^i)2 when comparing a model with just an intercept (denominator) to the model with the intercept and slope (numerator)?
+
+Yi^=Y¯Yi^=Y¯  when the fitted model has an intercept only.
+
+```r
+fit_num <- lm(mpg ~ wt, data=mtcars)
+fit_denom <- lm(mpg ~ 1 + offset(0 * wt), data=mtcars)
+sum(resid(fit_num)^2) / sum(resid(fit_denom)^2)
+```
+
+or 
+
+```r
+fit5<-lm(y ~ 1) #only intercept
+fit6<-lm(y ~ x - 1) #only slope
+plot(x,y)
+
+abline(fit,col="red")
+abline(fit5,col="blue")
+abline(fit6,col="green")
+```
+
+OR ....
+
+```r
+fit1 <- lm(mpg ~ wt, data = mtcars)
+fit2 <- lm(mpg ~ 1, data = mtcars)
+1 - summary(fit1)$r.squared
+
+sse1 <- sum((predict(fit1) - mtcars$mpg)^2)
+sse2 <- sum((predict(fit2) - mtcars$mpg)^2)
+sse1/sse2
+
+```
+
+
+10. Do the residuals always have to sum to 0 in linear regression?
+
+```r
+sum(resid(fit))  #both intercept and slope
+sum(resid(fit5)) #only intercept
+sum(resid(fit6)) #only slope
+```
+
+How can we measure which one is the best model? Use Sigma or R^2
+
+```r
+summary(fit)$sigma   #both intercept and slope
+summary(fit5)$sigma  #only intercept
+summary(fit6)$sigma  #only slope
+```
+
+
+
+
