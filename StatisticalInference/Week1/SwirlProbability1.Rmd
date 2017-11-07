@@ -91,11 +91,11 @@ If an event E can occur in more than one way and these ways are disjoint (mutual
 Since the highest possible dice roll is a '6', the only combinations which give '10' are 4+6
  and 5+5. The first occurs in two ways - red dice gets '4' and green gets '6' OR red gets '6'
  and green gets '4'.
- 
+ ```r
  Event 1 : 4+6 Dice1: 6 Dice2:6 Occurs:12 
  Event 2 : 6+4 Dice1: 6 Dice2:6 Occurs:12 
  Event 3 : 5+5 Dice1: 6 Dice2:6 Occurs:12 
- 
+ ```
  12+12+12 = 36 Because there are 36 possibilities in all, and the sum of their probabilities must equal 1, each singleton event {(a,b)} is assigned probability equal to 1/36. Because E is composed of 3 such distinct singleton events, P(E)=3/36.
 
 ```r
