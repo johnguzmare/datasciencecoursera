@@ -29,6 +29,8 @@ Continuous random variables are usually associated with measurements of time, di
  precision in taking the measurements may imply that the values are discrete; we in fact consider them
  continuous.
 
+probability mass function (PMF)
+---
 A probability mass function (PMF) gives the probability that a discrete random variable is exactly equal
  to some value.
 
@@ -96,6 +98,8 @@ The area of the blue triangle divided by the area of the big triangle gives you 
 > ((1.6*.8)/2)/((2*1)/2)
 [1] 0.64
 ```
+cumulative distribution function (CDF)
+---
 The cumulative distribution function (CDF) of a random variable X, either discrete or continuous, is the
  function F(x) equal to the probability that X is less than or equal to x. In the example above, the area
  of the blue triangle represents the probability that the random variable was less than or equal to the
