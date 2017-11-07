@@ -195,8 +195,9 @@ What is the probability of drawing a jack?
 ```
 
 If you're dealt a hand of 5 cards, what is the probability of getting all 5 of the same value?
+ ```r
 > 0
-
+ ```
  What is the probability of drawing a face card?
 There are 3 face cards in each of the 4 suits in the deck.
 ```r
@@ -206,14 +207,14 @@ There are 3 face cards in each of the 4 suits in the deck.
 
 Suppose you draw a face card and don't replace it in the deck. What is the probability that when you draw
  a second card it also will be a face card?
-
+ ```r
 1: 0
 2: 11/51
 3: 12/51
 4: 11/52
 
 Selection: 2
-
+ ```
  Suppose you draw a face card and don't replace it in the deck. What is the probability that when you draw
  a second card it also will be a face card of the same suit?
 ```r
