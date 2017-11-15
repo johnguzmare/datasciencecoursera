@@ -12,7 +12,7 @@ The expected value of a random variable X, `E(X)`, is a measure of its central t
 For a discrete random variable X with PMF p(x), `E(X)` is defined as a sum, over all possible values x, of the quantity
  `x*p(x)`. `E(X)` represents the center of mass of a collection of locations and weights, `{x, p(x)}`.
 
-*Another term for expected value is mean*. Recall your high school definition of arithmetic mean (or
+**Another term for expected value is mean**. Recall your high school definition of arithmetic mean (or
   average) as the sum of a bunch of numbers divided by the number of numbers you added together. This is
   consistent with the formal definition of E(X) if all the numbers are equally weighted.
 
