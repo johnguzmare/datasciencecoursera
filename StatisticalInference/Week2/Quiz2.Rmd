@@ -5,15 +5,13 @@
 Quiz 2.
 ================
 
-1. 
-What is the variance of the distribution of the average an IID draw of n observations from a population with mean μ and variance σ2.
+1.  What is the variance of the distribution of the average an IID draw of n observations from a population with mean μ and variance σ2.
 
 ```r 
 Var(X¯)=σ2/n
 ```
 
-2. 
-Suppose that diastolic blood pressures (DBPs) for men aged 35-44 are normally distributed with a mean of 80 (mm Hg) and a standard deviation of 10. About what is the probability that a random 35-44 year old has a DBP less than 70?
+2.  Suppose that diastolic blood pressures (DBPs) for men aged 35-44 are normally distributed with a mean of 80 (mm Hg) and a standard deviation of 10. About what is the probability that a random 35-44 year old has a DBP less than 70?
 
 The searched probability is around 16%.
 ```r 
@@ -21,8 +19,7 @@ pnorm(70, mean = 80, sd = 10)
 ## [1] 0.1587
 ```
 
-3. 
-Brain volume for adult women is normally distributed with a mean of about 1,100 cc for women with a standard deviation of 75 cc. What brain volume represents the 95th percentile?
+3.  Brain volume for adult women is normally distributed with a mean of about 1,100 cc for women with a standard deviation of 75 cc. What brain volume represents the 95th percentile?
 
 So the 95th quantile for this distribution is approximately 1123.
 
@@ -31,8 +28,7 @@ qnorm(0.95, mean = 1100, sd = 75)
 ## [1] 1223
 ```
 
-4. 
-Refer to the previous question. Brain volume for adult women is about 1,100 cc for women with a standard deviation of 75 cc. Consider the sample mean of 100 random adult women from this population. What is the 95th percentile of the distribution of that sample mean?
+4.  Refer to the previous question. Brain volume for adult women is about 1,100 cc for women with a standard deviation of 75 cc. Consider the sample mean of 100 random adult women from this population. What is the 95th percentile of the distribution of that sample mean?
 
 So the 95th quantile for this distribution mean is approximately 1113.
 
@@ -41,8 +37,7 @@ qnorm(0.95, mean = 1100, sd = 75/sqrt(100))
 [1] 1112
 ```
 
-5. 
-You flip a fair coin 5 times, about what's the probability of getting 4 or 5 heads?
+5.  You flip a fair coin 5 times, about what's the probability of getting 4 or 5 heads?
 
 So the probability to get at least 4 heads after 5 flips with a fair coin is approximately 19%.
 
@@ -55,8 +50,7 @@ pbinom(3, size = 5, prob = 0.5, lower.tail = FALSE)
 ```
 
 
-6. 
-The respiratory disturbance index (RDI), a measure of sleep disturbance, for a specific population has a mean of 15 (sleep events per hour) and a standard deviation of 10. They are not normally distributed. Give your best estimate of the probability that a sample mean RDI of 100 people is between 14 and 16 events per hour?
+6.  The respiratory disturbance index (RDI), a measure of sleep disturbance, for a specific population has a mean of 15 (sleep events per hour) and a standard deviation of 10. They are not normally distributed. Give your best estimate of the probability that a sample mean RDI of 100 people is between 14 and 16 events per hour?
 We then want to measure the probability of the RDI being inside 1 standard deviation around the mean. Thus it should be around 68%.
 
 ```r 
@@ -64,13 +58,11 @@ pnorm(16, mean = 15, sd = 1) - pnorm(14, mean = 15, sd = 1)
 ## [1] 0.6827
 ```
 
-7. 
-Consider a standard uniform density. The mean for this density is .5 and the variance is 1 / 12. You sample 1,000 observations from this distribution and take the sample mean, what value would you expect it to be near?
+7.  Consider a standard uniform density. The mean for this density is .5 and the variance is 1 / 12. You sample 1,000 observations from this distribution and take the sample mean, what value would you expect it to be near?
 
 Via the LLN it should be near .5.
 
-8. 
-The number of people showing up at a bus stop is assumed to be
+8. The number of people showing up at a bus stop is assumed to be
 
 Poisson with a mean of 5 people per hour. You watch the bus
 
