@@ -31,9 +31,8 @@ Do you recall the definition of a Type II error?  Remember, errors are bad.
 Selection: 2
 ```
 
-Beta is the probability of a Type II error, accepting a false null hypothesis; the complement of this is
-  obviously (1 - beta) which represents the probability of rejecting a false null hypothesis. This is good
-  and this is POWER!
+**Beta** is the probability of a Type II error, accepting a false null hypothesis;  
+**1 - beta** the complement of this represents the probability of rejecting a false null hypothesis. 
 
 Recall our previous example involving the Respiratory Distress Index and sleep disturbances. Our null
   hypothesis H_0 was that mu = 30 and our alternative hypothesis H_a was that mu > 30.
