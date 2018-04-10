@@ -186,6 +186,7 @@ Here's a picture of the power curves for different sample sizes. Again, this use
   vertical.
 
 ![alt text](Rplot08.png)
+
 What does the graph show us about mu_a?
 ```r 
 1: as it gets bigger, it gets more powerful
