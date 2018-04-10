@@ -7,8 +7,8 @@ Power. (Slides for this and other Data Science courses may be found at github
   downloaded as a zip file and viewed locally. This lesson corresponds to
   06_Statistical_Inference/11_Power.)
 
-  In this lesson, as the name suggests, we'll discuss POWER, which *is the probability of rejecting
-  the null hypothesis when it is false, which is good and proper*.
+  In this lesson, as the name suggests, we'll discuss POWER, which **is the probability of rejecting
+  the null hypothesis when it is false, which is good and proper**.
 
 Hence you want more POWER.
 
