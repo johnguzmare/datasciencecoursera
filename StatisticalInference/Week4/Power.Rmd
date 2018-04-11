@@ -400,6 +400,18 @@ Power is still a probability, namely P( (X' - mu_0)/(S /sqrt(n)) > t_(1-alpha, n
 
 R comes to the rescue again with the function power.t.test. We can omit one of the arguments and the function solves for it. Let's
   first use it to solve for power.
+  
+**Arguments**
+`n` number of observations (per group)  
+`delta` true difference in means  
+`sd` standard deviation  
+`sig.level` significance level (Type I error probability)  
+`power` power of test (1 minus Type II error probability)  
+`type` string specifying the type of t test. Can be abbreviated.  
+`alternative` one- or two-sided test. Can be abbreviated.  
+`strict` use strict interpretation in two-sided case  
+`tol` numerical tolerance used in root finding, the default providing (at least) four significant digits.  
+
 
 We'll run it three times with the same values for n (16) and alpha (.05) but different delta and standard deviation values. We'll
   show that if delta (difference in means) divided by the standard deviation is the same, the power returned will also be the same.
