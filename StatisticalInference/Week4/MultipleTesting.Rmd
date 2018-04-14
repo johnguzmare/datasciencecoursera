@@ -300,8 +300,10 @@ We also created a 1000-long array of character strings, trueStatus. The first 50
   function tail to look at the end of trueStatus.
 
 ```r
+
 > tail(trueStatus)
 [1] "not zero" "not zero" "not zero" "not zero" "not zero" "not zero"
+
 ```
 
 Once again we can use R's greatness to count and tabulate for us. We can call the R function table with two arguments, a boolean such as
