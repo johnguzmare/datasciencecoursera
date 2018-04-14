@@ -386,14 +386,18 @@ Here's a histogram of the difference of the means. Looks pretty normal, right? W
 Here's the picture of the InsectSprays again. Suppose we run the same experiment, this time comparing sprays D and E, which
  look more alike. We've redefined testStat to look at these sprays and subtract the mean of spray E from the mean of spray
  D.
-
+ 
+```r
 > testStat(DEcounts,group)
 [1] 1.416667
+```
 
 We've stored off this value, 1.416667, in the variable obs for you. Now run the permutation command, with DEcounts. Here it
  is, perms <- sapply(1 : 10000, function(i) testStat(DEcounts, sample(group)))
 
+```r
 > perms <- sapply(1 : 10000, function(i) testStat(DEcounts, sample(group)))
+```
 
 Finally, we can plot the histogram of the distribution of the difference of the means. We see that with these sprays the
  observed difference of means (the vertical line) is closer to the mean of the permuted labels. This indicates that sprays D
