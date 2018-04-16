@@ -183,6 +183,10 @@ Our one sample of observed data is in the vector fh. Use the R function sample t
  replace to TRUE. Put the result in the variable sam.
 
 ```r
+# fh fathers' heights  
+# nh length of sh vector 1078
+# B number of bootstraps 1000
+
 > sam <- sample(fh,nh*B,replace=TRUE)
 ```
 
