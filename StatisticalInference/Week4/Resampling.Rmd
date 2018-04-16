@@ -168,8 +168,9 @@ The nice thing about bootstrapping is that you can always do it with simulation.
 
 This approximates drawing from the sampling distribution of that statistic, at least as well as the data approximates the
  true population distribution. By calculating the statistic for each simulated data set and using these simulated statistics
- we can either define a confidence interval (e.g. find the 2.5 and the 97.5 percentiles) or take the standard deviation to
- estimate a standard error of that statistic.
+ we can either define:  
+ - Confidence interval (e.g. find the 2.5 and the 97.5 percentiles)  
+ - Take the standard deviation to estimate a standard error of that statistic.
 
 Notice that this process doesn't use any fancy math or asymptotics. The only assumption behind it is that the observed
  sample is representative of the underlying population.
