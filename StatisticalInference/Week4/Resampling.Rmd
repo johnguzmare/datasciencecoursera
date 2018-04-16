@@ -21,7 +21,7 @@ It's relatively new, developed in 1979, by Bradley Efron, a Stanford statisticia
  construct an ESTIMATED population distribution using **random sampling with replacement**. From this distribution (constructed from the observed
  data) we can estimate the distribution of the statistic we're interested in.
 
-**Sampling With Replacement**: (*non-independent Sample values*) when a population element can be selected more than one time.
+**Sampling With Replacement**: (*non-independent Sample values*) when a population element can be selected more than one time.  
 **Sampling Without Replacement**: (*Independent Sample values*) When a population element can be selected only one time. 
 
 So, in bootstrapping the observed data substitutes for what?
