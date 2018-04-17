@@ -394,8 +394,8 @@ So on average 0 of the permutations had a difference greater than the observed. 
 
 Here's a histogram of the difference of the means. Looks pretty normal, right? We can see that the distribution runs
  roughly between -10 and +10 and it's centered around 0. The vertical line shows where the observed difference of means was
- and we see that it's pretty far away from the distribution of the resampled permutations. This means that group
- identification did matter and sprays B and C were quite different.
+ and we see that it's pretty far away from the distribution of the resampled permutations. **This means that group
+ identification did matter and sprays B and C were quite different**.
 
 ![alt text](Rplot21.png)
 
@@ -416,8 +416,8 @@ We've stored off this value, 1.416667, in the variable obs for you. Now run the 
 ```
 
 Finally, we can plot the histogram of the distribution of the difference of the means. We see that with these sprays the
- observed difference of means (the vertical line) is closer to the mean of the permuted labels. This indicates that sprays D
- and E are quite similar and we fail to reject the null hypothesis that the means were equal.
+ observed difference of means (the vertical line) is closer to the mean of the permuted labels. **This indicates that sprays D
+ and E are quite similar and we fail to reject the null hypothesis that the means were equal**.
 
 ![alt text](Rplot22.png)
 
