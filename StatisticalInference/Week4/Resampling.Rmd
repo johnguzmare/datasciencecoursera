@@ -9,7 +9,7 @@ Resampling. (Slides for this and other Data Science courses may be found at gith
  In this lesson, We'll talk about two topics in statistical inference, bootstrapping AND permutation testing. These both fall
  under the broader category of resampling methods. We'll start with bootstrapping.
 
-bootstrap testing
+Bootstraping Testing
 ---
 
 The bootstrap is a handy tool for making statistical inferences. It is used in constructing confidence intervals and calculating standard
@@ -253,13 +253,13 @@ Bootstrapping is a very diverse and complicated topic and we just skimmed the su
 Finally, the confidence intervals we calculated might not perform very well because of biases but the R package bootstrap
  provides an easy fix for this problem.
 
-permutation testing
+Permutation Testing
 ----
 Now, to permutation testing, another handy tool used in group comparisons. As bootstrapping did, permutation testing
  samples a single dataset a zillion times and calculates a statistic based on these samplings.
 
-Permutation testing, however, is based on the idea of exchangability of group labels. It measures whether or not outcomes
- are independent of group identity. Our zillion samples simply permute group labels associated with outcomes. We'll see an
+Permutation testing, however, is based on the idea of exchangability of group labels. **It measures whether or not outcomes
+ are independent of group identity**. Our zillion samples simply permute group labels associated with outcomes. We'll see an
  example of this.
 
 Here's a picture from the dataset InsectSprays which contains counts of the number of bugs killed by six different sprays.
