@@ -378,8 +378,14 @@ We'll relabel and calculate the difference of means 10000 times and store the di
 We can take the mean of the virtual array of the boolean expression perms > obs. Do this now.
 
 ```r
-> mean(perms>obs)
+# H_0 (Bmean = Cmean)
+# H_a (Bmean <> Cmean)
+
+# mean 0 means variability in favor of H_a so Reject H_0
+> mean(perms>obs) 
 [1] 0
+
+
 ```
 So on average 0 of the permutations had a difference greater than the observed. That means we would reject the null
  hypothesis that the means of the two sprays were equal.
