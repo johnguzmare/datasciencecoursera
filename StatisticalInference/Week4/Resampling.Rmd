@@ -9,6 +9,9 @@ Resampling. (Slides for this and other Data Science courses may be found at gith
  In this lesson, We'll talk about two topics in statistical inference, bootstrapping AND permutation testing. These both fall
  under the broader category of resampling methods. We'll start with bootstrapping.
 
+bootstrap testing
+---
+
 The bootstrap is a handy tool for making statistical inferences. It is used in constructing confidence intervals and calculating standard
  errors for statistics that might be difficult for some reason (e.g., lack of data or no closed form). Wikipedia tells us that bootstrapping
  is a technique which "allows estimation of the sampling distribution of almost any statistic using very simple methods."  Simple is good,
@@ -250,6 +253,8 @@ Bootstrapping is a very diverse and complicated topic and we just skimmed the su
 Finally, the confidence intervals we calculated might not perform very well because of biases but the R package bootstrap
  provides an easy fix for this problem.
 
+permutation testing
+----
 Now, to permutation testing, another handy tool used in group comparisons. As bootstrapping did, permutation testing
  samples a single dataset a zillion times and calculates a statistic based on these samplings.
 
